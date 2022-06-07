@@ -1,0 +1,14 @@
+baseURL = "http://suse.github.io/bci-docs"
+languageCode = "en-us"
+title = "SLE BCI Documentation"
+theme = "hugo-geekdoc"
+
+[params]
+  geekdocLogo = "suse_logo.svg"
+
+  geekdocRepo = "https://github.com/SUSE/bci-docs"
+  geekdocEditPath = "edit/main/"
+
+  [params.geekdocContentLicense]
+    name = "GNU Free Documentation License"
+    link = "https://www.gnu.org/licenses/fdl-1.3.txt"
