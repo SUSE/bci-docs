@@ -1,0 +1,32 @@
+---
+stages:
+  - build
+  - deploy
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+  HUGO_ENV: production
+
+image: registry.gitlab.com/pages/hugo/hugo_extended:latest
+
+default:
+  before_script:
+    - apk add --update --no-cache nodejs npm
+    - cd themes/hugo-geekdoc/ && npm install && npm run build && cd ../..
+
+build:
+  stage: build
+  script:
+    - hugo
+  rules:
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+
+pages:
+  stage: deploy
+  script:
+    - hugo
+  artifacts:
+    paths:
+    - public
+  rules:
+  - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
