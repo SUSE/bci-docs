@@ -9,6 +9,8 @@ theme = "hugo-geekdoc"
   geekdocRepo = "https://github.com/SUSE/bci-docs"
   geekdocEditPath = "edit/main/"
 
+  geekdocMenuBundle = true
+
   [params.geekdocContentLicense]
     name = "GNU Free Documentation License"
     link = "https://www.gnu.org/licenses/fdl-1.3.txt"

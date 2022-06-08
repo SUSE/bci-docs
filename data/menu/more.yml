@@ -1,0 +1,10 @@
+---
+more:
+  - name: Registry
+    ref: "https://registry.suse.com"
+    external: true
+    icon: "gdoc_download"
+  - name: "View Source"
+    ref: https://github.com/SUSE/bci-docs
+    icon: gdoc_github
+    external: true
