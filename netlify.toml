@@ -1,0 +1,3 @@
+[build]
+  command = "pushd themes/hugo-geekdoc/ && npm install && npm run build && popd && hugo"
+  publish = "public"
