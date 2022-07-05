@@ -27,7 +27,7 @@ From here you can run Hugo as a server to see the served documentation locally. 
 hugo server
 ```
 
-Alternatively, you can run it as a container. For example:
+Alternatively, you can run the Hugo server using a container. For example:
 
 ```console
 podman run --rm -it -v $(pwd):/src:Z -p 1313:1313 klakegg/hugo server
