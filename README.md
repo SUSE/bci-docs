@@ -21,7 +21,7 @@ npm run build
 cd ../..
 ```
 
-From here you can run Hugo as a server to see the serve documentation locally. You can run it from the CLI with:
+From here you can run Hugo as a server to see the served documentation locally. You can run it from the CLI with:
 
 ```console
 hugo server
