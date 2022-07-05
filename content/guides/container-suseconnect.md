@@ -7,7 +7,7 @@ slug: container-suseconnect
 
 [`container-suseconnect`](https://github.com/SUSE/container-suseconnect) is a
 plugin available in all Base Container Images that ship with Zypper. When
-the plugin detects the host's SUSE Linux Enterprise Server, it automatically
+the plugin finds the host's SUSE Linux Enterprise Server registration credentials, it automatically
 registers the running container. This gives access the SUSE Linux
 Enterprise repositories. This includes additional modules and previous package
 versions that are not part of the free SLE_BCI repository.
@@ -33,7 +33,7 @@ to the development machine. Otherwise, copy both the
 `/etc/zypp/credentials.d/SCCcredentials` and `/etc/SUSEConnect` files.
 
 You can use the following command to obtain `SCCcredentials` (replace
-_REGISTRATION_CODE_ with your SUSE Connect registration code):
+`REGISTRATION_CODE` with your SUSE Connect registration code):
 
 {{< tabs "obtain_scccredentials">}}
 {{< tab "Docker">}}
@@ -61,7 +61,7 @@ nerdctl run --rm registry.suse.com/suse/sle15:latest bash -c \
 
 If you are directly running a container based on a BCI, mount `SCCcredentials`
 (and optionally `/etc/SUSEConnect`) in the correct destination. The following
-example show how to mount `SCCcredentials` in the current working directory:
+example shows how to mount `SCCcredentials` in the current working directory:
 
 {{< tabs "use_scccredentials_as_secret">}}
 {{< tab "Docker">}}
@@ -85,9 +85,9 @@ nerdctl run -v /path/to/SCCcredentials:/etc/zypp/credentials.d/SCCcredentials \
 {{< /tabs >}}
 
 Do not copy the `SCCcredentials` and `SUSEConnect` files into your container
-image t avoid inadvertently adding them to the final image. Use secrets instead,
+image to avoid inadvertently adding them to the final image. Use secrets instead,
 as they are only available to a single layer and are not part of the built
-image. To do this, put copy of `SCCcredentials`  (and optionally `SUSEConnect`)
+image. To do this, put a copy of `SCCcredentials`  (and optionally `SUSEConnect`)
 somewhere on your file system and modify the `RUN` instructions that invoke
 Zypper as follows:
 
