@@ -29,6 +29,17 @@ hugo server
 
 Alternatively, you can run the Hugo server using a container. For example:
 
+**With Docker:**
+```console
+docker run --rm -it -v $(pwd):/src:Z -p 1313:1313 klakegg/hugo server
+```
+
+**With Podmap:**
 ```console
 podman run --rm -it -v $(pwd):/src:Z -p 1313:1313 klakegg/hugo server
+```
+
+**With nerdctl:**
+```console
+nerdctl run --rm -it -v $(pwd):/src:Z -p 1313:1313 klakegg/hugo server
 ```
