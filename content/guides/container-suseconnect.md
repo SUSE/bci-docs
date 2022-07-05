@@ -6,11 +6,11 @@ slug: container-suseconnect
 # What is container-suseconnect?
 
 [`container-suseconnect`](https://github.com/SUSE/container-suseconnect) is a
-plugin available in all Base Container Images that ship with Zypper. When
-the plugin finds the host's SUSE Linux Enterprise Server registration credentials, it automatically
-registers the running container. This gives access the SUSE Linux
-Enterprise repositories. This includes additional modules and previous package
-versions that are not part of the free SLE_BCI repository.
+plugin available in all Base Container Images that ship with Zypper. When the
+plugin finds the host's SUSE Linux Enterprise Server registration credentials,
+which gives the container access the SUSE Linux Enterprise repositories. This
+includes additional modules and previous package versions that are not part of
+the free SLE_BCI repository.
 
 ## How to use container-suseconnect
 
@@ -117,7 +117,7 @@ buildah bud --layers --secret=id=SCCcredentials,src=/path/to/SCCcredentials \
 {{< /tabs >}}
 
 
-## Adding additional modules into the container or container Image
+## Adding modules into the container or container Image
 
 `container-suseconnect` allows you to automatically add SLE Modules into a
 container or container image. What modules are added is determined by the
