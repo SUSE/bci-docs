@@ -5,7 +5,7 @@ main:
     # icon: "gdoc_notification"
     sub:
       - name: Introduction
-        ref: "/documentation/introduction"
+        ref: "/"
       - name: Why SLE BCI
         ref: "/documentation/why"
       - name: General purpose BCI
