@@ -1,7 +1,16 @@
 ---
 Title: How To Use BCIs As VScode Development Containers
 slug: vscode-dev-containers
+resources:
+  - name: vscode
+    src: "vscode.png"
+    title: VS Code with source mounted in Development Container. Open terminal is a console within the container.
+  - name: popup
+    src: "popup.png"
+    title: Pop-up asking if you want to open the code within a Development Container
 ---
+
+{{< img name="vscode" size="large" lazy=false >}}
 
 Visual Studio Code has a feature called [Development Containers](https://code.visualstudio.com/docs/remote/create-dev-container).
 This is part of the built-in functionality to work with remote containers. The
@@ -89,7 +98,9 @@ For example, a `devcontainer.json` could look like the following:
 ```
 
 If you open up a project with these files in them VS Code will prompt you to open
-them in a container.
+them in a container as the image below illustrates.
+
+{{< img name="popup" size="small" lazy=false >}}
 
 This example JSON configuration file is in its simplest form. You can learn more
 details about the additional configuration in the

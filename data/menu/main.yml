@@ -17,6 +17,8 @@ main:
     sub:
       - name: Using SLE BCI
         ref: "/guides/using-sle-bci"
+      - name: Using With VS Code Development Containers
+        ref: "/guides/dev-containers"
       - name: Verify SLE BCI with cosign
         ref: "/guides/verify-with-cosign"
       - name: How to use container-suseconnect
