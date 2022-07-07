@@ -8,7 +8,7 @@ slug: container-suseconnect
 [`container-suseconnect`](https://github.com/SUSE/container-suseconnect) is a
 plugin available in all Base Container Images that ship with Zypper. When the
 plugin finds the host's SUSE Linux Enterprise Server registration credentials,
-which gives the container access the SUSE Linux Enterprise repositories. This
+it uses them to give the container access the SUSE Linux Enterprise repositories. This
 includes additional modules and previous package versions that are not part of
 the free SLE_BCI repository.
 
@@ -33,7 +33,7 @@ to the development machine. Otherwise, copy both the
 `/etc/zypp/credentials.d/SCCcredentials` and `/etc/SUSEConnect` files.
 
 You can use the following command to obtain `SCCcredentials` (replace
-`REGISTRATION_CODE` with your SUSE Connect registration code):
+`REGISTRATION_CODE` with your SCC registration code)
 
 {{< tabs "obtain_scccredentials">}}
 {{< tab "Docker">}}
