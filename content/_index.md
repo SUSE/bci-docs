@@ -1,6 +1,5 @@
 ---
 title: Introduction to SLE Base Container Images
-slug: introduction
 ---
 
 SLE Base Container Image (SLE BCI) are minimal SUSE Linux Enterprise Server
