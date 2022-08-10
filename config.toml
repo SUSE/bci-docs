@@ -14,3 +14,7 @@ theme = "hugo-geekdoc"
   [params.geekdocContentLicense]
     name = "GNU Free Documentation License"
     link = "https://www.gnu.org/licenses/fdl-1.3.txt"
+
+[security]
+  [security.exec]
+    allow = ['^dart-sass-embedded$', '^go$', '^npx$', '^postcss$', '^asciidoctor']
