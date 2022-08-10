@@ -21,6 +21,11 @@ jobs:
         with:
           hugo-version: 'latest'
 
+      - uses: ruby/setup-ruby@v1
+
+      - name: install asciidoctor
+        run: gem install asciidoctor
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
