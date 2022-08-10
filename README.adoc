@@ -17,7 +17,7 @@ to get the theme as a submodule:
 git submodule update --init --recursive
 ----
 
-Once the theme is available you will need to install JavaScript
+Once the theme is available you will need to install the JavaScript
 dependencies and build them. This can be done with the following
 commands:
 
@@ -29,34 +29,39 @@ npm run build
 cd ../..
 ----
 
+Additionally, you have to install
+https://asciidoctor.org/[asciidoctor] for processing of the asciidoc
+files. Please refer to the
+https://asciidoctor.org/#installation[upstream installation
+instructions] how to install asciidoctor either via your
+distribution's package manager or via `gem`.
+
 From here you can run Hugo as a server to see the served documentation
-locally. You can run it from the CLI with:
+locally. Hugo can be run from the CLI via:
 
 [source,console]
 ----
 hugo server
 ----
 
-Alternatively, you can run the Hugo server using a container. For
-example:
 
-*With Docker:*
+=== Writing documentation
 
-[source,console]
+The documentation is written in the https://asciidoc.org/[asciidoc]
+format to simplify the integration into the SLE
+documentation. Asciidoc is another markup format very similar to
+markdown and can be used with Hugo without any larger
+adjustments. Most Hugo shortcodes will "just work", although you have
+to adjust the shortcode a bit as the upstream documentation only shows
+examples in markdown.
+
+For example, the `relref` shortcode is used as follows in markdown:
+[source,markdown]
 ----
-docker run --rm -it -v $(pwd):/src:Z -p 1313:1313 klakegg/hugo server
+[link name]({{< relref "/path/to/link/target.md" >}})
 ----
-
-*With Podmap:*
-
-[source,console]
+which translates to the following in asciidoc:
+[source,asciidoc]
 ----
-podman run --rm -it -v $(pwd):/src:Z -p 1313:1313 klakegg/hugo server
-----
-
-*With nerdctl:*
-
-[source,console]
-----
-nerdctl run --rm -it -v $(pwd):/src:Z -p 1313:1313 klakegg/hugo server
+link:{{< relref "/path/to/link/target.adoc" >}}[link name].
 ----
