@@ -14,48 +14,44 @@
 <label><span class=flex><a href=/guides/container-suseconnect/ class=gdoc-nav__entry>How to use container-suseconnect</a></span></label></li></ul></li></ul></section><section class=gdoc-nav--more><h2>More</h2><ul class=gdoc-nav__list><li><input type=checkbox class=hidden>
 <label><span class=flex><svg class="gdoc-icon gdoc_download"><use xlink:href="#gdoc_download"/></svg><a href=https://registry.suse.com class=gdoc-nav__entry>Registry</a></span></label></li><li><input type=checkbox class=hidden>
 <label><span class=flex><svg class="gdoc-icon gdoc_github"><use xlink:href="#gdoc_github"/></svg><a href=https://github.com/SUSE/bci-docs class=gdoc-nav__entry>View Source</a></span></label></li></ul></section></nav></aside><div class=gdoc-page><div class="gdoc-page__header flex flex-wrap
-justify-between" itemprop=breadcrumb><div><svg class="gdoc-icon gdoc_path hidden-mobile"><use xlink:href="#gdoc_path"/></svg><ol class=breadcrumb itemscope itemtype=https://schema.org/BreadcrumbList><li itemprop=itemListElement itemscope itemtype=https://schema.org/ListItem><a itemscope itemtype=https://schema.org/WebPage itemprop=item itemid=/ href=/><span itemprop=name>Introduction to SLE Base Container Images</span></a><meta itemprop=position content="1"></li><li>/</li><li itemprop=itemListElement itemscope itemtype=https://schema.org/ListItem><a itemscope itemtype=https://schema.org/WebPage itemprop=item itemid=/documentation/ href=/documentation/><span itemprop=name>Documentations</span></a><meta itemprop=position content="2"></li><li>/</li><li itemprop=itemListElement itemscope itemtype=https://schema.org/ListItem><span itemprop=name>BCI-Base, BCI-Minimal, BCI-Micro, and BCI-BusyBox</span><meta itemprop=position content="3"></li></ol></div><div><span class=editpage><svg class="gdoc-icon gdoc_code"><use xlink:href="#gdoc_code"/></svg><a href=https://github.com/SUSE/bci-docs/edit/main/content/documentation/general-purpose-bci.md>Edit page</a></span></div></div><article class="gdoc-markdown gdoc-markdown__align--left"><h1>BCI-Base, BCI-Minimal, BCI-Micro, and BCI-BusyBox</h1><p>SUSE offers several general-purpose SLE Base Container Images that are intended
-as deployment targets or as foundations for creating customized images:
-BCI-Base, BCI-Minimal, BCI-Micro, and BCI-BusyBox. These images share the common
-SLES base, and none of them ship with a specific language or an application
-stack. All images feature the RPM database (even if the specific image does not
-include the RPM package manager) that can be used to verify the provenance of
-every file in the image. Each image includes the SLES certificate bundle, which
-allows the deployed applications to use the system&rsquo;s certificates to verify TLS
-connections.</p><div class=gdoc-page__anchorwrap><h2 id=quick-overview>Quick overview
-<a data-clipboard-text=/documentation/general-purpose-bci/#quick-overview class="gdoc-page__anchor clip flex align-center" title="Anchor to: Quick overview" aria-label="Anchor to: Quick overview" href=#quick-overview><svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"/></svg></a></h2></div><p>The table below provides a quick overview of the differences between BCI-Base,
-BCI-Minimal, BCI-Micro, and BCI-BusyBox.</p><div class=gdoc-page__anchorwrap><h2 id=bci-base-and-bci-init-when-you-need-flexibility>BCI-Base and BCI-Init: When you need flexibility
-<a data-clipboard-text=/documentation/general-purpose-bci/#bci-base-and-bci-init-when-you-need-flexibility class="gdoc-page__anchor clip flex align-center" title="Anchor to: BCI-Base and BCI-Init: When you need flexibility" aria-label="Anchor to: BCI-Base and BCI-Init: When you need flexibility" href=#bci-base-and-bci-init-when-you-need-flexibility><svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"/></svg></a></h2></div><p>This SLE BCI comes with the Zypper package manager and a free SLE-BCI
-repository. This allows you to install software available in the repository and
-customize the image during the build. The downside is the size of the image. It
-is the largest of the general-purpose SLE BCIs, so it is not always the best
-choice for a deployment image.</p><p>A variant of BCI-Base called BCI-Init comes with systemd preinstalled. The
-BCI-Init container image can be useful in scenarios requiring systemd for
-managing services in a single container.</p><div class=gdoc-page__anchorwrap><h2 id=bci-minimal-when-you-do-not-need-zypper>BCI-Minimal: When you do not need Zypper
-<a data-clipboard-text=/documentation/general-purpose-bci/#bci-minimal-when-you-do-not-need-zypper class="gdoc-page__anchor clip flex align-center" title="Anchor to: BCI-Minimal: When you do not need Zypper" aria-label="Anchor to: BCI-Minimal: When you do not need Zypper" href=#bci-minimal-when-you-do-not-need-zypper><svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"/></svg></a></h2></div><p>This is a stripped-down version of the BCI-Base image. BCI-Minimal comes without
-Zypper, but it does have the RPM package manager installed. This significantly
-reduces the size of the image. However, while RPM can install and remove
-packages, it lacks support for repositories and automated dependency
-resolution. The BCI-Minimal image is therefore intended for creating deployment
-containers, and then installing the desired RPM packages inside the
-containers. Although you can install the required dependencies, you need to
-download and resolve them manually. However, this approach is not recommended as
-it is prone to errors.</p><div class=gdoc-page__anchorwrap><h2 id=bci-micro-when-you-need-to-deploy-static-binaries>BCI-Micro: When you need to deploy static binaries
-<a data-clipboard-text=/documentation/general-purpose-bci/#bci-micro-when-you-need-to-deploy-static-binaries class="gdoc-page__anchor clip flex align-center" title="Anchor to: BCI-Micro: When you need to deploy static binaries" aria-label="Anchor to: BCI-Micro: When you need to deploy static binaries" href=#bci-micro-when-you-need-to-deploy-static-binaries><svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"/></svg></a></h2></div><p>This image is similar to BCI-Minimal but without the RPM package manager. The
-primary use case for the image is deploying static binaries produced externally
-or during multi-stage builds. As there is no straightforward way to install
-additional dependencies inside the container image, we recommend deploying a
-project using the BCI-Minimal image only when the final build artifact bundles
-all dependencies and has no external runtime requirements (like Python or Ruby).</p><div class=gdoc-page__anchorwrap><h2 id=bci-busybox-when-you-need-the-smallest-and-gplv3-free-image>BCI-BusyBox: When you need the smallest and GPLv3-free image
-<a data-clipboard-text=/documentation/general-purpose-bci/#bci-busybox-when-you-need-the-smallest-and-gplv3-free-image class="gdoc-page__anchor clip flex align-center" title="Anchor to: BCI-BusyBox: When you need the smallest and GPLv3-free image" aria-label="Anchor to: BCI-BusyBox: When you need the smallest and GPLv3-free image" href=#bci-busybox-when-you-need-the-smallest-and-gplv3-free-image><svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"/></svg></a></h2></div><p>Similar to BCI-Micro, the BCI-BusyBox image comes with the most basic tools
-only. However, these tools are provided by the BusyBox project. This has the
-benefit of further size reduction. Furthermore, the image contains no GPLv3
-licensed software. When using the image, keep in mind that there are certain
-differences between the BusyBox tools and the GNU Coreutils. So scripts written
-for a system that uses GNU Coreutils may require modification to work with
-BusyBox.</p><div class=gdoc-page__anchorwrap><h2 id=approximate-sizes>Approximate sizes
-<a data-clipboard-text=/documentation/general-purpose-bci/#approximate-sizes class="gdoc-page__anchor clip flex align-center" title="Anchor to: Approximate sizes" aria-label="Anchor to: Approximate sizes" href=#approximate-sizes><svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"/></svg></a></h2></div><p>For your reference, the list below provides an approximate size of each SLE
-BCI. Keep in mind that the provided numbers are rough estimations.</p><ul><li><p>BCI-Base ~94 MB</p></li><li><p>BCI-Minimal ~42 MB</p></li><li><p>BCI-Micro ~26 MB</p></li><li><p>BCI-BusyBox ~14 MB</p></li></ul></article><div class="gdoc-page__footer flex flex-wrap justify-between"><span class=gdoc-page__nav><a class="gdoc-page__nav--prev flex align-center" href=/documentation/why-sle-bci/ title="Why SLE BCI"><i class=gdoc-icon>gdoc_arrow_left_alt</i>
+justify-between" itemprop=breadcrumb><div><svg class="gdoc-icon gdoc_path hidden-mobile"><use xlink:href="#gdoc_path"/></svg><ol class=breadcrumb itemscope itemtype=https://schema.org/BreadcrumbList><li itemprop=itemListElement itemscope itemtype=https://schema.org/ListItem><a itemscope itemtype=https://schema.org/WebPage itemprop=item itemid=/ href=/><span itemprop=name>Introduction to SLE Base Container Images</span></a><meta itemprop=position content="1"></li><li>/</li><li itemprop=itemListElement itemscope itemtype=https://schema.org/ListItem><a itemscope itemtype=https://schema.org/WebPage itemprop=item itemid=/documentation/ href=/documentation/><span itemprop=name>Documentations</span></a><meta itemprop=position content="2"></li><li>/</li><li itemprop=itemListElement itemscope itemtype=https://schema.org/ListItem><span itemprop=name>BCI-Base, BCI-Minimal, BCI-Micro, and BCI-BusyBox</span><meta itemprop=position content="3"></li></ol></div><div><span class=editpage><svg class="gdoc-icon gdoc_code"><use xlink:href="#gdoc_code"/></svg><a href=https://github.com/SUSE/bci-docs/edit/main/content/documentation/general-purpose-bci.adoc>Edit page</a></span></div></div><article class="gdoc-markdown gdoc-markdown__align--left"><h1>BCI-Base, BCI-Minimal, BCI-Micro, and BCI-BusyBox</h1><div class=paragraph><p>SUSE offers several general-purpose SLE Base Container Images that are
+intended as deployment targets or as foundations for creating customized
+images: BCI-Base, BCI-Minimal, BCI-Micro, and BCI-BusyBox. These images
+share the common SLES base, and none of them ship with a specific
+language or an application stack. All images feature the RPM database
+(even if the specific image does not include the RPM package manager)
+that can be used to verify the provenance of every file in the image.
+Each image includes the SLES certificate bundle, which allows the
+deployed applications to use the system’s certificates to verify TLS
+connections.</p></div><div class=sect1><h2 id=_quick_overview>Quick overview</h2><div class=sectionbody><div class=paragraph><p>The table below provides a quick overview of the differences between
+BCI-Base, BCI-Minimal, BCI-Micro, and BCI-BusyBox.</p></div></div></div><div class=sect1><h2 id=_bci_base_and_bci_init_when_you_need_flexibility>BCI-Base and BCI-Init: When you need flexibility</h2><div class=sectionbody><div class=paragraph><p>This SLE BCI comes with the Zypper package manager and a free SLE-BCI
+repository. This allows you to install software available in the
+repository and customize the image during the build. The downside is the
+size of the image. It is the largest of the general-purpose SLE BCIs, so
+it is not always the best choice for a deployment image.</p></div><div class=paragraph><p>A variant of BCI-Base called BCI-Init comes with systemd preinstalled.
+The BCI-Init container image can be useful in scenarios requiring
+systemd for managing services in a single container.</p></div></div></div><div class=sect1><h2 id=_bci_minimal_when_you_do_not_need_zypper>BCI-Minimal: When you do not need Zypper</h2><div class=sectionbody><div class=paragraph><p>This is a stripped-down version of the BCI-Base image. BCI-Minimal comes
+without Zypper, but it does have the RPM package manager installed. This
+significantly reduces the size of the image. However, while RPM can
+install and remove packages, it lacks support for repositories and
+automated dependency resolution. The BCI-Minimal image is therefore
+intended for creating deployment containers, and then installing the
+desired RPM packages inside the containers. Although you can install the
+required dependencies, you need to download and resolve them manually.
+However, this approach is not recommended as it is prone to errors.</p></div></div></div><div class=sect1><h2 id=_bci_micro_when_you_need_to_deploy_static_binaries>BCI-Micro: When you need to deploy static binaries</h2><div class=sectionbody><div class=paragraph><p>This image is similar to BCI-Minimal but without the RPM package
+manager. The primary use case for the image is deploying static binaries
+produced externally or during multi-stage builds. As there is no
+straightforward way to install additional dependencies inside the
+container image, we recommend deploying a project using the BCI-Minimal
+image only when the final build artifact bundles all dependencies and
+has no external runtime requirements (like Python or Ruby).</p></div></div></div><div class=sect1><h2 id=_bci_busybox_when_you_need_the_smallest_and_gplv3_free_image>BCI-BusyBox: When you need the smallest and GPLv3-free image</h2><div class=sectionbody><div class=paragraph><p>Similar to BCI-Micro, the BCI-BusyBox image comes with the most basic
+tools only. However, these tools are provided by the BusyBox project.
+This has the benefit of further size reduction. Furthermore, the image
+contains no GPLv3 licensed software. When using the image, keep in mind
+that there are certain differences between the BusyBox tools and the GNU
+Coreutils. So scripts written for a system that uses GNU Coreutils may
+require modification to work with BusyBox.</p></div></div></div><div class=sect1><h2 id=_approximate_sizes>Approximate sizes</h2><div class=sectionbody><div class=paragraph><p>For your reference, the list below provides an approximate size of each
+SLE BCI. Keep in mind that the provided numbers are rough estimations.</p></div><div class=ulist><ul><li><p>BCI-Base ~94 MB</p></li><li><p>BCI-Minimal ~42 MB</p></li><li><p>BCI-Micro ~26 MB</p></li><li><p>BCI-BusyBox ~14 MB</p></li></ul></div></div></div></article><div class="gdoc-page__footer flex flex-wrap justify-between"><span class=gdoc-page__nav><a class="gdoc-page__nav--prev flex align-center" href=/documentation/why-sle-bci/ title="Why SLE BCI"><i class=gdoc-icon>gdoc_arrow_left_alt</i>
 Why SLE BCI</a></span>
 <span class=gdoc-page__nav><a class="gdoc-page__nav--next flex align-center" href=/documentation/language-stack-bci/ title="Language Stack BCI">Language Stack BCI
 <i class=gdoc-icon>gdoc_arrow_right_alt</i></a></span></div></div></main><footer class=gdoc-footer><nav class="container flex"><div><section class="flex flex-wrap align-center"><span class="gdoc-footer__item gdoc-footer__item--row">Built with <a href=https://gohugo.io/ class=gdoc-footer__link>Hugo</a> and<svg class="gdoc-icon gdoc_heart"><use xlink:href="#gdoc_heart"/></svg></span></section><section class="flex flex-wrap align-center"><span class=gdoc-footer__item>Content licensed under

@@ -14,33 +14,31 @@
 <label><span class=flex><a href=/guides/container-suseconnect/ class=gdoc-nav__entry>How to use container-suseconnect</a></span></label></li></ul></li></ul></section><section class=gdoc-nav--more><h2>More</h2><ul class=gdoc-nav__list><li><input type=checkbox class=hidden>
 <label><span class=flex><svg class="gdoc-icon gdoc_download"><use xlink:href="#gdoc_download"/></svg><a href=https://registry.suse.com class=gdoc-nav__entry>Registry</a></span></label></li><li><input type=checkbox class=hidden>
 <label><span class=flex><svg class="gdoc-icon gdoc_github"><use xlink:href="#gdoc_github"/></svg><a href=https://github.com/SUSE/bci-docs class=gdoc-nav__entry>View Source</a></span></label></li></ul></section></nav></aside><div class=gdoc-page><div class="gdoc-page__header flex flex-wrap
-justify-between" itemprop=breadcrumb><div><svg class="gdoc-icon gdoc_path hidden-mobile"><use xlink:href="#gdoc_path"/></svg><ol class=breadcrumb itemscope itemtype=https://schema.org/BreadcrumbList><li itemprop=itemListElement itemscope itemtype=https://schema.org/ListItem><a itemscope itemtype=https://schema.org/WebPage itemprop=item itemid=/ href=/><span itemprop=name>Introduction to SLE Base Container Images</span></a><meta itemprop=position content="1"></li><li>/</li><li itemprop=itemListElement itemscope itemtype=https://schema.org/ListItem><a itemscope itemtype=https://schema.org/WebPage itemprop=item itemid=/documentation/ href=/documentation/><span itemprop=name>Documentations</span></a><meta itemprop=position content="2"></li><li>/</li><li itemprop=itemListElement itemscope itemtype=https://schema.org/ListItem><span itemprop=name>Why SLE Base Container Images</span><meta itemprop=position content="3"></li></ol></div><div><span class=editpage><svg class="gdoc-icon gdoc_code"><use xlink:href="#gdoc_code"/></svg><a href=https://github.com/SUSE/bci-docs/edit/main/content/documentation/why.md>Edit page</a></span></div></div><article class="gdoc-markdown gdoc-markdown__align--left"><h1>Why SLE Base Container Images</h1><p>SLE BCIs offer a platform for creating SLE-based custom container images and
-containerized applications that can be distributed freely. SLE BCIs feature the
-same predictable enterprise lifecycle as SLES. The <code>SLE_BCI</code> 15 SP3 and SP4
-repository (which is a subset of the SLE repository) gives SLE BCIs access to
-4,000 packages available for the AMD64/Intel 64, AArch64, ppc64le, and s390x
-architectures. The packages in the repository have undergone quality assurance
-and security audits by SUSE. The container images are FIPS-compliant when
-running on a host in FIPS mode. In addition to that, SUSE can provide official
-support for SLE BCIs through SUSE subscription plans.</p><div class=gdoc-page__anchorwrap><h3 id=security>Security
-<a data-clipboard-text=/documentation/why-sle-bci/#security class="gdoc-page__anchor clip flex align-center" title="Anchor to: Security" aria-label="Anchor to: Security" href=#security><svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"/></svg></a></h3></div><p>Each package in the SLE_BCI repository undergoes security audits, and SLE BCIs
-benefit from the same mechanism of dealing with CVEs as SLES. All discovered and
-fixed vulnerabilities are announced via e-mail, the dedicated <a class=gdoc-markdown__link href=https://www.suse.com/security/cve/>CVE
-pages</a>, and as OVAL and CVRF data. To ensure
-a secure supply chain, all container images are signed with Notary v1, Podman&rsquo;s
-GPG signatures, and Sigstore Cosign.</p><div class=gdoc-page__anchorwrap><h3 id=stability>Stability
-<a data-clipboard-text=/documentation/why-sle-bci/#stability class="gdoc-page__anchor clip flex align-center" title="Anchor to: Stability" aria-label="Anchor to: Stability" href=#stability><svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"/></svg></a></h3></div><p>Since SLE BCIs are based on SLE, they feature the same level of stability and
-quality assurance as SUSE Linux Enterprise Server. Similar to SLES, SLE BCIs
-receive maintenance updates that provide bug fixes, improvements, and security
-patches.</p><div class=gdoc-page__anchorwrap><h3 id=tooling-and-integration>Tooling and integration
-<a data-clipboard-text=/documentation/why-sle-bci/#tooling-and-integration class="gdoc-page__anchor clip flex align-center" title="Anchor to: Tooling and integration" aria-label="Anchor to: Tooling and integration" href=#tooling-and-integration><svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"/></svg></a></h3></div><p>SLE BCIs are designed to provide drop-in replacements for popular container
-images available on hub.docker.com. You can use the general-purpose SLE BCIs and
-the tools they put at your disposal to create custom container images, while the
-language stack SLE BCIs provide a foundation and the required tooling for
-building containerized applications.</p><div class=gdoc-page__anchorwrap><h3 id=redistribution>Redistribution
-<a data-clipboard-text=/documentation/why-sle-bci/#redistribution class="gdoc-page__anchor clip flex align-center" title="Anchor to: Redistribution" aria-label="Anchor to: Redistribution" href=#redistribution><svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"/></svg></a></h3></div><p>BCIs are covered by a permissive
-<a class=gdoc-markdown__link href=https://www.suse.com/licensing/eula/#bci>EULA</a> that allows you to redistribute
-custom container images based on a BCI.</p></article><div class="gdoc-page__footer flex flex-wrap justify-between"><span class=gdoc-page__nav><a class="gdoc-page__nav--prev flex align-center" href=/ title=Introduction><i class=gdoc-icon>gdoc_arrow_left_alt</i>
+justify-between" itemprop=breadcrumb><div><svg class="gdoc-icon gdoc_path hidden-mobile"><use xlink:href="#gdoc_path"/></svg><ol class=breadcrumb itemscope itemtype=https://schema.org/BreadcrumbList><li itemprop=itemListElement itemscope itemtype=https://schema.org/ListItem><a itemscope itemtype=https://schema.org/WebPage itemprop=item itemid=/ href=/><span itemprop=name>Introduction to SLE Base Container Images</span></a><meta itemprop=position content="1"></li><li>/</li><li itemprop=itemListElement itemscope itemtype=https://schema.org/ListItem><a itemscope itemtype=https://schema.org/WebPage itemprop=item itemid=/documentation/ href=/documentation/><span itemprop=name>Documentations</span></a><meta itemprop=position content="2"></li><li>/</li><li itemprop=itemListElement itemscope itemtype=https://schema.org/ListItem><span itemprop=name>Why SLE Base Container Images</span><meta itemprop=position content="3"></li></ol></div><div><span class=editpage><svg class="gdoc-icon gdoc_code"><use xlink:href="#gdoc_code"/></svg><a href=https://github.com/SUSE/bci-docs/edit/main/content/documentation/why.adoc>Edit page</a></span></div></div><article class="gdoc-markdown gdoc-markdown__align--left"><h1>Why SLE Base Container Images</h1><div class=paragraph><p>SLE BCIs offer a platform for creating SLE-based custom container images
+and containerized applications that can be distributed freely. SLE BCIs
+feature the same predictable enterprise lifecycle as SLES. The <code>SLE_BCI</code>
+15 SP3 and SP4 repository (which is a subset of the SLE repository)
+gives SLE BCIs access to 4,000 packages available for the AMD64/Intel
+64, AArch64, ppc64le, and s390x architectures. The packages in the
+repository have undergone quality assurance and security audits by SUSE.
+The container images are FIPS-compliant when running on a host in FIPS
+mode. In addition to that, SUSE can provide official support for SLE
+BCIs through SUSE subscription plans.</p></div><div class=sect1><h2 id=_security>Security</h2><div class=sectionbody><div class=paragraph><p>Each package in the SLE_BCI repository undergoes security audits, and
+SLE BCIs benefit from the same mechanism of dealing with CVEs as SLES.
+All discovered and fixed vulnerabilities are announced via e-mail, the
+dedicated <a href=https://www.suse.com/security/cve/>CVE pages</a>, and as OVAL and
+CVRF data. To ensure a secure supply chain, all container images are
+signed with Notary v1, Podman’s GPG signatures, and Sigstore Cosign.</p></div></div></div><div class=sect1><h2 id=_stability>Stability</h2><div class=sectionbody><div class=paragraph><p>Since SLE BCIs are based on SLE, they feature the same level of
+stability and quality assurance as SUSE Linux Enterprise Server. Similar
+to SLES, SLE BCIs receive maintenance updates that provide bug fixes,
+improvements, and security patches.</p></div></div></div><div class=sect1><h2 id=_tooling_and_integration>Tooling and integration</h2><div class=sectionbody><div class=paragraph><p>SLE BCIs are designed to provide drop-in replacements for popular
+container images available on hub.docker.com. You can use the
+general-purpose SLE BCIs and the tools they put at your disposal to
+create custom container images, while the language stack SLE BCIs
+provide a foundation and the required tooling for building containerized
+applications.</p></div></div></div><div class=sect1><h2 id=_redistribution>Redistribution</h2><div class=sectionbody><div class=paragraph><p>BCIs are covered by a permissive
+<a href=https://www.suse.com/licensing/eula/#bci>EULA</a> that allows you to
+redistribute custom container images based on a BCI.</p></div></div></div></article><div class="gdoc-page__footer flex flex-wrap justify-between"><span class=gdoc-page__nav><a class="gdoc-page__nav--prev flex align-center" href=/ title=Introduction><i class=gdoc-icon>gdoc_arrow_left_alt</i>
 Introduction</a></span>
 <span class=gdoc-page__nav><a class="gdoc-page__nav--next flex align-center" href=/documentation/general-purpose-bci/ title="General purpose BCI">General purpose BCI
 <i class=gdoc-icon>gdoc_arrow_right_alt</i></a></span></div></div></main><footer class=gdoc-footer><nav class="container flex"><div><section class="flex flex-wrap align-center"><span class="gdoc-footer__item gdoc-footer__item--row">Built with <a href=https://gohugo.io/ class=gdoc-footer__link>Hugo</a> and<svg class="gdoc-icon gdoc_heart"><use xlink:href="#gdoc_heart"/></svg></span></section><section class="flex flex-wrap align-center"><span class=gdoc-footer__item>Content licensed under
