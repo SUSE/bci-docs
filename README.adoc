@@ -1,0 +1,67 @@
+== The SLE BCI documentation
+
+Welcome to the documentation of the SLE Base Container Images!
+
+=== Local Setup
+
+The documentation relies on both https://gohugo.io/[Hugo], the static
+site generator, and nodejs which is used in the theme.
+
+When you checkout the codebase you need to be sure to get the
+submodules. The theme is setup as a submodule. If you checked out the
+code without updating the submodules you can run the following command
+to get the theme as a submodule:
+
+[source,console]
+----
+git submodule update --init --recursive
+----
+
+Once the theme is available you will need to install the JavaScript
+dependencies and build them. This can be done with the following
+commands:
+
+[source,console]
+----
+cd themes/hugo-geekdoc
+npm install
+npm run build
+cd ../..
+----
+
+Additionally, you have to install
+https://asciidoctor.org/[asciidoctor] for processing of the asciidoc
+files. Please refer to the
+https://asciidoctor.org/#installation[upstream installation
+instructions] how to install asciidoctor either via your
+distribution's package manager or via `gem`.
+
+From here you can run Hugo as a server to see the served documentation
+locally. Hugo can be run from the CLI via:
+
+[source,console]
+----
+hugo server
+----
+
+
+=== Writing documentation
+
+The documentation is written in the https://asciidoc.org/[asciidoc]
+format to simplify the integration into the SLE
+documentation. Asciidoc is another markup format very similar to
+markdown and can be used with Hugo without any larger
+adjustments. Most Hugo shortcodes will "just work", although you have
+to adjust the shortcode a bit as the upstream documentation only shows
+examples in markdown.
+
+For example, the `relref` shortcode is used as follows in markdown:
+[source,markdown]
+----
+[link name]({{< relref "/path/to/link/target.md" >}})
+----
+which translates to the following in asciidoc:
+[source,asciidoc]
+----
+link:{{< relref "/path/to/link/target.adoc" >}}[link name].
+----

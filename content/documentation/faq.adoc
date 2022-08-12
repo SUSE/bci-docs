@@ -3,5 +3,5 @@ Title: Frequently Asked Questions
 slug: faq
 ---
 
-# What is SLE BCI?
 
+== What is SLE BCI?
