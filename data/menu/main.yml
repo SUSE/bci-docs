@@ -25,5 +25,7 @@ main:
         ref: "/guides/verify-with-cosign"
       - name: Building Container Images based on SLE BCI
         ref: "/guides/building-on-top-of-bci"
+      - name: Building and Deploying Go Applications
+        ref: "/guides/use-with-golang"
       - name: How to use container-suseconnect
         ref: "/guides/container-suseconnect"
