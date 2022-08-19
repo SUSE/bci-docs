@@ -2,7 +2,6 @@ baseURL = "https://opensource.suse.com/BCI-docs/"
 languageCode = "en-us"
 title = "SLE BCI Documentation"
 theme = "hugo-geekdoc"
-canonifyURLs = true
 
 [params]
   geekdocLogo = "suse_logo.svg"

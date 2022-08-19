@@ -1,6 +1,16 @@
 ---
 title: Building Container Images based on SLE BCI
 slug: building-on-top-of-bci
+resources:
+  - name: registry.opensuse.org_bci_ruby
+    src: "registry.opensuse.org_bci_ruby.png"
+    title: Ruby BCI on registry.opensuse.org
+  - name: obs_repository_add
+    src: "obs_repository_add.png"
+    title: repository view
+  - name: registry.opensuse.org_bci_ruby_build_tag
+    src: "registry.opensuse.org_bci_ruby_build_tag.png"
+    title: Ruby BCI on registry.opensuse.org with the build tag underlined
 ---
 
 {{< hint title=Summary >}}
@@ -304,9 +314,10 @@ that you would like to use as the base. You can leverage
 https://registry.opensuse.org/cgi-bin/cooverview[registry.opensuse.org]
 for that by searching for container image and extracting the project and
 repository names (underlined in mint green and waterhole blue
-respectively): image:/images/registry.opensuse.org_bci_ruby.png[Ruby BCI
-on registry.opensuse.org]
-+
+respectively):
+
+{{< img name="registry.opensuse.org_bci_ruby" size="large" >}}
+
 Add this project and repository to your project's repository
 configuration either by inserting a path entry via `osc meta -e prj`:
 
@@ -325,7 +336,7 @@ click on the `Repositories` tab. There, find the repository in which
 you build your container image, click on the green plus icon and enter
 the project name and the repository name in the appearing popup:
 
-image:/images/obs_repository_add.png[repository view]
+{{< img name="obs_repository_add" size="tiny" >}}
 
 [arabic, start=2]
 . Use the build tag of the container image in the `FROM` instruction in
@@ -339,5 +350,5 @@ and find the container image. The path on `registry.opensuse.org` is
 constructed from the images project, repository and build tag as
 outlined in the image below (the project is underlined in mint green,
 the repository in waterhole blue and the build tag in persimmon):
-image:/images/registry.opensuse.org_bci_ruby_build_tag.png[Ruby BCI on
-registry.opensuse.org with the build tag underlined]
+
+{{< img name="registry.opensuse.org_bci_ruby_build_tag" size="large" >}}

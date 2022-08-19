@@ -137,8 +137,8 @@ to SUSE repositories and a full set of tools and packages.
 No, you can build and run BCI in any environment that supports building
 based on OCI compatible images.
 
-See also link:{{< relref
-"/guides/building-on-top-of-bci.adoc">}}[Building on top of BCI].
+See also link:{{< relref "/guides/building-on-top-of-bci">}}[Building on top of
+BCI].
 
 === Do I need a SUSE Linux environment to deploy BCI?
 
