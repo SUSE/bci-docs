@@ -1,4 +1,4 @@
-baseURL = "https://opensource.suse.com/BCI-docs/"
+baseURL = "https://opensource.suse.com/bci-docs/"
 languageCode = "en-us"
 title = "SLE BCI Documentation"
 theme = "hugo-geekdoc"
