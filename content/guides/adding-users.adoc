@@ -1,0 +1,173 @@
+---
+title: Adding Users to BCI Micro and Minimal
+---
+
+{{< hint type="note" >}}
+This guide will demonstrate how to add users to the BCI Micro and Minimal
+images, without having the `useradd` binary installed.
+{{< /hint >}}
+
+
+== Background
+
+The BCI Micro and Minimal images are tailored towards providing a small
+footprint and thus do not ship the `useradd` binary. While this reduces the
+image size, creating new users inside containers based on BCI Micro or Minimal
+involves a few additional steps.
+
+
+=== Switch to using the Busybox BCI
+
+BCI Minimal and BCI Micro are lightweight deployment images without a package
+manager and tailored for specific use cases. If you do not require a package
+manager in your final image and additionally:
+
+1. you do not need `rpm`
+
+2. your application runs with POSIX `sh` and not just Bash
+
+then consider using the BCI Busybox image instead. It is even smaller than BCI
+Micro and ships the Busybox implementation of `useradd`. Adding a new user in
+Busybox is straightforward:
+
+[source,Dockerfile]
+----
+FROM registry.suse.com/bci/bci-busybox:15.4
+ARG user
+
+# add -H if /home/$user shall not be created
+RUN adduser -D $user
+
+USER $user
+----
+
+This container can be built using your favorite container runtime as follows:
+{{< tabs "build_container_with_added_user">}}
+{{< tab "Docker">}}
+[source,Shell]
+----
+docker build --build-arg user=rancher .
+----
+{{< /tab >}}
+{{< tab "Podman" >}}
+[source,Shell]
+----
+buildah bud --layers --build-arg user=rancher .
+----
+{{< /tab >}}
+{{< tab "nerdctl" >}}
+[source,Shell]
+----
+nerdctl build --build-arg user=rancher .
+----
+{{< /tab >}}
+{{< /tabs >}}
+
+
+=== Using the Base Container to create the User Account
+
+We can utilize a multistage build to create the user in a container that
+provides the `useradd` binary and then copy all necessary files into BCI
+Micro or BCI Minimal. This is achieved using the following `Dockerfile`:
+
+[source,Dockerfile]
+----
+FROM registry.suse.com/bci/bci-base:15.4 as useradder
+ARG user
+# omit -m if you don't want /home/$user to be created
+RUN useradd -m $user
+
+
+FROM registry.suse.com/bci/bci-micro:15.4
+ARG user
+
+COPY --from=useradder /etc/passwd /etc/passwd
+COPY --from=useradder /etc/group /etc/group
+COPY --from=useradder /etc/shadow /etc/shadow
+
+# subgid & subuid are rarely necessary in containers
+# COPY --from=useradder /etc/subgid /etc/subgid
+# COPY --from=useradder /etc/subuid /etc/subuid
+
+# some applications will send your user emails, in case yours does that,
+# uncomment the following line
+# COPY --from=useradder /var/spool/mail/$user /var/spool/mail/$user
+
+# only include this if you kept the -m flag to useradd
+COPY --from=useradder /home/$user /home/$user
+
+USER $user
+
+# remaining build / copy instructions go here
+----
+
+Build your container image using your favorite container runtime using the
+`--build-arg` parameter as in link:#_Switch_to_using_the_Busybox_BCI[Switch to
+using the Busybox BCI].
+
+
+=== Using Busybox to create the User Account
+
+We can leverage the `adduser` implementation from Busybox to create new users
+in BCI Minimal, by installing Busybox inside the Minimal image and then
+executing its `adduser`. This will *not* work in the Micro image as it lacks
+`rpm` to install Busybox.
+
+{{< hint type="Warning" >}}
+This approach will leave two rpm files inside a layer of your final container
+image, thereby making it slightly bigger than necessary. Consider squashing the
+layers to remove this overhead.
+{{< /hint >}}
+
+We utilize the BCI Base container once again to download the rpms of Busybox and
+`libsepol1` (a dependency of Busybox), copy both rpms into the Minimal image,
+add the user and remove both packages afterwards:
+
+[source,Dockerfile]
+----
+FROM registry.suse.com/bci/bci-base:15.4 as downloader
+RUN zypper download busybox libsepol1
+
+FROM registry.suse.com/bci/bci-minimal:15.4
+ARG user
+ARG arch=x86_64
+
+COPY --from=downloader /var/cache/zypp/packages/SLE_BCI/$arch/*rpm /tmp/
+
+RUN rpm -i /tmp/libsepol1*rpm && rpm -i /tmp/busybox*rpm && \
+    busybox adduser -D $user && \
+    rpm -e busybox && rpm -e libsepol1 && rm -rf /tmp/*rpm
+
+USER $user
+----
+
+Building this container image requires the additional build argument `arch` when
+building on non-x86_64 systems. We also squash the layers, if supported by the
+container runtime. Currently `nerdctl` does not support squashing and Docker
+requires to be launched with experimental features enabled.
+
+{{< tabs "build_container_with_busybox_adduser" >}}
+{{< tab "Docker">}}
+[source,Shell]
+----
+docker build --build-arg user=rancher \
+             --build-arg arch=$(uname -m) \
+             --squash .
+----
+{{< /tab >}}
+{{< tab "Podman" >}}
+[source,Shell]
+----
+buildah bud --build-arg user=rancher \
+            --build-arg arch=$(uname -m) \
+            --squash .
+----
+{{< /tab >}}
+{{< tab "nerdctl" >}}
+[source,Shell]
+----
+nerdctl build --build-arg user=rancher \
+              --build-arg arch=$(uname -m) .
+----
+{{< /tab >}}
+{{< /tabs >}}
