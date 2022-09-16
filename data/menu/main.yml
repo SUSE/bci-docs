@@ -31,3 +31,5 @@ main:
         ref: "/guides/use-with-golang"
       - name: How to use container-suseconnect
         ref: "/guides/container-suseconnect"
+      - name: Launch Containers with Podman and Systemd
+        ref: "/guides/podman-generate-systemd"
