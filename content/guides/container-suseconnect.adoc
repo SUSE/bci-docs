@@ -8,7 +8,7 @@ slug: container-suseconnect
 
 https://github.com/SUSE/container-suseconnect[`container-suseconnect`]
 is a plugin available in all Base Container Images that ship with
-Zypper. When the plugin finds the host's SUSE Linux Enterprise Server
+Zypper. When the plugin detects the host's SUSE Linux Enterprise Server
 registration credentials, it uses them to give the container access the
 SUSE Linux Enterprise repositories. This includes additional modules and
 previous package versions that are not part of the free SLE_BCI
@@ -31,7 +31,9 @@ managing your registration credentials.
 You need a registered SLES system to use `container-suseconnect` on
 non-SLE hosts or with Podman, Buildah, or with nerdctl. This can be a
 physical machine, a virtual machine, or the bci-base container with
-`SUSEConnect` installed and registered. If you don't use RMT, copy
+`SUSEConnect` installed and registered.
+
+If you don't use RMT, copy
 `/etc/zypp/credentials.d/SCCcredentials` to the development machine.
 Otherwise, copy both the `/etc/zypp/credentials.d/SCCcredentials` and
 `/etc/SUSEConnect` files.
@@ -68,7 +70,7 @@ nerdctl run --rm registry.suse.com/suse/sle15:latest bash -c \
 
 {{< /tab >}} {{< /tabs >}}
 
-If you are directly running a container based on a BCI, mount
+If you are running a container based on a BCI, mount
 `SCCcredentials` (and optionally `/etc/SUSEConnect`) in the correct
 destination. The following example shows how to mount `SCCcredentials`
 in the current working directory:
@@ -99,11 +101,11 @@ nerdctl run -v /path/to/SCCcredentials:/etc/zypp/credentials.d/SCCcredentials \
 
 {{< /tab >}} {{< /tabs >}}
 
-Do not copy the `SCCcredentials` and `SUSEConnect` files into your
+Do not copy the `SCCcredentials` and `SUSEConnect` files into the
 container image to avoid inadvertently adding them to the final image.
 Use secrets instead, as they are only available to a single layer and
 are not part of the built image. To do this, put a copy of
-`SCCcredentials` (and optionally `SUSEConnect`) somewhere on your file
+`SCCcredentials` (and optionally `SUSEConnect`) somewhere in the file
 system and modify the `RUN` instructions that invoke Zypper as follows:
 
 [source,Dockerfile]
@@ -138,8 +140,8 @@ buildah bud --layers --secret=id=SCCcredentials,src=/path/to/SCCcredentials \
 
 `container-suseconnect` allows you to automatically add SLE Modules into
 a container or container image. What modules are added is determined by
-the environment variable `ADDITIONAL_MODULES`. It must include a a
-comma-separated list of the full module names. In a `Dockerfile`, this
+the environment variable `ADDITIONAL_MODULES` that includes a
+comma-separated list of the module names. In a `Dockerfile`, this
 is done using the `ENV` directive as follows:
 
 [source,Dockerfile]
