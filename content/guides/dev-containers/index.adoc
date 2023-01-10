@@ -1,5 +1,5 @@
 ---
-Title: How To Use BCIs As VScode Development Containers
+Title: How To Use SLE BCIs As VScode Development Containers
 slug: vscode-dev-containers
 resources:
   - name: vscode
@@ -15,7 +15,7 @@ resources:
 Visual Studio Code has a feature called
 https://code.visualstudio.com/docs/remote/create-dev-container[Development
 Containers]. This is part of the built-in functionality to work with
-remote containers. The SLE Language Stack BCIs make a great choice to
+remote containers. The Language Stack SLE BCIs make a great choice to
 use as a development environment.
 
 == Why Use The SLE BCI In Development Containers
@@ -23,8 +23,8 @@ use as a development environment.
 There are two reasons the BCI language stack containers are useful for
 development.
 
-First, you develop in the same environment as when you use a BCI
-language stack image to build or run your application. Being able to
+First, you develop in the same environment as when you use a Language
+Stack SLE BCI to build or run your application. Being able to
 develop and build or run your application in the same environment setup
 enables you to discover quirks and issues that are related to the way
 your application works in the environment.
@@ -70,7 +70,7 @@ present you with an option to use a Development Container.
 There are two ways to specify where to get the container from. You can
 point it at an image or you can point it at a _Dockerfile_ to build the
 image from. Since VS Code needs some additional packages installed you
-can't simply point it at a BCI image.
+can't simply point it at a SLE BCI image.
 
 To illustrate using the `Dockerfile` method we can look at a setup for
 the Go programming language. A `Dockerfile` placed in the
@@ -85,7 +85,7 @@ RUN zypper --non-interactive install -y tar git gzip
 ----
 
 VS Code needs git, gzip, and tar installed which are not present in the
-Go BCI image by default.
+Go SLE BCI image by default.
 
 While this example is targeted at Go, it will work for other languages
 where there is a link:{{< relref

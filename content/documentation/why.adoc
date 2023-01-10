@@ -42,6 +42,6 @@ applications.
 
 == Redistribution
 
-BCIs are covered by a permissive
+SLE BCIs are covered by a permissive
 https://www.suse.com/licensing/eula/#bci[EULA] that allows you to
-redistribute custom container images based on a BCI.
+redistribute custom container images based on a SLE BCI.
