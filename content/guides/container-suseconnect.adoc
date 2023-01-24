@@ -70,7 +70,7 @@ nerdctl run --rm registry.suse.com/suse/sle15:latest bash -c \
 
 {{< /tab >}} {{< /tabs >}}
 
-If you are running a container based on a BCI, mount
+If you are running a container based on a SLE BCI, mount
 `SCCcredentials` (and optionally `/etc/SUSEConnect`) in the correct
 destination. The following example shows how to mount `SCCcredentials`
 in the current working directory:

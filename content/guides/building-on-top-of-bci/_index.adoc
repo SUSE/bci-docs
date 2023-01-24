@@ -4,13 +4,13 @@ slug: building-on-top-of-bci
 resources:
   - name: registry.opensuse.org_bci_ruby
     src: "registry.opensuse.org_bci_ruby.png"
-    title: Ruby BCI on registry.opensuse.org
+    title: Ruby SLE BCI on registry.opensuse.org
   - name: obs_repository_add
     src: "obs_repository_add.png"
     title: repository view
   - name: registry.opensuse.org_bci_ruby_build_tag
     src: "registry.opensuse.org_bci_ruby_build_tag.png"
-    title: Ruby BCI on registry.opensuse.org with the build tag underlined
+    title: Ruby SLE BCI on registry.opensuse.org with the build tag underlined
 ---
 
 {{< hint title=Summary >}}
@@ -78,7 +78,7 @@ https://osinside.github.io/kiwi/[kiwi].
 The Open Build Service supports building container images using a
 `Dockerfile`. However, you need to pay particular attention when
 creating offline builds with the Open Build Service. To build a
-container image based on BCI follow the steps below.
+container image based on SLE BCI follow the steps below.
 
 1. Create a new package for a container image in an appropriate
    project where you have write access using

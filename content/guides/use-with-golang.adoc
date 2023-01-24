@@ -3,9 +3,9 @@ Title: Building and Deploying Go Applications
 slug: use-with-golang
 ---
 
-There is https://registry.suse.com/static/bci/golang/index.html[a SLE
-BCI that can be used with the Go programming language]. There are a
-couple different recommended methods to work with the Go BCI.
+There is https://registry.suse.com/static/bci/golang/index.html[a
+SLE BCI that can be used with the Go programming language]. There are a
+couple different recommended methods to work with the Go SLE BCI.
 
 == Don't Ship The Compiler
 
@@ -71,10 +71,10 @@ Additional settings like exposing network ports or running as a
 non-root user can be specified in the last step below the `FROM
 scratch` line.
 
-=== Building for BCI
+=== Building for SLE BCI
 
 Applications that require external libraries or CA certificates cannot
-be deployed into a `scratch` image. A SLE General Purpose BCI should
+be deployed into a `scratch` image. A General Purpose SLE BCI should
 be used instead. The above `Dockerfile` has to be slightly adjusted
 in this case:
 
@@ -103,7 +103,7 @@ COPY --from=build /hello-world /usr/local/bin/hello-world
 CMD ["/usr/local/bin/hello-world"]
 ----
 
-The above example uses the BCI micro image as the deployment image for
+The above example uses the SLE BCI micro image as the deployment image for
 the resulting application. This is just one of the options, other
 options can be found in the section about the link:{{< relref
-"documentation/general-purpose-bci.adoc" >}}[General Purpose BCI].
+"documentation/general-purpose-bci.adoc" >}}[General Purpose SLE BCI].
