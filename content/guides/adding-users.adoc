@@ -3,7 +3,7 @@ title: Adding Users to SLE BCI Micro and Minimal
 ---
 
 {{< hint type="note" >}}
-This guide will demonstrate how to add users to the SLE BCI Micro and SLE Minimal
+This guide will demonstrate how to add users to the SLE BCI Micro and SLE BCI Minimal
 images, without having the `useradd` binary installed.
 {{< /hint >}}
 
@@ -102,7 +102,7 @@ USER $user
 ----
 
 Build your container image using your favorite container runtime using the
-`--build-arg` parameter as in link:#_Switch_to_using_the_BusyBox_BCI[Switch to
+`--build-arg` parameter as in link:#_Switch_to_using_the_SLE_BCI[Switch to
 using the BusyBox SLE BCI].
 
 
