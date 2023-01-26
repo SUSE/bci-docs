@@ -32,7 +32,7 @@ minimal packages needed. The link:{{< relref
 images offer four different options here, depending on your exact
 requirements.
 
-=== Building for `scratch`
+=== Building from `scratch`
 
 The following `Dockerfile` illustrates building an application using
 the SLE BCI Go image to compile the binary and then copying it into a
