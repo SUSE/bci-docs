@@ -37,7 +37,7 @@ will not function if your Go application depends on libc or any other
 library, as they will not be available.</p></div><div class=paragraph><p>A second method is to use a slim base container image with just the
 minimal packages needed. The <a href=/bci-docs/documentation/general-purpose-bci/>General Purpose SLE BCI</a>
 images offer four different options here, depending on your exact
-requirements.</p></div><div class=sect2><h3 id=_building_for_scratch>Building for <code>scratch</code></h3><div class=paragraph><p>The following <code>Dockerfile</code> illustrates building an application using
+requirements.</p></div><div class=sect2><h3 id=_building_from_scratch>Building from <code>scratch</code></h3><div class=paragraph><p>The following <code>Dockerfile</code> illustrates building an application using
 the SLE BCI Go image to compile the binary and then copying it into a
 new image based on <code>scratch</code>. The example uses a <code>hello world</code>
 as the program name, which can be substituted for the real application
