@@ -65,7 +65,7 @@ COPY --from=build /hello-world /hello-world
 
 CMD [&#34;/hello-world&#34;]</code></pre></div></div><div class=paragraph><p>Additional settings like exposing network ports or running as a
 non-root user can be specified in the last step below the <code>FROM
-scratch</code> line.</p></div></div><div class=sect2><h3 id=_building_for_sle_bci>Building for SLE BCI</h3><div class=paragraph><p>Applications that require external libraries or CA certificates cannot
+scratch</code> line.</p></div></div><div class=sect2><h3 id=_building_from_sle_bci>Building from SLE BCI</h3><div class=paragraph><p>Applications that require external libraries or CA certificates cannot
 be deployed into a <code>scratch</code> image. A General Purpose SLE BCI should
 be used instead. The above <code>Dockerfile</code> has to be slightly adjusted
 in this case:</p></div><div class=listingblock><div class=content><pre class=highlight><code class=language-docker data-lang=docker># Build the Go Binary using the SLE BCI Go 1.19 images
