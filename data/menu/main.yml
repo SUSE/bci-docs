@@ -33,3 +33,7 @@ main:
         ref: "/guides/container-suseconnect"
       - name: Launch Containers with Podman and Systemd
         ref: "/guides/podman-generate-systemd"
+      - name: Deploy an Application using zypper
+        ref: "/guides/deploy-using-zypper"
+      - name: How to build a distroless image using SLE BCI
+        ref: "/guides/building-a-distroless-image"

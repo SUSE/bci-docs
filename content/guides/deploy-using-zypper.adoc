@@ -1,0 +1,69 @@
+---
+Title: Deploy an Application using zypper
+---
+
+== Scope
+
+The purpose of this guide is to deploy an application or the dependencies of an
+application from rpms into a deployment image using the zypper package manager.
+
+
+== Using zypper's custom root
+
+Zypper provides the `--root` flag to install packages into a custom root and not
+use `/`. We can leverage this feature to install a package including all of its
+dependencies into a custom root and then copy this directory into a deployment
+image. In the following example we install `apache2` including all of its
+dependencies and copy them into the deployment image based on `bci-micro`:
+
+[source,Dockerfile]
+----
+FROM registry.suse.com/bci/bci-micro:latest AS minimal
+FROM registry.suse.com/bci/bci-base:latest AS builder
+
+RUN mkdir -p /chroot/etc/zypp/repos.d/
+COPY --from=minimal / /chroot/
+RUN cp {,/chroot}/etc/zypp/repos.d/SLE_BCI.repo && \
+    zypper --root /chroot -n --gpg-auto-import-keys in --no-recommends apache2 && \
+    zypper --root /chroot clean -a && \
+    rm -rf /chroot/var/log/
+
+FROM minimal
+WORKDIR /
+COPY --from=builder /chroot/ /
+----
+
+
+== Customizing zypper's installation behavior
+
+We can further reduce the final image size by supplying a custom zypper
+configuration file. We can tweak zypper's behavior further via that
+configuration file to e.g. omit the installation of documentation files. To
+achieve this omission of configuration files, create the following
+`scratch-zypp.conf`:
+
+[source,ini]
+----
+[main]
+rpm.install.excludedocs = yes
+----
+
+And modify the `Dockerfile` as follows:
+[source,Dockerfile]
+----
+FROM registry.suse.com/bci/bci-micro:latest AS minimal
+FROM registry.suse.com/bci/bci-base:latest AS builder
+
+RUN mkdir -p /chroot/etc/zypp/repos.d/
+COPY --from=minimal / /chroot/
+COPY scratch-zypp.conf /
+ENV ZYPP_CONF=/scratch-zypp.conf
+RUN cp {,/chroot}/etc/zypp/repos.d/SLE_BCI.repo && \
+    zypper --root /chroot -n --gpg-auto-import-keys in --no-recommends apache2 && \
+    zypper --root /chroot clean -a && \
+    rm -rf /chroot/var/log/
+
+FROM minimal
+WORKDIR /
+COPY --from=builder /chroot/ /
+----
