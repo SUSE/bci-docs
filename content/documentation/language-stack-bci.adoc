@@ -18,13 +18,13 @@ overview of the available language stack SLE BCIs.
 
 * URL:
 https://registry.suse.com/static/bci/python/index.html[`registry.suse.com/bci/python`]
-* Tags: `3.6`, `3.9`, `3.10`
+* Tags: `3.6`, `3.10`
 * Ships with the python3 version from the tag and pip3, curl, git tools.
 
 === node
 
 * URL: link:[`registry.suse.com/bci/node`]
-* Tags: `12`, `14`, `16`
+* Tags: `14`, `16`, `18`
 * Comes with nodejs version from the tag, npm and git. The yarn package
 manager can be installed with the `npm install -g yarn` command.
 
@@ -56,7 +56,7 @@ gem and bundler as well as git and curl.
 
 * URL:
 https://registry.suse.com/static/bci/golang/index.html[`registry.suse.com/bci/golang`]
-* Tags: `1.16`, `1.17`, `1.18`
+* Tags: `1.19`, `1.20`
 * Ships with the go compiler version specified in the tag.
 
 === dotnet-runtime
@@ -79,7 +79,7 @@ repository.
 
 * URL:
 https://registry.suse.com/static/bci/dotnet-sdk/index.html[`registry.suse.com/suse/dotnet-sdk`]
-* Tags: `3.1`, `5.0`, `6.0`
+* Tags: `3.1`, `6.0`, `7.0`
 * Comes with the .NET and ASP.NET SDK from Microsoft as well as the
 Microsoft .NET repository.
 
@@ -87,5 +87,5 @@ Microsoft .NET repository.
 
 * URL:
 https://registry.suse.com/static/bci/rust-beta/index.html[`registry.suse.com/bci/rust`]
-* Tags: `1.59`, `1.60`
+* Tags: `1.67`, `1.68`
 * Ships with the Rust compiler and the cargo package manager.
