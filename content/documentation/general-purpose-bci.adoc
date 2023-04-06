@@ -49,7 +49,7 @@ This image is similar to BCI-Minimal but without the RPM package
 manager. The primary use case for the image is deploying static binaries
 produced externally or during multi-stage builds. As there is no
 straightforward way to install additional dependencies inside the
-container image, we recommend deploying a project using the BCI-Minimal
+container image, we recommend deploying a project using the BCI-Micro
 image only when the final build artifact bundles all dependencies and
 has no external runtime requirements (like Python or Ruby).
 
