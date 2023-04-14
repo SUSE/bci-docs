@@ -48,7 +48,7 @@ However, this approach is not recommended as it is prone to errors.</p></div></d
 manager. The primary use case for the image is deploying static binaries
 produced externally or during multi-stage builds. As there is no
 straightforward way to install additional dependencies inside the
-container image, we recommend deploying a project using the BCI-Minimal
+container image, we recommend deploying a project using the BCI-Micro
 image only when the final build artifact bundles all dependencies and
 has no external runtime requirements (like Python or Ruby).</p></div></div></div><div class=sect1><h2 id=_bci_busybox_when_you_need_the_smallest_and_gplv3_free_image>BCI-BusyBox: When you need the smallest and GPLv3-free image</h2><div class=sectionbody><div class=paragraph><p>Similar to BCI-Micro, the BCI-BusyBox image comes with the most basic
 tools only. However, these tools are provided by the BusyBox project.
