@@ -21,8 +21,8 @@ main:
         ref: "/guides/using-sle-bci"
       - name: Using With VS Code Development Containers
         ref: "/guides/dev-containers"
-      - name: Verify SLE BCI with cosign
-        ref: "/guides/verify-with-cosign"
+      - name: Verify SLE BCI
+        ref: "/guides/verify-sle-bci"
       - name: Building Container Images based on SLE BCI
         ref: "/guides/building-on-top-of-bci"
       - name: Adding Users to BCI Micro and Minimal
