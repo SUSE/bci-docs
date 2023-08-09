@@ -39,7 +39,7 @@ COPY --from=builder /chroot/ /
 We can further reduce the final image size by supplying a custom zypper
 configuration file. We can tweak zypper's behavior further via that
 configuration file to e.g. omit the installation of documentation files. To
-achieve this omission of configuration files, create the following
+achieve this omission of documentation files, create the following
 `scratch-zypp.conf`:
 
 [source,ini]
