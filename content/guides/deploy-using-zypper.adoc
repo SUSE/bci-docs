@@ -10,25 +10,23 @@ application from rpms into a deployment image using the zypper package manager.
 
 == Using zypper's custom root
 
-Zypper provides the `--root` flag to install packages into a custom root and not
-use `/`. We can leverage this feature to install a package including all of its
+Zypper provides the `--installroot` flag to install packages into a custom root
+and not use `/`. We can leverage this to install packages including all of their
 dependencies into a custom root and then copy this directory into a deployment
 image. In the following example we install `apache2` including all of its
 dependencies and copy them into the deployment image based on `bci-micro`:
 
 [source,Dockerfile]
 ----
-FROM registry.suse.com/bci/bci-micro:latest AS minimal
+FROM registry.suse.com/bci/bci-micro:latest AS micro
 FROM registry.suse.com/bci/bci-base:latest AS builder
 
-RUN mkdir -p /chroot/etc/zypp/repos.d/
-COPY --from=minimal / /chroot/
-RUN cp {,/chroot}/etc/zypp/repos.d/SLE_BCI.repo && \
-    zypper --root /chroot -n --gpg-auto-import-keys in --no-recommends apache2 && \
-    zypper --root /chroot clean -a && \
+COPY --from=micro / /chroot/
+RUN zypper --installroot /chroot -n --gpg-auto-import-keys in --no-recommends apache2 && \
+    zypper --installroot /chroot clean -a && \
     rm -rf /chroot/var/log/
 
-FROM minimal
+FROM micro
 WORKDIR /
 COPY --from=builder /chroot/ /
 ----
@@ -39,7 +37,7 @@ COPY --from=builder /chroot/ /
 We can further reduce the final image size by supplying a custom zypper
 configuration file. We can tweak zypper's behavior further via that
 configuration file to e.g. omit the installation of documentation files. To
-achieve this omission of configuration files, create the following
+achieve this omission of documentation files, create the following
 `scratch-zypp.conf`:
 
 [source,ini]
@@ -51,19 +49,17 @@ rpm.install.excludedocs = yes
 And modify the `Dockerfile` as follows:
 [source,Dockerfile]
 ----
-FROM registry.suse.com/bci/bci-micro:latest AS minimal
+FROM registry.suse.com/bci/bci-micro:latest AS micro
 FROM registry.suse.com/bci/bci-base:latest AS builder
 
-RUN mkdir -p /chroot/etc/zypp/repos.d/
-COPY --from=minimal / /chroot/
+COPY --from=micro / /chroot/
 COPY scratch-zypp.conf /
 ENV ZYPP_CONF=/scratch-zypp.conf
-RUN cp {,/chroot}/etc/zypp/repos.d/SLE_BCI.repo && \
-    zypper --root /chroot -n --gpg-auto-import-keys in --no-recommends apache2 && \
-    zypper --root /chroot clean -a && \
+RUN zypper --installroot /chroot -n --gpg-auto-import-keys in --no-recommends apache2 && \
+    zypper --installroot /chroot clean -a && \
     rm -rf /chroot/var/log/
 
-FROM minimal
+FROM micro
 WORKDIR /
 COPY --from=builder /chroot/ /
 ----
