@@ -18,17 +18,17 @@ dependencies and copy them into the deployment image based on `bci-micro`:
 
 [source,Dockerfile]
 ----
-FROM registry.suse.com/bci/bci-micro:latest AS minimal
+FROM registry.suse.com/bci/bci-micro:latest AS micro
 FROM registry.suse.com/bci/bci-base:latest AS builder
 
 RUN mkdir -p /chroot/etc/zypp/repos.d/
-COPY --from=minimal / /chroot/
+COPY --from=micro / /chroot/
 RUN cp {,/chroot}/etc/zypp/repos.d/SLE_BCI.repo && \
     zypper --root /chroot -n --gpg-auto-import-keys in --no-recommends apache2 && \
     zypper --root /chroot clean -a && \
     rm -rf /chroot/var/log/
 
-FROM minimal
+FROM micro
 WORKDIR /
 COPY --from=builder /chroot/ /
 ----
@@ -51,11 +51,11 @@ rpm.install.excludedocs = yes
 And modify the `Dockerfile` as follows:
 [source,Dockerfile]
 ----
-FROM registry.suse.com/bci/bci-micro:latest AS minimal
+FROM registry.suse.com/bci/bci-micro:latest AS micro
 FROM registry.suse.com/bci/bci-base:latest AS builder
 
 RUN mkdir -p /chroot/etc/zypp/repos.d/
-COPY --from=minimal / /chroot/
+COPY --from=micro / /chroot/
 COPY scratch-zypp.conf /
 ENV ZYPP_CONF=/scratch-zypp.conf
 RUN cp {,/chroot}/etc/zypp/repos.d/SLE_BCI.repo && \
@@ -63,7 +63,7 @@ RUN cp {,/chroot}/etc/zypp/repos.d/SLE_BCI.repo && \
     zypper --root /chroot clean -a && \
     rm -rf /chroot/var/log/
 
-FROM minimal
+FROM micro
 WORKDIR /
 COPY --from=builder /chroot/ /
 ----
