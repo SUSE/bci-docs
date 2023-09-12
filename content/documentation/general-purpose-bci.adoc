@@ -68,7 +68,7 @@ require modification to work with BusyBox.
 For your reference, the list below provides an approximate size of each
 SLE BCI. Keep in mind that the provided numbers are rough estimations.
 
-* BCI-Base ~94 MB
-* BCI-Minimal ~42 MB
+* BCI-Base ~124 MB
+* BCI-Minimal ~48 MB
 * BCI-Micro ~26 MB
 * BCI-BusyBox ~14 MB
