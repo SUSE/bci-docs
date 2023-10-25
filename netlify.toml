@@ -1,3 +1,6 @@
 [build]
   command = "pushd themes/hugo-geekdoc/ && npm install && npm run build && popd && hugo -b $DEPLOY_PRIME_URL"
   publish = "public"
+[build.environment]
+  # keep this in sync with .github/workflows/pages.yml
+  HUGO_VERSION = "0.112.0"
