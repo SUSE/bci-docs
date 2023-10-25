@@ -19,7 +19,8 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: 'latest'
+          # keep this in sync with 'netlify.toml'
+          hugo-version: '0.112.0'
 
       - uses: ruby/setup-ruby@v1
 
@@ -29,7 +30,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 18
 
       - name: Build the hugo-geekdoc theme
         run: |

@@ -8,7 +8,7 @@ applications. There are two types of SLE BCI:
 
 * General-purpose SLE BCI can be used for building custom container
 images and for deploying applications.
-* Language stack SLE BCI provide minimal environments for developing and
+* Language stack SLE BCI provide environments for developing and
 deploying applications in specific programming languages.
 
 In addition to that, we will provide Application Container Images based
