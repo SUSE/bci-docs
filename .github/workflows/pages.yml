@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+        uses: peaceiris/actions-hugo@v3
         with:
           # keep this in sync with 'netlify.toml'
           hugo-version: '0.112.0'
