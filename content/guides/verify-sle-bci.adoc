@@ -19,7 +19,7 @@ image.
 [source,ShellSession]
 ----
 > podman run --rm -it gcr.io/projectsigstore/cosign verify \
-    --key https://ftp.suse.com/pub/projects/security/keys/container–key.pem \
+    --key https://ftp.suse.com/pub/projects/security/keys/container-key.pem \
     registry.suse.com/bci/bci-base:latest | tail -1 | jq
 
 [
@@ -50,7 +50,7 @@ ledger. For example:
 [source,ShellSession]
 ----
 > podman run --rm -it -e COSIGN_EXPERIMENTAL=1 gcr.io/projectsigstore/cosign \
-    verify --key https://ftp.suse.com/pub/projects/security/keys/container–key.pem \
+    verify --key https://ftp.suse.com/pub/projects/security/keys/container-key.pem \
     registry.suse.com/bci/bci-base:latest | tail -1 | jq
 [
   {
@@ -150,7 +150,7 @@ Fetch the public key used to sign SLE BCIs from https://www.suse.com/support/sec
 
 [source,ShellSession]
 ----
-> sudo curl -s https://ftp.suse.com/pub/projects/security/keys/container–key.pem \
+> sudo curl -s https://ftp.suse.com/pub/projects/security/keys/container-key.pem \
     -o /usr/share/pki/containers/suse-container-key.pem
 ----
 
