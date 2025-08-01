@@ -24,7 +24,7 @@ There are two ways to work with Go images. First, you can encapsulate
 your application in a https://hub.docker.com/_/scratch/[`scratch`]
 container image, which is essentially an empty image. This approach
 will not function if your Go application depends on libc or any other
-library, as they will not be available.
+library, as the libraries will not be available.
 
 A second method is to use a slim base container image with just the
 minimal packages needed. The link:{{< relref
