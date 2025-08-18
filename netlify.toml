@@ -3,4 +3,6 @@
   publish = "public"
 [build.environment]
   # keep this in sync with .github/workflows/pages.yml
-  HUGO_VERSION = "0.112.0"
+  # and with theme required versions
+  HUGO_VERSION = "0.148.0"
+  NODE_VERSION = "22"
