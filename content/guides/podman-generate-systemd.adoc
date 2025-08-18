@@ -143,20 +143,16 @@ latter also means that a container image update can make the container
 unavailable outside of a scheduled maintenance window due to a newly
 introduced bug.
 
-
-The
-https://docs.podman.io/en/latest/markdown/podman-auto-update.1.html[`auto-update`]
-subcommand in Podman provides a possible solution. Add the label
-`io.containers.autoupdate=registry` to a container to make Podman pull a new
-version of the container image from the registry when running `podman
-auto-update`. This makes it possible to update all container images with a
-single command at a desired time, and without increasing the startup time of the
+The https://docs.podman.io/en/latest/markdown/podman-auto-update.1.html[`auto-update`]
+subcommand in Podman provides a possible solution. Add the label `io.containers.autoupdate=registry`
+to a container to make Podman pull a new version of the container image from the registry
+when running `podman auto-update`. This makes it possible to update all container images
+with a single command at a desired time, and without increasing the startup time of the
 systemd units.
 
-The auto update feature can be enabled by adding the line `--label
-"io.containers.autoupdate=registry" \` to the `ExecStart=` entry of the
-container's systemd unit file. for the NGINX example, modify
-`~/.config/systemd/user/container-web.service` as follows:
+The auto update feature can be enabled by adding the line `--label "io.containers.autoupdate=registry" \`
+to the `ExecStart=` entry of the container's systemd unit file. For the NGINX example,
+modify `~/.config/systemd/user/container-web.service` as follows:
 [source,ini]
 ----
 ExecStart=/usr/bin/podman run \

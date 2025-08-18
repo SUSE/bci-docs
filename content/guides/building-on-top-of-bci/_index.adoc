@@ -30,7 +30,7 @@ Open Build Service]
 
 The SLE Base Container Images are OCI compliant images and can thus be
 used without any modifications in your `Dockerfile`. Visit
-https://registry.suse.com[`registry.suse.com`], find the container image
+https://registry.suse.com[registry.suse.com], find the container image
 that fits your needs, and include it in the `FROM` line in your
 `Dockerfile` as follows:
 
@@ -83,7 +83,7 @@ container image based on SLE BCI follow the steps below.
 1. Create a new package for a container image in an appropriate
    project where you have write access using
    https://github.com/openSUSE/osc/[`osc`]:
-
++
 [source,ShellSession]
 ----
 ❯ cd /path/to/the/project/
@@ -96,40 +96,41 @@ container image based on SLE BCI follow the steps below.
 +
 Create this repository by inserting the following XML snippet into the
 project settings via `osc meta -e prj`:
-
++
 [source,xml]
 ----
-  <repository name="containerfile">
-    <path project="SUSE:Registry" repository="standard"/>
-    <path project="SUSE:SLE-15-SP4:Update" repository="standard"/>
-    <arch>x86_64</arch>
-    <arch>aarch64</arch>
-    <arch>s390x</arch>
-    <arch>ppc64le</arch>
-  </repository>
+<repository name="containerfile">
+  <path project="SUSE:Registry" repository="standard"/>
+  <path project="SUSE:SLE-15-SP4:Update" repository="standard"/>
+  <arch>x86_64</arch>
+  <arch>aarch64</arch>
+  <arch>s390x</arch>
+  <arch>ppc64le</arch>
+</repository>
 ----
-
++
 Depending on the SLE version that you are targeting, you will have to
 adjust the version in line 3.
 
 [arabic, start=3]
 . Add the following snippet into the project configuration. You can edit
 the project configuration via `osc meta -e prjconf`:
-
-....
++
+[source,console]
+----
 %if %_repository == "containerfile"
 # if you prefer docker, use the following line or if you want to build using
 # podman, replace docker with podman
 Type: docker
 %endif
-....
+----
 
 [arabic, start=4]
 . Create a `Dockerfile` inside your the package `my-container-image` and
 set the base image of your container image using `FROM` as usual. The
 only difference is that you have to omit the `registry.suse.com` from
 the BCI URL and only use the build tag as illustrated below:
-
++
 {{< tabs "dockerfiles_from">}}
 {{< tab "bci-base">}}
 [source,Dockerfile]
@@ -157,14 +158,16 @@ the equivalent of the `-t` flag passed to `docker build` on the command
 line. Since the Open Build Service invokes `docker build` itself, it has
 to take the build tags from some other place and the `Dockerfile` is
 used for that as shown below:
-
++
 [source,Dockerfile]
 ----
 #!BuildTag: my-build-tag:latest
 #!BuildTag: my-build-tag:0.1
 #!BuildTag: my-other-build-tag:0.6
 ----
++
 Which is equivalent to invoking `docker build` as follows:
++
 [source,ShellSession]
 ----
 ❯ docker build -t my-build-tag:latest -t my-build-tag:0.1 -t my-other-build-tag:0.6 .
@@ -183,7 +186,7 @@ steps:
 . Create a new package for your container image in an appropriate
 project where you have write access using
 https://github.com/openSUSE/osc/[`osc`]:
-
++
 [source,ShellSession]
 ----
 ❯ cd /path/to/the/project/
@@ -199,27 +202,28 @@ well.
 +
 Create this repository by inserting the following xml snippet into the
 project settings via `osc meta -e prj`:
-
++
 [source,xml]
 ----
-  <repository name="images">
-    <path project="SUSE:Registry" repository="standard"/>
-    <path project="SUSE:SLE-15-SP4:Update" repository="standard"/>
-    <arch>x86_64</arch>
-    <arch>aarch64</arch>
-    <arch>s390x</arch>
-    <arch>ppc64le</arch>
-  </repository>
+<repository name="images">
+  <path project="SUSE:Registry" repository="standard"/>
+  <path project="SUSE:SLE-15-SP4:Update" repository="standard"/>
+  <arch>x86_64</arch>
+  <arch>aarch64</arch>
+  <arch>s390x</arch>
+  <arch>ppc64le</arch>
+</repository>
 ----
-
++
 Depending on the SLE version that you are targeting, you will have to
 adjust the version in line 3.
 
 [arabic, start=3]
 . Add the following snippet into the project configuration. You can edit
 the project configuration via `osc meta -e prjconf`:
-
-....
++
+[source,console]
+----
 %if "%_repository" == "images"
 Type: kiwi
 Repotype: none
@@ -239,13 +243,13 @@ Preinstall: !rpm rpm-ndb
 Substitute: rpm rpm-ndb
 Binarytype: rpm
 %endif
-....
+----
 
 [arabic, start=4]
 . Create a `kiwi.xml` inside the package `my-kiwi-image`. Refer to a
 BCI using its build tag, where you prefix it with `obsrepositories`
 and replace the `:` with a `#` as outlined in the following examples:
-
++
 {{< tabs "kiwifiles_from">}}
 {{< tab "bci-base">}}
 [source,xml]
@@ -293,7 +297,7 @@ and replace the `:` with a `#` as outlined in the following examples:
 
 [arabic, start=5]
 . Set the build tags using comments in `kiwi.xml`:
-
++
 [source,xml]
 ----
 <!-- OBS-AddTag: my-build-tag:latest my-build-tag:0.1 my-other-build-tag:0.6 -->
@@ -315,34 +319,39 @@ https://registry.opensuse.org/cgi-bin/cooverview[registry.opensuse.org]
 for that by searching for container image and extracting the project and
 repository names (underlined in mint green and waterhole blue
 respectively):
-
++
 {{< img name="registry.opensuse.org_bci_ruby" size="large" >}}
-
++
 Add this project and repository to your project's repository
 configuration either by inserting a path entry via `osc meta -e prj`:
-
++
 [source,xml]
 ----
-  <repository name="my_container_build_repository">
-    <path project="$THE_PROJECT_NAME" repository="$THE_REPOSITORY_NAME"/>
-    <!-- existing paths are here -->
-    <!-- architectures -->
-  </repository>
+<repository name="my_container_build_repository">
+  <path project="$THE_PROJECT_NAME" repository="$THE_REPOSITORY_NAME"/>
+  <!-- existing paths are here -->
+  <!-- architectures -->
+</repository>
 ----
-
++
 Alternatively, you can add this repository via the web interface. For
 that navigate to the project's home page in the Open Build Service and
 click on the `Repositories` tab. There, find the repository in which
 you build your container image, click on the green plus icon and enter
 the project name and the repository name in the appearing popup:
-
++
 {{< img name="obs_repository_add" size="tiny" >}}
 
 [arabic, start=2]
 . Use the build tag of the container image in the `FROM` instruction in
 your `Dockerfile`. The build tag can be found in the `Dockerfile` of the
 container image via the comment `#!BuildTag: $TAG` or in a kiwi xml
-description via the comment `<!-- OBS-AddTag: $TAG -->`.
+description via the comment:
++
+[source,console]
+----
+<!-- OBS-AddTag: $TAG -->
+----
 +
 A simpler way is to go to
 https://registry.opensuse.org/cgi-bin/cooverview[registry.opensuse.org]
@@ -350,5 +359,5 @@ and find the container image. The path on `registry.opensuse.org` is
 constructed from the images project, repository and build tag as
 outlined in the image below (the project is underlined in mint green,
 the repository in waterhole blue and the build tag in persimmon):
-
++
 {{< img name="registry.opensuse.org_bci_ruby_build_tag" size="large" >}}
