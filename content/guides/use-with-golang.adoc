@@ -68,8 +68,7 @@ CMD ["/hello-world"]
 ----
 
 Additional settings like exposing network ports or running as a
-non-root user can be specified in the last step below the `FROM
-scratch` line.
+non-root user can be specified in the last step below the `FROM scratch` line.
 
 === Building from SLE BCI
 

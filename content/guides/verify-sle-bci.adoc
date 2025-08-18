@@ -72,6 +72,7 @@ ledger. For example:
 
 If verification fails, the output of the `cosign verify` command is similar to the one below.
 
+[source,console]
 ----
 Error: no matching signatures:
 crypto/rsa: verification error
