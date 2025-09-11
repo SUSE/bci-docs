@@ -1,146 +1,272 @@
-/* Global customization */
-
-:root {
-  --code-max-height: 60rem;
+@font-face {
+    font-family: Suse;
+    font-style: normal;
+    font-weight: 100;
+    src: url(/bci-docs/fonts/suse/SUSE-Thin.ttf)
 }
 
-/* Light mode theming */
+@font-face {
+    font-family: Suse;
+    font-style: normal;
+    font-weight: 200;
+    src: url(/bci-docs/fonts/suse/SUSE-ExtraLight.ttf)
+}
+
+@font-face {
+    font-family: Suse;
+    font-style: normal;
+    font-weight: 300;
+    src: url(/bci-docs/fonts/suse/SUSE-Light.ttf)
+}
+
+@font-face {
+    font-family: Suse;
+    font-style: normal;
+    font-weight: 400;
+    src: url(/bci-docs/fonts/suse/SUSE-Regular.ttf)
+}
+
+@font-face {
+    font-family: Suse;
+    font-style: normal;
+    font-weight: 500;
+    src: url(/bci-docs/fonts/suse/SUSE-Medium.ttf)
+}
+
+@font-face {
+    font-family: Suse;
+    font-style: normal;
+    font-weight: 600;
+    src: url(/bci-docs/fonts/suse/SUSE-SemiBold.ttf)
+}
+
+@font-face {
+    font-family: Suse;
+    font-style: normal;
+    font-weight: 700;
+    src: url(/bci-docs/fonts/suse/SUSE-Bold.ttf)
+}
+
+@font-face {
+    font-family: Suse;
+    font-style: normal;
+    font-weight: 800;
+    src: url(/bci-docs/fonts/suse/SUSE-ExtraBold.ttf)
+}
+
+@font-face {
+    font-family: "Roboto Mono";
+    font-style: normal;
+    font-weight: 400;
+    src: url(/bci-docs/fonts/roboto/RobotoMono-Regular.ttf)
+}
+
 :root,
-:root[color-theme="light"] {
+:root[color-theme="light"],
+:root[color-theme="dark"] {
+  --code-max-height: 60rem;
+
+  --header-font-family: Suse,Verdana,sans-serif;
+  --body-font-family: Suse,Verdana,sans-serif;
+  --code-font-family: "Roboto Mono", "DejaVu Sans Mono", "DejaVuSansMono", "Menlo", "Andale Mono", monospace;
+
   --header-background: #0c322c;
   --header-font-color: #ffffff;
 
-  --body-background: #ffffff;
-  --body-font-color: #343a40;
-
-  --mark-color: #ffab00;
-
-  --button-background: #62cb97;
-  --button-border-color: #4ec58a;
-
-  --link-color: #26915e;
-  --link-color-visited: #26915e;
-
-  --code-background:  #EFEFEF;
-  --code-accent-color: #e3e7eb;
-  --code-accent-color-lite: #eff1f3;
-
-  --code-copy-font-color: #6b7784;
-  --code-copy-border-color: #adb4bc;
-  --code-copy-success-color: #00c853;
-
-  --accent-color: #e9ecef;
-  --accent-color-lite: #f8f9fa;
-
-  --control-icons: #b2bac1;
-
-  --footer-background: #2f333e;
+  --footer-background: #0c322c;
   --footer-font-color: #ffffff;
-  --footer-link-color: #ffcc5c;
-  --footer-link-color-visited: #ffcc5c;
+  --footer-link-color: #ffffff;
+  --footer-link-color-visited: #ffffff;
+
+  --link-color: #30ba78;
+  --link-color-visited: #30ba78;
+
+  --button-background: #0c322c;
+  --button-border-color: #0c322c;
+
+  --mark-color: #fe7c3f;
+
+  --code-copy-background: #efefef;
+  --code-accent-color: #efefef;
+  --code-accent-color-lite: #efefef;
+  --code-copy-font-color: #0c322c;
+  --code-copy-border-color: #0c322c;
+  --code-copy-success-color: #30ba78;
 }
+
+:root[color-theme="light"] {
+  --body-background: #ffffff;
+  --body-font-color: #0c322c;
+
+  --code-background: #efefef;
+  --code-font-color: #0c322c;
+
+  --accent-color: #efefef;
+  --accent-color-lite: #ffffff;
+
+  --control-icons: #0c322c;
+
+  --nav-color: #efefef;
+  --nav-font-color: #0c322c;
+
+  --breadcrump-color: #efefef;
+
+  --search-color: var(--accent-color-lite);
+  --search-text-color: var(--body-font-color);
+}
+
 @media (prefers-color-scheme: light) {
   :root {
-    --header-background: #4ec58a;
-    --header-font-color: #ffffff;
+      --body-background: #ffffff;
+      --body-font-color: #0c322c;
 
-    --body-background: #ffffff;
-    --body-font-color: #343a40;
+      --code-background: #efefef;
+      --code-font-color: #0c322c;
 
-    --mark-color: #ffab00;
+      --accent-color: #efefef;
+      --accent-color-lite: #ffffff;
 
-    --button-background: #62cb97;
-    --button-border-color: #4ec58a;
+      --control-icons: #0c322c;
 
-    --link-color: #518169;
-    --link-color-visited: #c54e8a;
+      --nav-color: #efefef;
+      --nav-font-color: #0c322c;
 
-    --code-background: #f5f6f8;
-    --code-accent-color: #e3e7eb;
-    --code-accent-color-lite: #eff1f3;
+      --breadcrump-color: #efefef;
 
-    --code-copy-font-color: #6b7784;
-    --code-copy-border-color: #adb4bc;
-    --code-copy-success-color: #00c853;
-
-    --accent-color: #e9ecef;
-    --accent-color-lite: #f8f9fa;
-
-    --control-icons: #b2bac1;
-
-    --footer-background: #2f333e;
-    --footer-font-color: #ffffff;
-    --footer-link-color: #ffcc5c;
-    --footer-link-color-visited: #ffcc5c;
+      --search-color: var(--accent-color-lite);
+      --search-text-color: var(--body-font-color);
   }
 }
 
-/* Dark mode theming */
 :root[color-theme="dark"] {
-  --header-background: #4ec58a;
-  --header-font-color: #ffffff;
+  --body-background: #3e3e3e;
+  --body-font-color: #ffffff;
 
-  --body-background: #343a40;
-  --body-font-color: #ced3d8;
+  --code-background: #1d1d1d;
+  --code-font-color: #efefef;
 
-  --mark-color: #ffab00;
+  --accent-color: #6f6f6f;
+  --accent-color-lite: #6f6f6f;
 
-  --button-background: #62cb97;
-  --button-border-color: #4ec58a;
+  --control-icons: #ffffff;
 
-  --link-color: #7ac29e;
-  --link-color-visited: #c27a9e;
+  --nav-color: #6f6f6f;
+  --nav-font-color: #efefef;
 
-  --code-background: #2f353a;
-  --code-accent-color: #262b2f;
-  --code-accent-color-lite: #2b3035;
+  --breadcrump-color: #6f6f6f;
 
-  --code-copy-font-color: #adb4bc;
-  --code-copy-border-color: #808c98;
-  --code-copy-success-color: #00c853;
-
-  --accent-color: #2b3035;
-  --accent-color-lite: #2f353a;
-
-  --control-icons: #b2bac1;
-
-  --footer-background: #2f333e;
-  --footer-font-color: #ffffff;
-  --footer-link-color: #ffcc5c;
-  --footer-link-color-visited: #ffcc5c;
+  --search-color: #ffffff;
+  --search-text-color: #1d1d1d;
 }
+
 @media (prefers-color-scheme: dark) {
   :root {
-    --header-background: #4ec58a;
-    --header-font-color: #ffffff;
+      --body-background: #3e3e3e;
+      --body-font-color: #ffffff;
 
-    --body-background: #343a40;
-    --body-font-color: #ced3d8;
+      --code-background: #1d1d1d;
+      --code-font-color: #efefef;
 
-    --mark-color: #ffab00;
+      --accent-color: #6f6f6f;
+      --accent-color-lite: #6f6f6f;
 
-    --button-background: #62cb97;
-    --button-border-color: #4ec58a;
+      --control-icons: #ffffff;
 
-    --link-color: #7ac29e;
-    --link-color-visited: #c27a9e;
+      --nav-color: #6f6f6f;
+      --nav-font-color: #efefef;
 
-    --code-background: #2f353a;
-    --code-accent-color: #262b2f;
-    --code-accent-color-lite: #2b3035;
+      --breadcrump-color: #6f6f6f;
 
-    --code-copy-font-color: #adb4bc;
-    --code-copy-border-color: #808c98;
-    --code-copy-success-color: #00c853;
-
-    --accent-color: #2b3035;
-    --accent-color-lite: #2f353a;
-
-    --control-icons: #b2bac1;
-
-    --footer-background: #2f333e;
-    --footer-font-color: #ffffff;
-    --footer-link-color: #ffcc5c;
-    --footer-link-color-visited: #ffcc5c;
+      --search-color: #ffffff;
+      --search-text-color: #1d1d1d;
   }
+}
+
+.container {
+    max-width: 100rem;
+}
+
+main.container {
+    max-width: 100rem;
+    padding: 0;
+}
+
+.gdoc-nav {
+    background-color: var(--nav-color);
+}
+
+.gdoc-nav section,
+.gdoc-nav div.gdoc-search {
+    margin: 0 2rem;
+}
+
+.gdoc-nav > nav {
+    padding: 2rem 0 0 0;
+    background: var(--nav-color);
+}
+
+.gdoc-nav__entry {
+    color: var(--nav-font-color) !important;
+}
+
+.gdoc-page {
+    padding: 2rem 2rem 0 2rem;
+}
+
+.gdoc-brand img {
+    height: 3rem;
+    width: unset;
+}
+
+.gdoc-page div[itemprop="breadcrumb"] {
+    background: var(--breadcrump-color);
+}
+
+.gdoc-footer a {
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.gdoc-tabs__control:checked+.gdoc-tabs__label,
+.gdoc-tabs > label:checked {
+  border-bottom: 4px solid var(--link-color);
+}
+
+.gdoc-search input {
+    background: var(--search-color);
+    color: var(--search-text-color);
+}
+
+.gdoc-search svg.gdoc-icon {
+    color: var(--search-text-color);
+}
+
+.gdoc-markdown h1>code,
+.gdoc-markdown h2>code,
+.gdoc-markdown h3>code,
+.gdoc-markdown h4>code,
+.gdoc-markdown h5>code,
+.gdoc-markdown h6>code {
+    border: none;
+    background-color: inherit;
+    font-size: inherit !important;
+    font-family: var(--code-font-family);
+    font-weight: 400;
+}
+
+.gdoc-hint__title {
+    margin-left: 0;
+}
+
+.gdoc-hint__title i.fa {
+    margin-left: -5px;
+}
+
+/* if the code is to long add a scroll */
+code {
+  white-space: pre;
+  overflow-x: auto;
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: middle;
 }
