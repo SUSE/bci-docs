@@ -26,7 +26,7 @@ manager in your final image and additionally:
 
 2. your application runs with POSIX `sh` and not just Bash
 
-then consider using the SLE BCI BusyBox image instead. It is even smaller than SLE BCI
+Then consider using the SLE BCI BusyBox image instead. It is even smaller than SLE BCI
 Micro and ships the BusyBox implementation of `useradd`. Adding a new user in
 BusyBox is straightforward:
 

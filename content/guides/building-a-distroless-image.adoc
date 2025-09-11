@@ -35,7 +35,7 @@ The approach described in this section is unsupported and can lead to broken
 image as only shared libraries will be copied and no other required files are
 copied.
 
-For a safer method, refer to link:{{< relref "/guides/deploy-using-zypper."
+For a safer method, refer to link:{{< relref "/guides/deploy-using-zypper"
 >}}[Deploy an Application using zypper].
 {{< /hint >}}
 
