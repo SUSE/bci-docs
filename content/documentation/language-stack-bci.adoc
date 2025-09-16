@@ -14,78 +14,79 @@ most out of SLE BCIs in the shortest time possible.
 Language stack SLE BCI are built on top of BCI-Base. Below is an
 overview of the available language stack SLE BCIs.
 
-=== python
+=== Python
 
-* URL:
-`registry.suse.com/bci/python`
-* Tags: `3.6`, `3.10`
-* Ships with the python3 version from the tag and pip3, curl, git tools.
+* repository: https://registry.suse.com/repositories?languages%5B%5D=python[`registry.suse.com/bci/python`]
 
-=== node
+Ships with the python3 version from the tag and pip3, curl, git tools.
 
-* URL: `registry.suse.com/bci/node`
-* Tags: `14`, `16`, `18`
-* Comes with nodejs version from the tag, npm and git. The yarn package
+=== Node
+
+* repository: https://registry.suse.com/repositories?languages%5B%5D=nodejs[`registry.suse.com/bci/node`]
+
+Comes with nodejs version from the tag, npm and git. The yarn package
 manager can be installed with the `npm install -g yarn` command.
 
-=== openjdk
+=== OpenJDK
 
-* URL:
-`registry.suse.com/bci/openjdk`
-* Tags: `11`, `17`
-* Ships with the OpenJDK runtime. Designed for deploying Java
-applications.
+* repository: https://registry.suse.com/repositories?languages%5B%5D=openjdk[`registry.suse.com/bci/openjdk`]
 
-=== openjdk-devel
+Ships with the OpenJDK runtime. Designed for deploying Java applications.
 
-* URL:
-`registry.suse.com/bci/openjdk-devel`
-* Tags: `11`, `17`
-* Includes the development part of OpenJDK in addition to the OpenJDK
+=== OpenJDK (devel)
+
+* repository: https://registry.suse.com/repositories?languages%5B%5D=openjdk[`registry.suse.com/bci/openjdk-devel`]
+
+Includes the development part of OpenJDK in addition to the OpenJDK
 runtime. Instead of Bash, the default entry point is the jshell shell.
 
-=== ruby
+=== Ruby
 
-* URL:
-`registry.suse.com/bci/ruby`
-* Tags: `2.5`
-* A standard development environment based on Ruby 2.5, featuring ruby,
-gem and bundler as well as git and curl.
+* repository: https://registry.suse.com/repositories?languages%5B%5D=ruby[`registry.suse.com/bci/ruby`]
 
-=== golang
+A standard development environment featuring ruby, gem and bundler as well as git and curl.
 
-* URL:
-`registry.suse.com/bci/golang`
-* Tags: `1.19`, `1.20`
-* Ships with the go compiler version specified in the tag.
+=== Go
 
-=== dotnet-runtime
+* repository: https://registry.suse.com/repositories?languages%5B%5D=go[`registry.suse.com/bci/golang`]
 
-* URL:
-`registry.suse.com/bci/dotnet-runtime`
-* Tags: `3.1`, `5.0`, `6.0`
-* Includes the .NET runtime from Microsoft and the Microsoft .NET
+Ships with the go compiler version specified in the tag.
+
+=== .NET (runtime)
+
+* repository: https://registry.suse.com/repositories?sort=featured&languages%5B%5D=dotnet[`registry.suse.com/bci/dotnet-runtime`]
+
+Includes the .NET runtime from Microsoft and the Microsoft .NET
 repository.
 
-=== dotnet-aspnet
+=== .NET (aspnet)
 
-* URL:
-`registry.suse.com/bci/dotnet-aspnet`
-* Tags: `3.1`, `5.0`, `6.0`
-* Ships with the ASP.NET runtime from Microsoft and the Microsoft .NET
+* repository: https://registry.suse.com/repositories?sort=featured&languages%5B%5D=dotnet[`registry.suse.com/bci/dotnet-aspnet`]
+
+Ships with the ASP.NET runtime from Microsoft and the Microsoft .NET
 repository.
 
-=== dotnet-sdk
+=== .Net (SDK)
 
-* URL:
-`registry.suse.com/suse/dotnet-sdk`
-* Tags: `3.1`, `6.0`, `7.0`
-* Comes with the .NET and ASP.NET SDK from Microsoft as well as the
-Microsoft .NET repository.
+* repository: https://registry.suse.com/repositories?sort=featured&languages%5B%5D=dotnet[`registry.suse.com/suse/dotnet-sdk`]
 
-=== rust
+Comes with the .NET and ASP.NET SDK from Microsoft as well as the Microsoft .NET repository.
 
-* URL:
-`registry.suse.com/bci/rust`
-* Tags: `1.67`, `1.68`
-* Ships with the Rust compiler and the cargo package manager.
+=== PHP
+
+* repository: https://registry.suse.com/repositories?languages%5B%5D=php[`registry.suse.com/bci/php:latest`]
+
+Ships with support for installing additional PHP extensions.
+
+
+=== C/C++
+
+* repository: https://registry.suse.com/repositories?languages%5B%5D=cpp[`registry.suse.com/bci/gcc`]
+
+Includes also the support for Fortran.
+
+=== Rust
+
+* repository: https://registry.suse.com/repositories?languages%5B%5D=rust[`registry.suse.com/bci/rust`]
+
+Ships with the Rust compiler and the cargo package manager.
