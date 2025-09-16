@@ -1,64 +1,73 @@
 @font-face {
-    font-family: Suse;
+    font-family: 'SUSE';
     font-style: normal;
     font-weight: 100;
-    src: url(/bci-docs/fonts/suse/SUSE-Thin.ttf)
+    src: url(/bci-docs/fonts/SUSE-wght.woff2) format("woff2");
+    font-display: swap;
 }
 
 @font-face {
-    font-family: Suse;
+    font-family: 'SUSE';
     font-style: normal;
     font-weight: 200;
-    src: url(/bci-docs/fonts/suse/SUSE-ExtraLight.ttf)
+    src: url(/bci-docs/fonts/SUSE-wght.woff2) format("woff2");
+    font-display: swap;
 }
 
 @font-face {
-    font-family: Suse;
+    font-family: 'SUSE';
     font-style: normal;
     font-weight: 300;
-    src: url(/bci-docs/fonts/suse/SUSE-Light.ttf)
+    src: url(/bci-docs/fonts/SUSE-wght.woff2) format("woff2");
+    font-display: swap;
 }
 
 @font-face {
-    font-family: Suse;
+    font-family: 'SUSE';
     font-style: normal;
     font-weight: 400;
-    src: url(/bci-docs/fonts/suse/SUSE-Regular.ttf)
+    src: url(/bci-docs/fonts/SUSE-wght.woff2) format("woff2");
+    font-display: swap;
 }
 
 @font-face {
-    font-family: Suse;
+    font-family: 'SUSE';
     font-style: normal;
     font-weight: 500;
-    src: url(/bci-docs/fonts/suse/SUSE-Medium.ttf)
+    src: url(/bci-docs/fonts/SUSE-wght.woff2) format("woff2");
+    font-display: swap;
 }
 
 @font-face {
-    font-family: Suse;
+    font-family: 'SUSE';
     font-style: normal;
     font-weight: 600;
-    src: url(/bci-docs/fonts/suse/SUSE-SemiBold.ttf)
+    src: url(/bci-docs/fonts/SUSE-wght.woff2) format("woff2");
+    font-display: swap;
 }
 
 @font-face {
-    font-family: Suse;
+    font-family: 'SUSE';
     font-style: normal;
     font-weight: 700;
-    src: url(/bci-docs/fonts/suse/SUSE-Bold.ttf)
+    src: url(/bci-docs/fonts/SUSE-wght.woff2) format("woff2");
+    font-display: swap;
 }
 
 @font-face {
-    font-family: Suse;
+    font-family: 'SUSE';
     font-style: normal;
     font-weight: 800;
-    src: url(/bci-docs/fonts/suse/SUSE-ExtraBold.ttf)
+    src: url(/bci-docs/fonts/SUSE-wght.woff2) format("woff2");
+    font-display: swap;
 }
 
 @font-face {
-    font-family: "Roboto Mono";
+    font-family: SUSEMono';
     font-style: normal;
-    font-weight: 400;
-    src: url(/bci-docs/fonts/roboto/RobotoMono-Regular.ttf)
+    font-weight: 800;
+    src: url(/bci-docs/fonts/SUSEMono-wght.woff2) format("woff2");
+    font-display: swap;
 }
 
 :root,
@@ -66,9 +75,9 @@
 :root[color-theme="dark"] {
   --code-max-height: 60rem;
 
-  --header-font-family: Suse,Verdana,sans-serif;
-  --body-font-family: Suse,Verdana,sans-serif;
-  --code-font-family: "Roboto Mono", "DejaVu Sans Mono", "DejaVuSansMono", "Menlo", "Andale Mono", monospace;
+  --header-font-family: 'SUSE',Verdana,sans-serif;
+  --body-font-family: 'SUSE',Verdana,sans-serif;
+  --code-font-family: 'SUSEMono', 'DejaVu Sans Mono', 'DejaVuSansMono', 'Menlo', 'Andale Mono', monospace;
 
   --header-background: #0c322c;
   --header-font-color: #ffffff;
