@@ -1,0 +1,309 @@
+---
+title: Building Container Images Based on SLE BCI
+---
+
+In the container ecosystem, many tools can work with OCI-compliant images,
+and all of them can use our Base Container Images.
+
+== Using with Docker, Podman or nerdctl
+
+The Base Container Images are OCI-compliant, and you can use them
+directly in your `Dockerfile` or `Containerfile` without any modifications.
+All you need to do is include the image in the `FROM` line as follows:
+
+[source,Dockerfile]
+----
+FROM registry.suse.com/bci/nodejs:latest as node-builder
+WORKDIR /app/
+COPY . /app/
+
+RUN npm install && npm run build
+----
+
+Build it with your favorite container runtime:
+{{< tabs "build_container_image">}}
+{{< tab "Docker">}}
+[source,Shell]
+----
+docker build -t my-app .
+----
+{{< /tab >}}
+{{< tab "Podman" >}}
+[source,Shell]
+----
+podman build -t my-app .
+----
+{{< /tab >}}
+{{< tab "nerdctl" >}}
+[source,Shell]
+----
+nerdctl build -t my-app .
+----
+{{< /tab >}}
+{{< /tabs >}}
+
+== Using the Open Build Service
+
+The https://openbuildservice.org/[Open Build Service] (OBS) lets you build container images,
+as explained in the https://openbuildservice.org/help/manuals/obs-user-guide/cha.obs.build_containers.html[documentation].
+It supports Docker, Podman and https://osinside.github.io/kiwi/[KIWI] as back-ends.
+
+The examples below require a project where you have write access and https://github.com/openSUSE/osc/[osc].
+Your home project (`home:<your-username>`) is sufficient for this exercise.
+
+=== Building a container using Docker or Podman
+
+To build a Dockerfile-based container image in OBS,
+follow the steps below.
+
+[arabic]
+. Create a new package for your container.
++
+[source,ShellSession]
+----
+osc checkout home:your-username && cd home:your-username
+osc mkpac my-container-image && cd my-container-image
+----
+
+[arabic, start=2]
+. Add a repository to the project with `osc`.
+The repository name is `containerfile` by convention.
+This allows OBS to fetch resources used to build containers.
++
+[source,ShellSession]
+----
+osc meta -e prj
+----
+Insert the following XML into the project settings:
++
+[source,xml]
+----
+<repository name="containerfile">
+  <path project="SUSE:Registry" repository="standard"/>
+  <path project="SUSE:SLE-15-SP7:Update" repository="standard"/>
+  <arch>x86_64</arch>
+  <arch>aarch64</arch>
+  <arch>s390x</arch>
+  <arch>ppc64le</arch>
+</repository>
+----
++
+The path `SUSE:Registry` allows the use of images from the SUSE Registry in OBS.
+The path `SUSE:SLE-15-SP7:Update` allows the container to use packages from SLE.
+Depending on the SLE version that you are targeting in your container, this path needs
+adjustment.
+
+[arabic, start=3]
+. Add a configuration to the project with `osc`.
+This will configure OBS to use Docker or Podman to build
+packages in the `containerfile` repository.
++
+[source,ShellSession]
+----
+osc meta -e prjconf
+----
+Insert the following into the project configuration:
++
+[source,console]
+----
+%if %_repository == "containerfile"
+# OBS supports the following engines as backend:
+#   - podman
+#   - docker
+Type: podman
+%endif
+----
+[arabic, start=4]
+. Create a `Dockerfile` inside the package `my-container-image`.
+Set the base image using `FROM`, as usual.
++
+[source,Dockerfile]
+----
+FROM registry.suse.com/bci/bci-base:15.7
+----
+
+[arabic, start=5]
+. Set the build tags using comments in the `Dockerfile`.
++
+[source,Dockerfile]
+----
+#!BuildTag: my-build-tag:latest
+#!BuildTag: my-build-tag:0.1
+#!BuildTag: my-other-build-tag:0.1
+----
++
+The `BuildTag` is the equivalent image name (or tag) assigned during the build process.
+Since OBS invokes Docker or Podman itself, it has the same effect as the following command:
++
+[source,ShellSession]
+----
+podman build -t my-build-tag:latest -t my-build-tag:0.1 -t my-other-build-tag:0.1 .
+----
+A complete `Dockerfile` would look like this:
++
+[source,Dockerfile]
+----
+#!BuildTag: my-app:latest
+#!BuildTag: my-app:0.0.1
+
+FROM registry.suse.com/bci/bci-base:15.7
+
+WORKDIR /src
+
+RUN zypper -n install --no-recommends make gcc
+
+COPY . .
+
+RUN make
+
+CMD ["./my-app"]
+----
+
+=== Building a container using KIWI
+
+https://osinside.github.io/kiwi/[KIWI] is a generic image-building tool
+that also supports building container images. It is tightly integrated
+into the Open Build Service as the standard image builder.
+
+To build a KIWI-based container image in OBS,
+follow the steps below.
+
+[arabic]
+. Create a new package for your container.
++
+[source,ShellSession]
+----
+osc checkout home:your-username && cd home:your-username
+osc mkpac my-kiwi-container && cd my-kiwi-container
+----
+
+[arabic, start=2]
+. Add a repository to the project with `osc`.
+The repository name is `containerkiwi` by convention.
+This allows OBS to fetch resources used to build containers.
++
+[source,ShellSession]
+----
+osc meta -e prj
+----
+Insert the following XML into the project settings:
++
+[source,xml]
+----
+<repository name="containerkiwi">
+  <path project="SUSE:Registry" repository="standard"/>
+  <path project="SUSE:SLE-15-SP7:Update" repository="standard"/>
+  <arch>x86_64</arch>
+  <arch>aarch64</arch>
+  <arch>s390x</arch>
+  <arch>ppc64le</arch>
+</repository>
+----
++
+
+[arabic, start=3]
+. Add a configuration to the project with `osc`.
+This will configure OBS to KIWI to build
+packages in the `containerkiwi` repository.
++
+[source,ShellSession]
+----
+osc meta -e prjconf
+----
+Insert the following into the project configuration:
++
+[source,console]
+----
+%if "%_repository" == "containerkiwi"
+Type: kiwi
+Repotype: none
+Patterntype: none
+
+Prefer: -libcurl4-mini
+Prefer: -systemd-mini
+Prefer: -libsystemd0-mini
+Prefer: -libudev-mini1
+Prefer: -udev-mini
+Prefer: kiwi-boot-requires
+Prefer: sles-release
+Prefer: sles-release-MINI
+Prefer: python3-kiwi
+
+Preinstall: !rpm rpm-ndb
+Substitute: rpm rpm-ndb
+Binarytype: rpm
+%endif
+----
+
+[arabic, start=4]
+. Create a `kiwi.xml` inside the package `my-kiwi-image`.
++
+[source,xml]
+----
+<image schemaversion="7.4" name="my-kiwi-image">
+  <description type="system">
+    <!-- omitted -->
+  </description>
+  <preferences>
+    <!-- Refer to SLE BCI images by using `obsrepositories` -->
+    <type image="docker" derived_from="obsrepositories:/bci/bci-base#15.7">
+      <containerconfig
+          name="my-kiwi-image"
+          tag="0.0.1"
+          additionaltags="latest">
+        <labels>
+          <!-- add your labels here -->
+          <label name="org.opencontainers.image.title" value="My KIWI Image"/>
+        </labels>
+        <subcommand execute="/bin/sh"/>
+      </containerconfig>
+    </type>
+    <version>15.7.0</version>
+    <packagemanager>zypper</packagemanager>
+    <rpm-excludedocs>true</rpm-excludedocs>
+  </preferences>
+  <repository type="rpm-md">
+    <source path="obsrepositories:/"/>
+  </repository>
+  <packages>
+    <!-- add your packages here -->
+    <package name="gcc"/>
+    <package name="make"/>
+  </packages>
+</image>
+----
+
+=== Building images based on your images
+
+You can build containers in OBS that are based on other containers that
+have been built in OBS as well.
+
+If the image you want to use is in the same project and repository as the
+image that you are building, there's no need to configure any extra repositories.
+
+However, if the image comes from another project or repository, you need to adjust
+your repository configuration. Add the desired repository path to the project with `osc`.
+Previously, we added the repositories `containerfile` and `containerkiwi` to use the SLE BCI
+images. Now we are going to include another project path.
+
+[source,ShellSession]
+----
+osc meta -e prj
+----
+
+Adjust the `containerfile` or `containerkiwi` XML to include a new path:
+
+[source,xml]
+----
+<repository name="containerfile">
+  <path project="SUSE:Registry" repository="standard"/>
+  <path project="SUSE:SLE-15-SP7:Update" repository="standard"/>
+  <path project="PROJECT:NAME" repository="repository-name"/>
+  <arch>x86_64</arch>
+  <arch>aarch64</arch>
+  <arch>s390x</arch>
+  <arch>ppc64le</arch>
+</repository>
+----
+
+As shown in the previous sections, now you can use other images similarly to SLE BCI.
