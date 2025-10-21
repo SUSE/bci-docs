@@ -31,6 +31,25 @@ couple different recommended methods to work with the Go SLE BCI.&lt;/p>
 means the compiler does not need to be shipped as part of the images
 that are distributed. Instead, it is recommended that the Go image is
 used as the builder image only.&lt;/p>
+&lt;/div></description></item><item><title>Building Container Images Based on SLE BCI</title><link>https://opensource.suse.com/bci-docs/guides/building-on-top-of-bci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://opensource.suse.com/bci-docs/guides/building-on-top-of-bci/</guid><description>&lt;div class="paragraph">
+&lt;p>In the container ecosystem, many tools can work with OCI-compliant images,
+and all of them can use our Base Container Images.&lt;/p>
+&lt;/div>
+&lt;div class="sect1">
+&lt;h2 id="_using_with_docker_podman_or_nerdctl">Using with Docker, Podman or nerdctl&lt;/h2>
+&lt;div class="sectionbody">
+&lt;div class="paragraph">
+&lt;p>The Base Container Images are OCI-compliant, and you can use them
+directly in your &lt;code>Dockerfile&lt;/code> or &lt;code>Containerfile&lt;/code> without any modifications.
+All you need to do is include the image in the &lt;code>FROM&lt;/code> line as follows:&lt;/p>
+&lt;/div>
+&lt;div class="listingblock">
+&lt;div class="content">
+&lt;pre class="highlight">&lt;code class="language-Dockerfile" data-lang="Dockerfile">FROM registry.suse.com/bci/nodejs:latest as node-builder
+WORKDIR /app/
+COPY . /app/
+
+RUN npm install &amp;amp;&amp;amp; npm run build&lt;/code>&lt;/pre>
 &lt;/div></description></item><item><title>Deploy an Application using zypper</title><link>https://opensource.suse.com/bci-docs/guides/deploy-using-zypper/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://opensource.suse.com/bci-docs/guides/deploy-using-zypper/</guid><description>&lt;div class="sect1">
 &lt;h2 id="_scope">Scope&lt;/h2>
 &lt;div class="sectionbody">
