@@ -8,7 +8,7 @@ main:
         ref: "/"
       - name: Why SLE BCI
         ref: "/documentation/why"
-      - name: General purpose BCI
+      - name: General Purpose BCI
         ref: "/documentation/general-purpose-bci.md"
       - name: Language Stack BCI
         ref: "/documentation/language-stack-bci.md"
@@ -19,21 +19,21 @@ main:
     sub:
       - name: Using SLE BCI
         ref: "/guides/using-sle-bci"
-      - name: Using With VS Code Development Containers
+      - name: Using with VS Code Development Containers
         ref: "/guides/dev-containers"
       - name: Verify SLE BCI
         ref: "/guides/verify-sle-bci"
-      - name: Building Container Images based on SLE BCI
+      - name: Building Container Images Based on SLE BCI
         ref: "/guides/building-on-top-of-bci"
       - name: Adding Users to BCI Micro and Minimal
         ref: "/guides/adding-users"
       - name: Building and Deploying Go Applications
         ref: "/guides/use-with-golang"
-      - name: How to use container-suseconnect
+      - name: How to Use container-suseconnect
         ref: "/guides/container-suseconnect"
       - name: Launch Containers with Podman and Systemd
         ref: "/guides/podman-generate-systemd"
-      - name: Deploy an Application using zypper
+      - name: Deploy an Application Using zypper
         ref: "/guides/deploy-using-zypper"
-      - name: How to build a distroless image using SLE BCI
+      - name: How to Build a Distroless Image Using SLE BCI
         ref: "/guides/building-a-distroless-image"
