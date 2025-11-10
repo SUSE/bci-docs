@@ -80,21 +80,29 @@ dependencies into a custom root and then copy this directory into a deployment
 image. In the following example we install &lt;code>apache2&lt;/code> including all of its
 dependencies and copy them into the deployment image based on &lt;code>bci-micro&lt;/code>:&lt;/p>
 &lt;/div></description></item><item><title>Frequently Asked Questions</title><link>https://opensource.suse.com/bci-docs/documentation/faq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://opensource.suse.com/bci-docs/documentation/faq/</guid><description>&lt;div class="sect1">
-&lt;h2 id="_what">What?&lt;/h2>
+&lt;h2 id="_what_are_the_suse_linux_base_container_images">What are the SUSE Linux Base Container Images?&lt;/h2>
 &lt;div class="sectionbody">
-&lt;div class="sect2">
-&lt;h3 id="_what_has_suse_announced">What has SUSE announced?&lt;/h3>
 &lt;div class="paragraph">
-&lt;p>SUSE Base Container Images (BCI) provides a repository of tested and
-certified container images based on SUSE Linux Enterprise Server. The
-container images are ready-to-go for enterprise use. SUSE maintains
-these images on a regular basis so you can use them worry-free. The
-images are updated with the latest security patches and
-features/functionalities are consistent with the base OS releases.&lt;/p>
+&lt;p>SUSE Linux Base Container Images (SUSE Linux BCI) provides a set of container images that are truly open, flexible and secure. Available for immediate use by developers, integrators and operators are container images based on SUSE Linux Enterprise Server (SLES). SUSE Linux BCI includes general-purpose container images, development tools and applications.&lt;/p>
 &lt;/div>
-&lt;div class="paragraph">
-&lt;p>With Rancher 2.6, SUSE has announced full integration between Rancher
-and BCI while ensuring the latest security standards.&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;div class="sect1">
+&lt;h2 id="_what_are_the_benefits_of_suse_linux_bci">What are the benefits of SUSE Linux BCI?&lt;/h2>
+&lt;div class="sectionbody">
+&lt;div class="ulist">
+&lt;ul>
+&lt;li>
+&lt;p>Free to Use &amp;amp; Redistribute&lt;/p>
+&lt;div class="ulist">
+&lt;ul>
+&lt;li>
+&lt;p>SUSE Linux BCI containers are completely free and come with an &lt;a href="https://www.suse.com/licensing/eula/#bci">EULA&lt;/a> that enables you to redistribute them freely.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>No subscription required, ideal for development, CI/CD and production without subscription hurdles.&lt;/p>
+&lt;/li>
+&lt;/ul>
 &lt;/div></description></item><item><title>How to build a distroless image using SLE BCI</title><link>https://opensource.suse.com/bci-docs/guides/building-a-distroless-image/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://opensource.suse.com/bci-docs/guides/building-a-distroless-image/</guid><description>&lt;div class="sect1">
 &lt;h2 id="_what_is_a_distroless_image">What is a distroless image?&lt;/h2>
 &lt;div class="sectionbody">
