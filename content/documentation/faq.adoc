@@ -3,233 +3,190 @@ Title: Frequently Asked Questions
 slug: faq
 ---
 
-== What?
+== What are the SUSE Linux Base Container Images?
 
-=== What has SUSE announced?
+SUSE Linux Base Container Images (SUSE Linux BCI) provides a set of container images that are truly open, flexible and secure. Available for immediate use by developers, integrators and operators are container images based on SUSE Linux Enterprise Server (SLES). SUSE Linux BCI includes general-purpose container images, development tools and applications.
 
-SUSE Base Container Images (BCI) provides a repository of tested and
-certified container images based on SUSE Linux Enterprise Server. The
-container images are ready-to-go for enterprise use. SUSE maintains
-these images on a regular basis so you can use them worry-free. The
-images are updated with the latest security patches and
-features/functionalities are consistent with the base OS releases.
+== What are the benefits of SUSE Linux BCI?
 
-With Rancher 2.6, SUSE has announced full integration between Rancher
-and BCI while ensuring the latest security standards.
+* Free to Use & Redistribute
+** SUSE Linux BCI containers are completely free and come with an https://www.suse.com/licensing/eula/#bci[EULA] that enables you to redistribute them freely.
+** No subscription required, ideal for development, CI/CD and production without subscription hurdles.
+* Enterprise-Grade Security
+** Built from the same code base as SUSE Linux Enterprise Server.
+** Maintained with enterprise-grade CVE mitigation and aligned with SLES's certified, proactive security.
+** https://slsa.dev/spec/v1.1/levels#build-l3[SLSA L3] grade builds.
+** Signed container images for supply chain integrity.
+** SBOM available in both SPDX and CycloneDX formats.
+** SLSA Provenance file available.
+* Stability
+** Enterprise lifecycle, aligned with the lifecycle of the corresponding SUSE Linux Enterprise Server version.
+** Consistent ABI/API.
+* Vendor Neutral
+** Works on any OCI-compliant runtime.
+** Works on any Linux OS.
+** No vendor lock-in.
+* Multi-architecture
+** Available for up to 4 architecturesfootnote:[Some containers may be available in a smaller number of architectures.]: amd64, arm64, ppc64le and s390x.
+* Compliance & Certification
+** Evaluation Assurance Level 4+ (Common Criteria) inherited from SUSE Linux Enterprise Server. SLES 15 is the only general-purpose OS with an active EAL 4+ certificate. See https://www.suse.com/support/security/certifications/[SUSE Certifications and Features] for more details.
+** Selected containers can be configured in FIPS mode.
+** FIPS certificationfootnote:[Containers out of the General Availability phase are available to customers with corresponding LTS SUSE Linux Enterprise Server subscriptions.] inherited from SUSE Linux Enterprise Server for selected containers.
+* Smooth transition to Enterprise Support
+** Start free and when you need commercial support, subscribe and stay on the same container images.
+** No need to rebuild your stack when moving from community to enterprise.
 
-=== What is the Base Container Image (BCI)?
+== Is SUSE Linux BCI free to use?
 
-SUSE provides truly open, flexible, secure container images and
-application development tools for immediate use by developers,
-integrators, and operators.
+Yes. SUSE Linux BCI is free to use and redistribute in accordance with the https://www.suse.com/licensing/eula/#bci[SUSE Linux BCI EULA].
 
-BCI images are available via the https://registry.suse.com/[SUSE
-Container Registry] and are free to use and distribute, in accordance
-with the https://www.suse.com/licensing/eula/#bci[EULA].
+== Where can I find SUSE Linux BCI?
 
-=== What does the BCI include?
+The container images are available on the https://registry.suse.com/[SUSE Container Registry].
 
-BCI includes three sets of container images:
+== What is included in SUSE Linux BCI?
 
-[arabic]
-. Pure SLE-based containers with a minimal set of packages: one with
-`zypper`, one without `zypper` but with `rpm` and one without both
-`zypper` and `rpm`, which adds flexibility to the development
-environment and removes unnecessary packages, making applications
-faster to deploy and to orchestrate.
-. Language Stack Container Images with a base environment for
-programming languages including Python, Node.js, Ruby, .NET, ASP.Net,
-Java (based on OpenJDK), Go and Rust.
-. Application Stack Container Images provide ready to use containerized
-applications like RMT or PostgreSQL.
+Leveraging SUSE's industry-leading build pipeline, SUSE Linux BCI provides a set of container images where all binaries are built and maintained by SUSE, drawing directly from the trusted SLES codebase.
 
-=== What are the benefits of Base Container Image (BCI)?
+Base containers come in several flavors. Choose the BCI Micro image for a minimal footprint or the BCI Base image with full package-management tools. Expand the container images easily using thousands of packages from the <<free-bci-repo, free BCI repository>>.
 
-These are the main benefits:
+Language containers are available as a base environment for development and deployment. Use programming languages such as C++, Go, Java (OpenJDK), .NETfootnote:[Available in Tech Preview, .NET binaries provided and maintained by Microsoft.], Node.js, PHP, Python, Ruby and Rust.
 
-* *Supportability*: While BCI images are free to use and redistribute,
-you can get support directly and leverage your applications at an
-enterprise level.
-* *Availability*: Base Container Images are available on x86-64, arch64,
-s390x, and ppc64le.
-* *Security*: Enables more secure container images, reducing the number
-of notifications from container vulnerability scanners.
+Application containers provide ready-to-use databases, tools and more. Use applications such as 389 Directory Server, Cosign, Git, Helm, MariaDB, Nginx, Performance Co-Pilot, PostgreSQL, RMT and Valkey.
 
-=== What are the use cases for the Base Container Images (BCI)?
+== What is the difference between SUSE Linux BCI Base, Minimal, Micro and BusyBox?
 
-BCI provides a stable, secure, and open ecosystem where you can develop
-and deploy applications in a light and flexible environment while
-leveraging your experience and the stability and security of the SLES
-(SUSE Linux Enterprise Server) operating system.
+The SUSE Linux BCI Base container has Zypper and access to the <<free-bci-repo, free BCI repository>>. This allows you to install any packages from the available repositories.
 
-From different perspectives, BCI offers several opportunities.
+The SUSE Linux BCI Minimal container has RPM but does not include Zypper. It is an image designed for deployment scenarios where you copy the final artifacts to it.
 
-* Rancher users:
+The SUSE Linux BCI Micro container does not include Zypper and RPM. It is similar to BCI Minimal but designed for the deployment of static binaries.
 
-* Enable Rancher to build using stable, reliable, secure, and certified
-enterprise components.
-* Leverage SUSE’s in-house OS knowledge while containerizing
-applications as the tools will be the same and there is no migration
-path needed. For instance, from `zypper` to other packaging systems,
-BCI will behave as a container base as SLE would do for an OS.
+The SUSE Linux BCI BusyBox container has no GPLv3-licensed software, Zypper, or RPM. It is comparable to BCI Micro, but it replaces the GNU Coreutils with BusyBox tools.
 
-* Developers:
+== What is the free BCI repository?
+[[free-bci-repo]]
+The free BCI repository is a repository with packages that are free to use and redistribute, subject to the terms of the https://www.suse.com/licensing/eula/#bci[SUSE Linux BCI EULA].
 
-* BCI can be deployed in any Linux host, helping migrations within a
-multi-vendor ecosystem, and avoiding vendor lock-in.
-* Free BCI as an option in cases where a subscription is a hurdle in
-cloud-native environments
+All container images with Zypper include the free BCI repositories pre-configured.
 
-* ISVs (Independent Software Vendors):
+== What packages and libraries can I use to expand SUSE Linux BCI?
 
-* ISVs containerizing applications, using stable, reliable, secure, and
-certified enterprise OS.
-* BCI offers ISVs a stable and performant ecosystem to build
-applications providing a secure supply chain.
-* ISVs need to run applications on a variety of hosts.
+The container images that include Zypper have access to the <<free-bci-repo, free BCI repository>>. This repository contains thousands of SUSE-supported packages. SUSE will support these packages when the container is running on a SUSE host with the appropriate subscription.
 
-=== What packages and libraries are available in BCI?
+You are also free to configure repositories from openSUSE Leap or other compatible sources.
 
-SUSE provides several BCIs, which allows developers to choose which one
-fits their needs. At the same time, they provide developers with notable
-tools and libraries like compilers, crypto libraries, and several OS
-tools, to recap some of them.
+== What are some use cases for SUSE Linux BCI?
 
-* Package managers and tools like `zypper`, `rpm`, `sysctl` or `glibc`.
-* Several Libraries: `lib-acl`, `lib-crypto`, `openssl`, `libldap`, etc.
+SUSE Linux BCI provides a stable, secure and open ecosystem for developing and deploying applications. SUSE Linux BCI leverages the experience, stability and security of SUSE Linux Enterprise Server.
 
-=== What legal agreements are needed to build my products on BCI?
+SUSE Linux BCI is suitable for different use cases:
 
-You must accept the
-https://www.suse.com/licensing/eula/download/sbci/suse-base-container-image-licence-en.pdf[SLE
-BCI terms and conditions].
+* SUSE Rancher
+** Enable Rancher to build using stable, reliable, secure and certified enterprise components.
+** Leverage SUSE's in-house OS knowledge while containerizing applications.
+** Easy migration path from OS-based applications to containerized applications.
+* Developers
+** Avoid vendor lock-in.
+** Deploy to any Linux host.
+** Freely redistributable.
+** Suitable for development, testing and production environments.
+* Independent Software Vendors (ISVs)
+** Containerize applications using a stable, reliable, secure and certified enterprise OS.
+** Leverage SUSE security and supply chain.
+** Run applications on various hosts.
 
-== Why?
+== Why did SUSE create SUSE Linux BCI?
 
-=== Why did SUSE create Base Container Image (BCI)?
+SUSE created SUSE Linux BCI to provide truly open, flexible and secure container images that developers and integrators can use without the vendor lock-in of alternative offerings.
 
-We want to provide truly open, flexible, and secure container images and
-application development tools for immediate use by developers and
-integrators without the lock-in imposed by alternative offerings.
+== On which hardware platforms is SUSE Linux BCI available?
 
-To match the needs of regulated markets, SUSE plans to provide a
-specifically hardened and certified SLE-based solution.
+SUSE Linux BCI is available on amd64 (x86_64), arm64 (aarch64), ppc64le and s390x.
+However, architecture availability may vary depending on the specific image.
 
-=== On which Hardware Platforms will BCI be available?
+== Do I need a subscription to use SUSE Linux BCI?
 
-BCIs are available on x86_64, aarch64, ppcle64 and s390x (.NET images
-are only available on x86-64)
+No, you can use SUSE Linux BCI for free without a subscription. Just pull the images from the https://registry.suse.com/[SUSE Container Registry] and start using them.
 
-== How?
+SUSE Linux BCI under an active SUSE Linux Enterprise Server subscription provides full support and access to SLES repositories.
 
-=== Do I need a subscription to use BCI?
+== Do I need a SUSE host to build BCI-based images?
 
-No, you can use them without a subscription.
+No, you can build and run SUSE Linux BCI in any Linux environment that supports OCI-compatible images.
 
-BCI can be used for free, just pulling from the registry, they are ready
-to be used with no support.
+== Do I need a SUSE host to deploy SUSE Linux BCI?
 
-BCI under an active SLE subscription provides full support and access
-to SUSE repositories and a full set of tools and packages.
+No, you can deploy SUSE Linux BCI to any OCI-compatible runtime or certified Kubernetes deployment.
 
-=== Do I need a SUSE Linux environment to build images based on BCI?
+== Can I distribute BCI-based images?
 
-No, you can build and run BCI in any environment that supports building
-based on OCI compatible images.
+Yes, BCI-based images can be freely distributed as long as you follow the https://www.suse.com/licensing/eula/#bci[SUSE Linux BCI EULA].
 
-See also link:{{< relref "/guides/building-on-top-of-bci">}}[Building on top of
-BCI].
+All packages in the <<free-bci-repo, free BCI repository are>> freely redistributable. If you use only this repository, your container remains redistributable.
 
-=== Do I need a SUSE Linux environment to deploy BCI?
+If you add more content to your container, you may need to check for additional restrictions.
 
-No, you can run BCI in any certified Kubernetes deployment or any OCI
-compatible runtime.
+== Can I distribute BCI-based images on any registry?
 
-=== Can I freely distribute applications built on BCI?
+Yes, you can distribute your BCI-based image in any form or registry you want.
 
-There is no restriction to redistribute application based on the free
-BCI, as long as the repositories used are the free ones and no extra
-restriction applies to the packages on top of the image SUSE provides.
+== Can I add third-party software to BCI-based images and still redistribute them?
 
-The restrictions also apply if the application includes binaries from
-SLES repositories. Adding third-party software implies restrictions at
-their respective layers.
+Yes, but adding third-party software or repositories implies restrictions at their respective layers.
 
-All redistribution policies are listed in the
-https://www.suse.com/licensing/eula/#bci[EULA].
+SUSE places no restrictions on redistributing the results, as long as you follow the https://www.suse.com/licensing/eula/#bci[SUSE Linux BCI EULA].
 
-=== Can I distribute my BCI-based container images without using SUSE’s registry?
+== Does SUSE Linux BCI receive regular package updates?
 
-If BCI Images are free to use and distribute, you can use any registry
-to distribute your application based on BCI.
+Yes, container images receive frequent security updates and version upgrades. It follows the same principles and release model as SUSE Linux Enterprise Server.
 
-=== Can I add non-BCI RPMs to a BCI image and still redistribute the resulting container image on a non-SUSE platform?
+== Does SUSE Linux BCI receive regular security updates?
 
-As part of your development process, you can add non BCI-RPMs to the
-images, as everything added on top of the image offered is considered
-part of the application or dependencies.
+Yes, container images are rebuilt regularly and updated with SUSE's enterprise-grade security updates.
 
-There is no restriction from SUSE to redistribute the result if you
-comply with the EULA.
+== Does SUSE Linux BCI have FIPS mode images?
 
-=== Is BCI recommended for community projects?
+Yes, FIPS mode container images are available.
 
-Yes, absolutely.
+BCI Base FIPS configures FIPS mode enabled by default. However, it does not include any certified binaries.
 
-=== Will BCI receive updates?
+BCI Go includes a FIPS 140-3 enabled Go.
 
-Yes, we build BCI images leveraging the SUSE Linux Enterprise Server
-repository. We build new BCI images for each new SLE (SUSE Linux
-Enterprise) Service Pack and rebuild them when the included packages
-receive updates.
+== Can I use SUSE Linux BCI for community projects?
 
-=== Will my application built on BCI be supported?
+Yes, as long as you follow the https://www.suse.com/licensing/eula/#bci[SUSE Linux BCI EULA].
 
-SUSE supports the available BCI images.
+== What is the lifecycle of SUSE Linux BCI?
 
-Applications shipped via the container image should be supported by its
-vendor or developer.
+The SLES-based container images follow the same support lifecycle as their SLES release.
 
-=== What is the BCI lifecycle?
+Application and Language images follow the lifecycle of their respective tools rather than the SLES release. For further details, check the https://www.suse.com/lifecycle[SUSE Product Support Lifecycle].
 
-The General Purpose BCI follows the General Support lifecycle of the SLE
-Service Pack they are made for. The SUSE Linux Enterprise Server
-lifecycle can be found on
-https://www.suse.com/lifecycle[suse.com/lifecycle].
+Long Term Service Pack (LTSS) versions of SUSE Linux BCI are available to customers with an LTSS subscription.
 
-Application and Language Stack BCI have a lifecycle that is tied to
-the respective application or language stack and not to the service
-pack of the underlying OS. For further details, consult the SUSE
-lifecycle page https://www.suse.com/lifecycle[suse.com/lifecycle].
+== How is SUSE Linux BCI supported?
 
-BCI images are not supported in LTSS (Long Term Service Pack Support).
+As a free-to-use product under the https://www.suse.com/licensing/eula/#bci[SUSE Linux BCI EULA], SUSE Linux BCI receives community support.
 
-=== Does BCI let me distribute my container images anywhere I want?
+When BCI-based containers run on a SUSE host with an active subscription, they receive the same support as the host. This also applies to any packages installed from the <<free-bci-repo, free BCI repository>>.
 
-Yes, SUSE will never oversee what you do with your images and how you
-distribute them. BCIs are freely distributable, and you can also
-distribute your applications as you want if you comply with the EULA.
+You can install any package from the SLES repositories covered by your subscription and receive the same support. However, packages from the SLES repositories are not redistributable.
 
-=== Can I add non-BCI packages if something is missing from BCI?
+== Where do I report bugs with SUSE Linux BCI?
 
-Yes, but SUSE is supporting BCI as it comes from our registry. Adding
-packages to BCI is considered part of the development process but is not
-directly supported by SUSE.
+Customers and partners with active subscriptions can use the regular channels to report issues and request support.
 
-=== Where do I report bugs with BCI images?
+For community support, report bugs in https://bugzilla.suse.com/[Bugzilla] under *PUBLIC SUSE Linux Base Container Images*.
 
-Customers and partners with a subscription can use the regular channels
-to report issues. Bugs can also be reported to
-https://bugzilla.suse.com[bugzilla.suse.com].
+== Where do I report issues with SUSE Linux BCI documentation?
 
-=== Where do we get support for BCI images?
+Report issues with documentation, guides and examples in https://bugzilla.suse.com/[Bugzilla] under *PUBLIC SUSE Linux Base Container Images*.
 
-Support for BCI is available with a SLE subscription. Reach out to
-SUSE for the details.
+== Can I request packages and images to be added to SUSE Linux BCI?
 
-Questions and discussions can be posted to the
-https://community.suse.com/topics/3776090[SUSE Community].
+Yes, you can request new features, but these require evaluation.
 
-=== Can I request for packages to be added to the BCI images (`SLE_BCI` repo)?
+Customers and partners with active subscriptions can use the regular channels to request new features.
 
-Please start a thread on the SUSE Community for consideration.
+For community support, report bugs in https://bugzilla.suse.com/[Bugzilla] under *PUBLIC SUSE Linux Base Container Images*.
