@@ -1,0 +1,45 @@
+{{/*
+
+Outputs a TOC based on the main.yml bundle.
+
+This requires `geekdocMenuBundle` set to `true`,
+otherwise use the shortcode `toc-tree`.
+
+If the level name is not set, it will use the page title.
+
+The `level` itself is not shown, only its subpages.
+
+Usage:
+  {{< toc-bundle >}}
+  {{< toc-bundle level="Level name" >}}
+
+*/}}
+
+{{- $target := default .Page.Title (.Get "level") -}}
+{{- $menu := .Site.Data.menu.main.main -}}
+
+{{- define "toc-item" -}}
+  {{- $site := .Site -}}
+  {{- $ref := default false .ref -}}
+  {{- if $ref -}}
+    {{- $this := $site.GetPage .ref }}
+    <li>
+      <span>
+        <a href="{{ .RelPermalink }}" class="gdoc-toc__entry">{{ .name }}</a>
+      </span>
+    </li>
+  {{- end -}}
+  {{- range .sub -}}
+    {{- template "toc-item" . -}}
+  {{- end -}}
+{{- end -}}
+
+{{- range $menu -}}
+  {{- if eq .name $target -}}
+  <ul>
+    {{- range .sub -}}
+      {{- template "toc-item" . }}
+    {{- end -}}
+  </ul>
+  {{- end -}}
+{{- end -}}
