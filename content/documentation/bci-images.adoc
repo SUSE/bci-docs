@@ -1,0 +1,44 @@
+---
+title: Images Available
+description: SUSE Linux Base Container Images provide general-purpose, language and application container images.
+slug: bci-images
+---
+
+SUSE Linux Base Container Images (SUSE Linux BCI) provide three types of
+container images:
+
+* General-purpose images allow building custom container images and
+deploying applications.
+
+* Language stack images allow developing and deploying applications
+in specific programming languages.
+
+* Application stack images feature popular containerized applications
+like Nginx, PostgreSQL, and MariaDB.
+
+== General-purpose
+
+The general-purpose container images come with a minimum set of packages
+to keep their size small. You can use it as a starting point for building
+other container images, or to deploy specific software using the free BCI
+repository.
+
+For more information, see the link:{{< relref "documentation/general-purpose-bci.adoc" >}}[general-purpose guide].
+
+== Language stack
+
+The language stack container images include the most common tools for building
+and deploying applications in their specific language environment. This includes
+tools like a compiler or interpreter, as well as the language-specific package
+manager.
+
+It is possible to customize the image using the free BCI repository.
+
+For more information, see the link:{{< relref "documentation/language-stack-bci.adoc" >}}[language stack guide].
+
+== Application stack
+
+The application stack container images offer production-ready applications.
+These container images don't include a package manager or the free BCI repository.
+
+For more information, see the link:{{< relref "documentation/application-stack-bci.adoc" >}}[application stack guide].
