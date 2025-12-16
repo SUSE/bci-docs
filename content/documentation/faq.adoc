@@ -1,5 +1,6 @@
 ---
-Title: Frequently Asked Questions
+title: Frequently Asked Questions
+description: The FAQ is designed to answer the questions our users most frequently ask about SUSE Linux Base Container Images.
 slug: faq
 ---
 
