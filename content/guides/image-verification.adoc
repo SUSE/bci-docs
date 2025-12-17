@@ -1,0 +1,182 @@
+---
+title: Image Verification
+description: Verifying container images allows you to make sure that the software is what it claims to be.
+slug: image-verification
+aliases:
+  - verify-sle-bci
+---
+
+Verifying container images allows you to confirm their provenance, ensuring
+supply chain security, and making sure that the software is what it claims to be.
+
+You can verify SUSE Linux Base Container Images using
+https://www.sigstore.dev/[Sigstore]
+https://docs.sigstore.dev/cosign/verifying/verify/[Cosign].
+
+== Downloading Cosign
+
+There are multiple places to get Cosign from:
+
+* As a package from SLES/openSUSE repositories
+* As a container image from `ghcr.io/sigstore/cosign/cosign`
+* As a container image from `registry.suse.com/suse/cosign`
+
+For the examples in this documentation, we will use
+https://registry.suse.com/repositories/suse-cosign[SUSE Linux BCI Cosign]
+from the SUSE Registry.
+
+== SUSE Signing Key
+
+The key used to sign all SUSE Linux Base Container Images is included in every
+container image, including the Cosign image, and is located at
+`/usr/share/container-keys/suse-container-key.pem`.
+
+The key is also available for download at
+https://www.suse.com/support/security/keys/[SUSE Signing Keys] and
+https://ftp.suse.com/pub/projects/security/keys/container-key.pem.
+
+== Verifying images with Cosign
+
+To verify a container image before running it using Cosign, use the following
+command:
+
+[source,ShellSession]
+----
+podman run --rm -it registry.suse.com/suse/cosign:latest verify \
+           --key /usr/share/container-keys/suse-container-key.pem \
+           registry.suse.com/bci/bci-base:latest
+----
+
+The command above uses the SUSE signing key to verify the latest version of
+SUSE Linux BCI Base.
+
+If successful, you should see a result similar to the one below:
+
+[source,console]
+----
+[
+  {
+    "critical": {
+      "identity": {
+        "docker-reference": "registry.suse.com/bci/bci-base"
+      },
+      "image": {
+        "docker-manifest-digest": "sha256:c4c5b7764943f3a8851fea325e0b89e93723f6a80bcc102778acfd4d5679cc65"
+      },
+      "type": "cosign container image signature"
+    },
+    "optional": {
+      "creator": "OBS"
+    }
+  }
+]
+----
+
+If there are failures, you should see an error message similar to
+`Error: no signatures found` or
+`Error: no matching signatures: crypto/rsa: verification error`.
+
+== Verifying images with Podman
+
+To verify SUSE Linux Base Container Images using Podman, we first need to
+configure and enable image verification.
+
+=== Fetching the signing key
+
+{{< hint type="note" >}}
+You can skip this step on SLE, as the signing key is already installed.
+{{< /hint >}}
+
+Fetch the public key used to sign SUSE Linux BCI using the following command:
+
+[source,ShellSession]
+----
+sudo curl -s https://ftp.suse.com/pub/projects/security/keys/container-key.pem \
+          -o /usr/share/pki/containers/suse-container-key.pem
+----
+
+=== Updating the registry configuration
+
+{{< hint type="note" >}}
+You can skip this step on SLE or openSUSE, as the correct configuration is
+already in place.
+{{< /hint >}}
+
+Enable Sigstore signature support by editing
+`/etc/containers/registries.d/default.yaml` or creating the file
+`/etc/containers/registries.d/sigstore.yaml`.
+
+Then, add the following configuration to the file:
+
+[source,YAML]
+----
+docker:
+  registry.suse.com:
+    use-sigstore-attachments: true
+----
+
+=== Updating the policy configuration
+
+Enable verification and policy enforcement by editing the
+`/etc/containers/policy.json` file.
+
+{{< hint type="note" >}}
+Do not remove existing entries in `transports.docker`.
+Instead, append the entry for `registry.suse.com` to the list.
+{{< /hint >}}
+
+Under the `docker` attribute, add the `registry.suse.com` configuration similar
+to the following:
+
+[source,json]
+----
+{
+  "default": [
+    {
+      "type": "insecureAcceptAnything"
+    }
+  ],
+  "transports": {
+    "docker-daemon": {
+      "": [
+        {
+          "type": "insecureAcceptAnything"
+        }
+      ]
+    },
+    "docker": {
+      "registry.suse.com": [
+        {
+          "type": "sigstoreSigned",
+          "keyPath": "/usr/share/pki/containers/suse-container-key.pem",
+          "signedIdentity": {
+            "type": "matchRepository"
+          }
+        }
+      ]
+    }
+  }
+}
+----
+
+The specified configuration instructs Podman, Skopeo and Buildah to verify
+images from the `registry.suse.com` repository.
+
+Before pulling images, Podman checks the validity of the signature using the
+specified public key and rejects pulling the image if the validation fails.
+
+=== Verifying images
+
+Buildah, Podman and Skopeo will automatically verify every image pulled from
+`registry.suse.com`. There are no additional steps required.
+
+If there are no image verification and validation issues, you can continue with
+your regular development workflow.
+
+If the verification fails, the following error message appears:
+
+[source,ShellSession]
+----
+Trying to pull registry.suse.com/bci/bci-base:latest...
+Error: copying system image from manifest list: Source image rejected: Signature for identity registry.suse.com/bci/bci-base is not accepted
+----

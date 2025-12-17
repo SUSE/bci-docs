@@ -19,12 +19,12 @@ main:
         ref: "/documentation/faq.md"
   - name: Guides
     sub:
-      - name: Using SLE BCI
-        ref: "/guides/using-sle-bci"
+      - name: Package Management
+        ref: "/guides/package-management"
+      - name: Image Verification
+        ref: "/guides/image-verification"
       - name: Using with VS Code Development Containers
         ref: "/guides/dev-containers"
-      - name: Verify SLE BCI
-        ref: "/guides/verify-sle-bci"
       - name: Building Container Images Based on SLE BCI
         ref: "/guides/building-on-top-of-bci"
       - name: Adding Users to BCI Micro and Minimal

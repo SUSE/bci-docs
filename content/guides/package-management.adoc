@@ -1,0 +1,130 @@
+---
+title: Package Management
+slug: package-management
+description: Zypper is the default package manager in SUSE Linux Base Container Images and it offers a command-line interface for all package management tasks.
+aliases:
+  - using-sle-bci
+---
+
+https://documentation.suse.com/smart/systems-management/html/concept-zypper/index.html[Zypper]
+is the default package manager in SUSE Linux Base Container Images. Like
+https://wiki.debian.org/AptCLI[APT] in Debian/Ubuntu or
+https://wiki.alpinelinux.org/wiki/Alpine_Package_Keeper[APK] in Alpine Linux,
+Zypper offers a command-line interface for all package management tasks.
+Below is a brief overview of commonly used container-related Zypper commands.
+
+NOTE: Zypper is available on selected container images. Application stack
+containers do not include a package manager, as well as SUSE Linux BCI Micro,
+SUSE Linux BCI Minimal and SUSE Linux BCI BusyBox.
+
+== Quick Guide
+
+For in-depth information on Zypper, please refer to the
+https://documentation.suse.com/sles-15/html/SLES-all/cha-sw-cl.html#sec-zypper[Zypper documentation].
+
+NOTE: We use `--non-interactive` to automatically use default answers and
+prevent user interaction during container builds, as manual approval is not
+possible.
+
+
+NOTE: The usage of `--non-interactive` does not imply a "yes to everything".
+Instead, it confirms what is considered to be the user's intention.
+For example, a repository refresh fails if it needs to import new signing keys,
+as this is something that requires manual verification.
+
+=== Installing packages
+
+To install new packages, use the following command:
+
+[source,Shell]
+----
+zypper --non-interactive install $PACKAGE_NAME
+----
+
+=== Adding repositories
+
+To add a new repository, use the following command:
+
+[source,Shell]
+----
+zypper --non-interactive addrepo --refresh $REPOSITORY_URL $REPOSITORY_NAME
+zypper --non-interactive refresh
+----
+
+=== Updating packages
+
+To update all packages, use the following command:
+
+[source,Shell]
+----
+zypper --non-interactive update
+----
+
+=== Removing packages
+
+To remove a package, use the following command:
+
+[source,Shell]
+----
+zypper --non-interactive remove --clean-deps $PACKAGE_NAME
+----
+
+NOTE: We use `--clean-deps` to ensure that dependencies no longer required are
+also removed.
+
+=== Cleaning up temporary files
+
+To clean up temporary files created by Zypper, use the following command:
+
+[source,Shell]
+----
+zypper clean --all
+----
+
+=== Removing orphaned packages
+
+With Zypper, it is not required to remove orphaned packages as long as you
+remove installed packages using the following command:
+
+[source,Shell]
+----
+zypper --non-interactive remove --clean-deps $PACKAGE_NAME
+----
+
+In cases where you don't clean up dependencies, use the following command to
+check if orphaned packages exist:
+
+[source,Shell]
+----
+zypper packages --orphaned
+----
+
+If they exist, you need to remove them manually.
+
+=== Searching packages
+
+SUSE Linux Enterprise package naming conventions differ from those of Debian, Ubuntu and
+Alpine. Package names are closer to those of Red Hat Enterprise Linux.
+
+The main difference is that library development packages (packages
+containing headers and build descriptions) have the name `$PACKAGE-devel`
+in SUSE Linux Enterprise, rather than `$PACKAGE-dev` in Debian and Ubuntu.
+
+When in doubt, search for the package using the following command:
+
+[source,Shell]
+----
+zypper search $PACKAGE_NAME
+----
+
+=== Adding GPG keys
+
+Adding external repositories normally requires importing the GPG key used for
+package signing in the given repository.
+
+Use the following command to import new keys:
+
+[source,Shell]
+----
+rpm -v --import $KEY_URL
+----
