@@ -1,6 +1,6 @@
 baseURL = "https://opensource.suse.com/bci-docs/"
 languageCode = "en-us"
-title = "SLE BCI Documentation"
+title = "SUSE Linux BCI Documentation"
 theme = "hugo-geekdoc"
 
 [params]

@@ -1,0 +1,91 @@
+---
+title: Getting Started
+description: This guide will help you get started with SUSE Linux Base Container Images.
+slug: getting-started-guide
+---
+
+SUSE Linux Base Container Images (SUSE Linux BCI) are available from the https://registry.suse.com[SUSE Registry]. Use it like any other OCI-compatible container image.
+
+To use SUSE Linux BCI Base from the command line, simply run from your preferred container runtime:
+
+{{< tabs "run_sle_bci">}}
+{{< tab "Docker">}}
+[source,ShellSession]
+----
+$ docker run --rm -it registry.suse.com/bci/bci-base:latest grep '^NAME' /etc/os-release
+NAME="SLES"
+----
+{{< /tab >}}
+{{< tab "Podman" >}}
+[source,ShellSession]
+----
+$ podman run --rm -it registry.suse.com/bci/bci-base:latest grep '^NAME' /etc/os-release
+NAME="SLES"
+----
+{{< /tab >}}
+{{< tab "nerdctl" >}}
+[source,ShellSession]
+----
+$ nerdctl run --rm -it registry.suse.com/bci/bci-base:latest grep '^NAME' /etc/os-release
+NAME="SLES"
+----
+{{< /tab >}}
+{{< /tabs >}}
+
+To use SUSE Linux BCI Base in a `Dockerfile`, do the following:
+
+[source,Dockerfile]
+----
+FROM registry.suse.com/bci/bci-base:latest
+
+RUN zypper --non-interactive install python3
+
+CMD ["python3", "-c", "print('Hello SUSE Linux BCI!')"]
+
+----
+
+Build the container image using your preferred container runtime:
+
+{{< tabs "build_example_dockerfile">}}
+{{< tab "Docker">}}
+[source,ShellSession]
+----
+docker build -t my-app .
+----
+{{< /tab >}}
+{{< tab "Podman" >}}
+[source,Shell]
+----
+podman build -t my-app .
+----
+{{< /tab >}}
+{{< tab "nerdctl" >}}
+[source,Shell]
+----
+nerdctl build -t my-app .
+----
+{{< /tab >}}
+{{< /tabs >}}
+
+Run the container image you built using your preferred container runtime:
+
+{{< tabs "run_example_dockerfile">}}
+{{< tab "Docker">}}
+[source,ShellSession]
+----
+docker run -it --rm my-app
+----
+{{< /tab >}}
+{{< tab "Podman" >}}
+[source,Shell]
+----
+podman run -it --rm my-app
+----
+{{< /tab >}}
+{{< tab "nerdctl" >}}
+[source,Shell]
+----
+nerdctl run -it --rm my-app
+----
+{{< /tab >}}
+{{< /tabs >}}

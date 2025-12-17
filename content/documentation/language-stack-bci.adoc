@@ -1,92 +1,112 @@
 ---
-title: Language stack SLE Base Container Images
+title: Language Stack Images
+description: Quick overview of language stack SUSE Linux Base Container Images, such as Go, Python and Rust.
 slug: language-stack-bci
 ---
 
-If you have a working knowledge of containers, you will not have any
-difficulties using SLE BCIs. However, there are certain features that
-set SLE BCIs apart from similar offerings, like images based on Debian
-or Alpine Linux. And understanding the specifics can help you to get the
-most out of SLE BCIs in the shortest time possible.
+The language stack container images include the most common tools for building
+and deploying applications in their specific language environment. This includes
+tools like a compiler or interpreter, as well as the language-specific package
+manager.
 
-== Language stack SLE BCIs
+These images are built on top of SUSE Linux BCI Base and have the free BCI
+repository pre-configured.
 
-Language stack SLE BCI are built on top of BCI-Base. Below is an
-overview of the available language stack SLE BCIs.
+A complete list of images is available
+https://registry.suse.com/repositories?sort=featured&categories%5B%5D=bci-devel[here].
 
-=== Python
+== C/C++
 
-* repository: https://registry.suse.com/repositories?languages%5B%5D=python[`registry.suse.com/bci/python`]
+Image repository: `registry.suse.com/bci/gcc`
 
-Ships with the python3 version from the tag and pip3, curl, git tools.
+The https://registry.suse.com/repositories?languages%5B%5D=cpp[C/C++ image]
+includes the GNU Compiler Collection version specified in the tag, as well as
+cURL, Git, GNU make and Fortran.
 
-=== Node
+== Go
 
-* repository: https://registry.suse.com/repositories?languages%5B%5D=nodejs[`registry.suse.com/bci/node`]
+Image repository: `registry.suse.com/bci/golang`
 
-Comes with nodejs version from the tag, npm and git. The yarn package
-manager can be installed with the `npm install -g yarn` command.
+The https://registry.suse.com/repositories?languages%5B%5D=go[Go image] includes
+the Go compiler version specified in the tag, as well as cURL, Git and GNU make.
 
-=== OpenJDK
+== Node.js
 
-* repository: https://registry.suse.com/repositories?languages%5B%5D=openjdk[`registry.suse.com/bci/openjdk`]
+Image repository: `registry.suse.com/bci/nodejs`
 
-Ships with the OpenJDK runtime. Designed for deploying Java applications.
+The https://registry.suse.com/repositories?languages%5B%5D=nodejs[Node.js image]
+includes the Node.js version specified in the tag, as well as cURL, Git and npm.
 
-=== OpenJDK (devel)
+You can install https://yarnpkg.com/[Yarn] with the following command:
 
-* repository: https://registry.suse.com/repositories?languages%5B%5D=openjdk[`registry.suse.com/bci/openjdk-devel`]
+[source,ShellSession]
+----
+npm install -g yarn
+----
 
-Includes the development part of OpenJDK in addition to the OpenJDK
-runtime. Instead of Bash, the default entry point is the jshell shell.
+== OpenJDK
 
-=== Ruby
+Image repository:
 
-* repository: https://registry.suse.com/repositories?languages%5B%5D=ruby[`registry.suse.com/bci/ruby`]
+* Runtime: `registry.suse.com/bci/openjdk`
+* Development: `registry.suse.com/bci/openjdk-devel`
 
-A standard development environment featuring ruby, gem and bundler as well as git and curl.
+The https://registry.suse.com/repositories?languages%5B%5D=openjdk[OpenJDK images]
+include the OpenJDK Runtime version specified in the tag, as well as cURL and Git.
 
-=== Go
+The development image also includes the OpenJDK Development Environment and
+https://maven.apache.org/[Maven].
 
-* repository: https://registry.suse.com/repositories?languages%5B%5D=go[`registry.suse.com/bci/golang`]
+== Python
 
-Ships with the go compiler version specified in the tag.
+Image repository: `registry.suse.com/bci/python`
 
-=== .NET (runtime)
+The https://registry.suse.com/repositories?languages%5B%5D=python[Python image]
+includes the Python version specified in the tag, as well as cURL, Git and Pip.
+Pipx and wheel are also available on selected versions.
 
-* repository: https://registry.suse.com/repositories?sort=featured&languages%5B%5D=dotnet[`registry.suse.com/bci/dotnet-runtime`]
+== PHP
 
-Includes the .NET runtime from Microsoft and the Microsoft .NET
-repository.
+Image repository:
 
-=== .NET (aspnet)
+* PHP: `registry.suse.com/bci/php`
+* PHP with Apache: `registry.suse.com/bci/php-apache`
+* PHP with FPM: `registry.suse.com/bci/php-fpm`
 
-* repository: https://registry.suse.com/repositories?sort=featured&languages%5B%5D=dotnet[`registry.suse.com/bci/dotnet-aspnet`]
+The https://registry.suse.com/repositories?languages%5B%5D=php[PHP image]
+includes the PHP version specified in the tag, as well as Composer and selected
+PHP extensions.
 
-Ships with the ASP.NET runtime from Microsoft and the Microsoft .NET
-repository.
+The Apache variant also includes the https://httpd.apache.org/[Apache HTTP Server].
 
-=== .Net (SDK)
+The FPM variant also includes the http://php.net/manual/en/install.fpm.php[FastCGI Process Manager (FPM)]
 
-* repository: https://registry.suse.com/repositories?sort=featured&languages%5B%5D=dotnet[`registry.suse.com/suse/dotnet-sdk`]
+== Ruby
 
-Comes with the .NET and ASP.NET SDK from Microsoft as well as the Microsoft .NET repository.
+Image repository: `registry.suse.com/bci/ruby`
 
-=== PHP
+The https://registry.suse.com/repositories?languages%5B%5D=ruby[Ruby image]
+includes the Ruby version specified in the tag, as well as cURL, Git, Bundler
+and Gem. It also includes Rails dependencies, such as C++, GNU make and SQLite.
 
-* repository: https://registry.suse.com/repositories?languages%5B%5D=php[`registry.suse.com/bci/php:latest`]
+== Rust
 
-Ships with support for installing additional PHP extensions.
+Image repository: `registry.suse.com/bci/rust`
 
+The https://registry.suse.com/repositories?languages%5B%5D=rust[Rust image]
+includes the Rust and Cargo versions specified in the tag.
 
-=== C/C++
+== .NET
 
-* repository: https://registry.suse.com/repositories?languages%5B%5D=cpp[`registry.suse.com/bci/gcc`]
+Image repository:
 
-Includes also the support for Fortran.
+* Runtime: `registry.suse.com/bci/dotnet-runtime`
+* SDK: `registry.suse.com/suse/dotnet-sdk`
+* ASP.NET Core Runtime: `registry.suse.com/bci/dotnet-aspnet`
 
-=== Rust
+The https://registry.suse.com/repositories?sort=featured&languages%5B%5D=dotnet[.NET images]
+include the .NET version specified in the tag.
 
-* repository: https://registry.suse.com/repositories?languages%5B%5D=rust[`registry.suse.com/bci/rust`]
-
-Ships with the Rust compiler and the cargo package manager.
+Microsoft provides the .NET packages through the https://learn.microsoft.com/en-us/dotnet/core/install/linux-sles[Microsoft package feed]. As the .NET packages in this image are from
+a third-party repository, SUSE doesn't provide support or warranties for such
+packages.

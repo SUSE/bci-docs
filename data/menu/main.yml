@@ -1,21 +1,23 @@
 ---
 main:
   - name: Documentation
-    ref: "/documentation"
-    # icon: "gdoc_notification"
     sub:
       - name: Introduction
         ref: "/"
-      - name: Why SLE BCI
-        ref: "/documentation/why"
-      - name: General Purpose BCI
-        ref: "/documentation/general-purpose-bci.md"
-      - name: Language Stack BCI
-        ref: "/documentation/language-stack-bci.md"
+      - name: Getting Started
+        ref: "/documentation/getting-started"
+      - name: Images
+        ref: "/documentation/bci-images"
+        sub:
+          - name: General Purpose
+            ref: "/documentation/general-purpose-bci.md"
+          - name: Language Stack
+            ref: "/documentation/language-stack-bci.md"
+          - name: Application Stack
+            ref: "/documentation/application-stack-bci.md"
       - name: Frequently Asked Questions
         ref: "/documentation/faq.md"
   - name: Guides
-    ref: "/guides"
     sub:
       - name: Using SLE BCI
         ref: "/guides/using-sle-bci"

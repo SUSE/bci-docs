@@ -1,0 +1,139 @@
+---
+title: Application Stack Images
+description: Quick overview of application stack SUSE Linux Base Container Images, such as MariaDB, PostgreSQL and NGINX.
+slug: application-stack-bci
+---
+
+The application stack container images offer production-ready applications.
+These container images don't include a package manager or the free BCI repository.
+
+A complete list of images is available
+https://registry.suse.com/repositories?sort=featured&categories%5B%5D=apps[here].
+
+== 389 DS
+
+Image repository: `registry.suse.com/suse/389-ds`
+
+The https://registry.suse.com/repositories/suse-389-ds[389 DS image] provides
+https://www.port389.org/[389 Directory Server], a highly usable, fully featured,
+reliable and secure LDAP server implementation.
+
+== BIND
+
+Image repository: `registry.suse.com/suse/bind`
+
+The https://registry.suse.com/repositories/suse-bind[BIND image] provides
+https://www.isc.org/bind/[BIND 9], a suite of software for interacting with the
+Domain Name System (DNS).
+
+== Cosign
+
+Image repository: `registry.suse.com/suse/cosign`
+
+The https://registry.suse.com/repositories/suse-cosign[Cosign image] provides
+Cosign, a tool for signing/verifying OCI containers (and other artifacts) using
+https://www.sigstore.dev/[Sigstore].
+
+== Git
+
+Image repository: `registry.suse.com/suse/git`
+
+The https://registry.suse.com/repositories/suse-git[Git image] provides
+https://git-scm.com/[Git], a distributed version control system that tracks
+versions of files.
+
+== Helm
+
+Image repository: `registry.suse.com/suse/helm`
+
+The https://registry.suse.com/repositories/suse-helm[Helm image] provides
+https://helm.sh/[Helm], a tool for managing Kubernetes charts, which are
+packages of pre-configured Kubernetes resources.
+
+== Kea
+
+Image repository: `registry.suse.com/suse/kea`
+
+The https://registry.suse.com/repositories/suse-kea[Kea image] provides
+https://www.isc.org/kea/[Kea DHCP], an open source DHCP server developed by the
+Internet Systems Consortium and the successor of the now-deprecated DHCPd.
+
+== Kubernetes CLI
+
+Image repository: `registry.suse.com/suse/kubectl`
+
+The https://registry.suse.com/repositories/suse-kubectl[Kubectl image] provides
+https://kubernetes.io/docs/reference/kubectl/[Kubectl] (Kubernetes CLI), a
+command-line tool for communicating with a Kubernetes cluster's control plane,
+using the Kubernetes API.
+
+== MariaDB
+
+Image repository:
+
+* Server: `registry.suse.com/suse/mariadb`
+* Client: `registry.suse.com/suse/mariadb-client`
+
+The https://registry.suse.com/search?q=mariadb[MariaDB images] provide
+https://mariadb.org/[MariaDB] (Client and Server), an open source,
+multi-threaded, relational database management system. It's a
+backward-compatible branch of the MySQL Community Server that provides a
+drop-in replacement for MySQL.
+
+== NGINX
+
+Image repository: `registry.suse.com/suse/nginx`
+
+The https://registry.suse.com/repositories/suse-nginx[NGINX image] provides
+https://nginx.org/[nginx], an open source reverse proxy server for the HTTP,
+HTTPS, SMTP, POP3, and IMAP protocols. nginx can also act as a load balancer,
+HTTP cache, and a web server (origin server).
+
+== Performance Co-Pilot
+
+Image repository: `registry.suse.com/suse/pcp`
+
+The https://registry.suse.com/repositories/suse-pcp[Performance Co-Pilot image]
+provides https://pcp.io/[Performance Co-Pilot] (PCP), a system performance
+analysis toolkit.
+
+== PostgreSQL
+
+Image repository: `registry.suse.com/suse/postgres`
+
+The https://registry.suse.com/search?q=PostgreSQL[PostgreSQL image] provides
+PostgreSQL, an extensible and SQL-compliant relational database management
+system (RDBMS).
+
+== Registry
+
+Image repository: `registry.suse.com/suse/registry`
+
+The https://registry.suse.com/repositories/suse-registry[Registry image]
+provides https://distribution.github.io/distribution/[Distribution Registry],
+a stateless, highly scalable application that stores and lets you distribute
+OCI container images and other content.
+
+== RMT
+
+Image repository: `registry.suse.com/suse/rmt-server`
+
+The https://registry.suse.com/repositories/rmt[RMT image] provides a
+containerized version of the https://documentation.suse.com/sles/html/SLES-all/book-rmt.html[SUSE Repository Mirroring Tool]
+(RMT) server for Kubernetes deployments.
+
+== Stunnel
+
+Image repository: `registry.suse.com/suse/stunnel`
+
+The https://registry.suse.com/repositories/suse-stunnel[Stunnel image] provides
+https://www.stunnel.org/[Stunnel], an open source multi-platform application
+that provides a universal TLS/SSL tunneling service.
+
+== Valkey
+
+Image repository: `registry.suse.com/suse/valkey`
+
+The https://registry.suse.com/repositories/suse-valkey[Valkey image] provides
+https://valkey.io/[Valkey], a high-performance data structure server that
+primarily serves key/value workloads.
