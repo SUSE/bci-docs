@@ -1,74 +1,84 @@
 ---
-title: BCI-Base, BCI-Minimal, BCI-Micro, and BCI-BusyBox
+title: General Purpose Images
+description: Quick overview of the main differences between general-purpose SUSE Linux Base Container Images.
 slug: general-purpose-bci
 ---
 
-SUSE offers several general-purpose SLE Base Container Images that are
-intended as deployment targets or as foundations for creating customized
-images: BCI-Base, BCI-Minimal, BCI-Micro, and BCI-BusyBox. These images
-share the common SLES base, and none of them ship with a specific
-language or an application stack. All images feature the RPM database
-(even if the specific image does not include the RPM package manager)
-that can be used to verify the provenance of every file in the image.
-Each image includes the SLES certificate bundle, which allows the
-deployed applications to use the system's certificates to verify TLS
-connections.
+The general-purpose container images include a minimum set of packages
+to keep their size small. You can use it as a starting point for building
+other container images or for deploying specific software using the free BCI
+repository.
 
-== Quick overview
+A complete list of images is available
+https://registry.suse.com/repositories?sort=featured&categories%5B%5D=bci[here].
 
-The table below provides a quick overview of the differences between
-BCI-Base, BCI-Minimal, BCI-Micro, and BCI-BusyBox.
+== Base—When you need flexibility
 
-== BCI-Base and BCI-Init: When you need flexibility
+Image repository: `registry.suse.com/bci/bci-base`
 
-This SLE BCI comes with the Zypper package manager and a free SLE-BCI
-repository. This allows you to install software available in the
-repository and customize the image during the build. The downside is the
-size of the image. It is the largest of the general-purpose SLE BCIs, so
-it is not always the best choice for a deployment image.
+The Base image comes with a package manager (Zypper and RPM) and the free SUSE
+Linux BCI repository pre-configured, allowing you to install packages from the
+repository and customize the image.
 
-A variant of BCI-Base called BCI-Init comes with systemd preinstalled.
-The BCI-Init container image can be useful in scenarios requiring
-systemd for managing services in a single container.
+== Init—When you need a Systemd environment
 
-== BCI-Minimal: When you do not need Zypper
+Image repository: `registry.suse.com/bci/bci-init`
 
-This is a stripped-down version of the BCI-Base image. BCI-Minimal comes
-without Zypper, but it does have the RPM package manager installed. This
-significantly reduces the size of the image. However, while RPM can
-install and remove packages, it lacks support for repositories and
-automated dependency resolution. The BCI-Minimal image is therefore
-intended for creating deployment containers, and then installing the
-desired RPM packages inside the containers. Although you can install the
-required dependencies, you need to download and resolve them manually.
-However, this approach is not recommended as it is prone to errors.
+The Init image adds https://systemd.io/[Systemd] on top of the Base image.
+This container is only supported with Podman.
 
-== BCI-Micro: When you need to deploy static binaries
+== Minimal—When you do not need Zypper
 
-This image is similar to BCI-Minimal but without the RPM package
-manager. The primary use case for the image is deploying static binaries
-produced externally or during multi-stage builds. As there is no
-straightforward way to install additional dependencies inside the
-container image, we recommend deploying a project using the BCI-Micro
-image only when the final build artifact bundles all dependencies and
-has no external runtime requirements (like Python or Ruby).
+Image repository: `registry.suse.com/bci/bci-minimal`
 
-== BCI-BusyBox: When you need the smallest and GPLv3-free image
+The Minimal image is a stripped-down version of Base. It comes with the RPM
+package manager but not Zypper, reducing its size. However, while RPM can
+install and remove packages, it lacks support for repositories and automated
+dependency resolution.
 
-Similar to BCI-Micro, the BCI-BusyBox image comes with the most basic
-tools only. However, these tools are provided by the BusyBox project.
-This has the benefit of further size reduction. Furthermore, the image
-contains no GPLv3 licensed software. When using the image, keep in mind
-that there are certain differences between the BusyBox tools and the GNU
-Coreutils. So scripts written for a system that uses GNU Coreutils may
-require modification to work with BusyBox.
+== Micro—When you need a small image
 
-== Approximate sizes
+Image repository: `registry.suse.com/bci/bci-micro`
 
-For your reference, the list below provides an approximate size of each
-SLE BCI. Keep in mind that the provided numbers are rough estimations.
+The Micro image has fewer preinstalled packages and no package managers. It is
+ideal for deploying binaries compiled externally or in a previous build stage.
 
-* BCI-Base ~124 MB
-* BCI-Minimal ~48 MB
-* BCI-Micro ~26 MB
-* BCI-BusyBox ~14 MB
+We recommend using Micro as the final stage in a
+https://docs.docker.com/build/building/multi-stage/[multi-stage build] when
+deploying a project.
+
+== BusyBox—When you need the smallest and GPLv3-free image
+
+Image repository: `registry.suse.com/bci/bci-busybox`
+
+The BusyBox image includes tools provided by https://busybox.net/[BusyBox].
+This image is smaller than Micro and contains no GPLv3-licensed software.
+
+When using BusyBox tools, keep in mind that they differ from GNU Coreutils.
+Scripts written for Bash or coreutils may require modification.
+
+== FIPS—When you need validated, encrypted modules
+
+Image repository:
+
+* Base: `registry.suse.com/bci/bci-base-fips`
+* Micro: `registry.suse.com/bci/bci-micro-fips`
+
+The Base and Micro images are also offered with FIPS mode enabled. However, it
+does not include any certified binaries. FIPS images with certified binaries are
+available through an
+https://www.suse.com/products/long-term-service-pack-support/[LTSS subscription].
+
+Use these images in deployment scenarios that require FIPS 140-2 or FIPS 140-3.
+
+== Approximate image size
+
+Below are the approximate sizes of each image.
+
+* SUSE Linux BCI Base ~100-120 MB
+* SUSE Linux BCI Base FIPS ~150-175 MB
+* SUSE Linux BCI Init ~140-150 MB
+* SUSE Linux BCI Minimal ~35-45 MB
+* SUSE Linux BCI Micro ~25 MB
+* SUSE Linux BCI Micro FIPS ~35 MB
+* SUSE Linux BCI BusyBox ~15 MB
