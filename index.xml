@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Introduction to SLE Base Container Images on SLE BCI Documentation</title><link>https://opensource.suse.com/bci-docs/</link><description>Recent content in Introduction to SLE Base Container Images on SLE BCI Documentation</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://opensource.suse.com/bci-docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Adding Users to SLE BCI Micro and Minimal</title><link>https://opensource.suse.com/bci-docs/guides/adding-users/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://opensource.suse.com/bci-docs/guides/adding-users/</guid><description>&lt;div class="paragraph">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Introduction to SUSE Linux Base Container Images on SUSE Linux BCI Documentation</title><link>https://opensource.suse.com/bci-docs/</link><description>Recent content in Introduction to SUSE Linux Base Container Images on SUSE Linux BCI Documentation</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://opensource.suse.com/bci-docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Adding Users to SLE BCI Micro and Minimal</title><link>https://opensource.suse.com/bci-docs/guides/adding-users/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://opensource.suse.com/bci-docs/guides/adding-users/</guid><description>&lt;div class="paragraph">
 
 
 
@@ -18,17 +18,37 @@ images, without having the &lt;code>useradd&lt;/code> binary installed.&lt;/div>
 footprint and thus do not ship the &lt;code>useradd&lt;/code> binary. While this reduces the
 image size, creating new users inside containers based on BCI Micro or Minimal
 involves a few additional steps.&lt;/p>
-&lt;/div></description></item><item><title>BCI-Base, BCI-Minimal, BCI-Micro, and BCI-BusyBox</title><link>https://opensource.suse.com/bci-docs/documentation/general-purpose-bci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://opensource.suse.com/bci-docs/documentation/general-purpose-bci/</guid><description>&lt;div class="paragraph">
-&lt;p>SUSE offers several general-purpose SLE Base Container Images that are
-intended as deployment targets or as foundations for creating customized
-images: BCI-Base, BCI-Minimal, BCI-Micro, and BCI-BusyBox. These images
-share the common SLES base, and none of them ship with a specific
-language or an application stack. All images feature the RPM database
-(even if the specific image does not include the RPM package manager)
-that can be used to verify the provenance of every file in the image.
-Each image includes the SLES certificate bundle, which allows the
-deployed applications to use the system’s certificates to verify TLS
-connections.&lt;/p>
+&lt;/div></description></item><item><title>Application Stack Images</title><link>https://opensource.suse.com/bci-docs/documentation/application-stack-bci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://opensource.suse.com/bci-docs/documentation/application-stack-bci/</guid><description>&lt;div class="paragraph">
+&lt;p>The application stack container images offer production-ready applications.
+These container images don’t include a package manager or the free BCI repository.&lt;/p>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>A complete list of images is available
+&lt;a href="https://registry.suse.com/repositories?sort=featured&amp;amp;categories%5B%5D=apps">here&lt;/a>.&lt;/p>
+&lt;/div>
+&lt;div class="sect1">
+&lt;h2 id="_389_ds">389 DS&lt;/h2>
+&lt;div class="sectionbody">
+&lt;div class="paragraph">
+&lt;p>Image repository: &lt;code>registry.suse.com/suse/389-ds&lt;/code>&lt;/p>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>The &lt;a href="https://registry.suse.com/repositories/suse-389-ds">389 DS image&lt;/a> provides
+&lt;a href="https://www.port389.org/">389 Directory Server&lt;/a>, a highly usable, fully featured,
+reliable and secure LDAP server implementation.&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;div class="sect1">
+&lt;h2 id="_bind">BIND&lt;/h2>
+&lt;div class="sectionbody">
+&lt;div class="paragraph">
+&lt;p>Image repository: &lt;code>registry.suse.com/suse/bind&lt;/code>&lt;/p>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>The &lt;a href="https://registry.suse.com/repositories/suse-bind">BIND image&lt;/a> provides
+&lt;a href="https://www.isc.org/bind/">BIND 9&lt;/a>, a suite of software for interacting with the
+Domain Name System (DNS).&lt;/p>
 &lt;/div></description></item><item><title>Building and Deploying Go Applications</title><link>https://opensource.suse.com/bci-docs/guides/use-with-golang/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://opensource.suse.com/bci-docs/guides/use-with-golang/</guid><description>&lt;div class="paragraph">
 &lt;p>There is &lt;a href="https://registry.suse.com/static/bci/golang/index.html">a
 SLE BCI that can be used with the Go programming language&lt;/a>. There are a
@@ -103,6 +123,90 @@ dependencies and copy them into the deployment image based on &lt;code>bci-micro
 &lt;p>No subscription required, ideal for development, CI/CD and production without subscription hurdles.&lt;/p>
 &lt;/li>
 &lt;/ul>
+&lt;/div></description></item><item><title>General Purpose Images</title><link>https://opensource.suse.com/bci-docs/documentation/general-purpose-bci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://opensource.suse.com/bci-docs/documentation/general-purpose-bci/</guid><description>&lt;div class="paragraph">
+&lt;p>The general-purpose container images include a minimum set of packages
+to keep their size small. You can use it as a starting point for building
+other container images or for deploying specific software using the free BCI
+repository.&lt;/p>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>A complete list of images is available
+&lt;a href="https://registry.suse.com/repositories?sort=featured&amp;amp;categories%5B%5D=bci">here&lt;/a>.&lt;/p>
+&lt;/div>
+&lt;div class="sect1">
+&lt;h2 id="_basewhen_you_need_flexibility">Base—When you need flexibility&lt;/h2>
+&lt;div class="sectionbody">
+&lt;div class="paragraph">
+&lt;p>Image repository: &lt;code>registry.suse.com/bci/bci-base&lt;/code>&lt;/p>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>The Base image comes with a package manager (Zypper and RPM) and the free SUSE
+Linux BCI repository pre-configured, allowing you to install packages from the
+repository and customize the image.&lt;/p>
+&lt;/div></description></item><item><title>Getting Started</title><link>https://opensource.suse.com/bci-docs/documentation/getting-started-guide/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://opensource.suse.com/bci-docs/documentation/getting-started-guide/</guid><description>&lt;div class="paragraph">
+&lt;p>SUSE Linux Base Container Images (SUSE Linux BCI) are available from the &lt;a href="https://registry.suse.com">SUSE Registry&lt;/a>. Use it like any other OCI-compatible container image.&lt;/p>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>To use SUSE Linux BCI Base from the command line, simply run from your preferred container runtime:&lt;/p>
+&lt;/div>
+&lt;div class="paragraph">
+
+
+
+&lt;div class="gdoc-tabs">
+ &lt;input
+ type="radio"
+ class="gdoc-tabs__control hidden"
+ name="tabs-run_sle_bci"
+ id="tabs-run_sle_bci-0"
+ checked="checked"
+ />
+ &lt;label for="tabs-run_sle_bci-0" class="gdoc-tabs__label">
+ Docker
+ &lt;/label>
+ &lt;div class="gdoc-markdown--nested gdoc-tabs__content">
+ &lt;div class="listingblock">
+&lt;div class="content">
+&lt;pre class="highlight">&lt;code class="language-ShellSession" data-lang="ShellSession">$ docker run --rm -it registry.suse.com/bci/bci-base:latest grep &amp;#39;^NAME&amp;#39; /etc/os-release
+NAME=&amp;#34;SLES&amp;#34;&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/div>
+
+ &lt;/div>
+ &lt;input
+ type="radio"
+ class="gdoc-tabs__control hidden"
+ name="tabs-run_sle_bci"
+ id="tabs-run_sle_bci-1"
+ 
+ />
+ &lt;label for="tabs-run_sle_bci-1" class="gdoc-tabs__label">
+ Podman
+ &lt;/label>
+ &lt;div class="gdoc-markdown--nested gdoc-tabs__content">
+ &lt;div class="listingblock">
+&lt;div class="content">
+&lt;pre class="highlight">&lt;code class="language-ShellSession" data-lang="ShellSession">$ podman run --rm -it registry.suse.com/bci/bci-base:latest grep &amp;#39;^NAME&amp;#39; /etc/os-release
+NAME=&amp;#34;SLES&amp;#34;&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/div>
+
+ &lt;/div>
+ &lt;input
+ type="radio"
+ class="gdoc-tabs__control hidden"
+ name="tabs-run_sle_bci"
+ id="tabs-run_sle_bci-2"
+ 
+ />
+ &lt;label for="tabs-run_sle_bci-2" class="gdoc-tabs__label">
+ nerdctl
+ &lt;/label>
+ &lt;div class="gdoc-markdown--nested gdoc-tabs__content">
+ &lt;div class="listingblock">
+&lt;div class="content">
+&lt;pre class="highlight">&lt;code class="language-ShellSession" data-lang="ShellSession">$ nerdctl run --rm -it registry.suse.com/bci/bci-base:latest grep &amp;#39;^NAME&amp;#39; /etc/os-release
+NAME=&amp;#34;SLES&amp;#34;&lt;/code>&lt;/pre>
 &lt;/div></description></item><item><title>How to build a distroless image using SLE BCI</title><link>https://opensource.suse.com/bci-docs/guides/building-a-distroless-image/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://opensource.suse.com/bci-docs/guides/building-a-distroless-image/</guid><description>&lt;div class="sect1">
 &lt;h2 id="_what_is_a_distroless_image">What is a distroless image?&lt;/h2>
 &lt;div class="sectionbody">
@@ -169,19 +273,58 @@ without requiring any action on your part.&lt;/p>
 Containers&lt;/a>. This is part of the built-in functionality to work with
 remote containers. The Language Stack SLE BCIs make a great choice to
 use as a development environment.&lt;/p>
-&lt;/div></description></item><item><title>Language stack SLE Base Container Images</title><link>https://opensource.suse.com/bci-docs/documentation/language-stack-bci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://opensource.suse.com/bci-docs/documentation/language-stack-bci/</guid><description>&lt;div class="paragraph">
-&lt;p>If you have a working knowledge of containers, you will not have any
-difficulties using SLE BCIs. However, there are certain features that
-set SLE BCIs apart from similar offerings, like images based on Debian
-or Alpine Linux. And understanding the specifics can help you to get the
-most out of SLE BCIs in the shortest time possible.&lt;/p>
+&lt;/div></description></item><item><title>Images Available</title><link>https://opensource.suse.com/bci-docs/documentation/bci-images/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://opensource.suse.com/bci-docs/documentation/bci-images/</guid><description>&lt;div class="paragraph">
+&lt;p>SUSE Linux Base Container Images (SUSE Linux BCI) provide three types of
+container images:&lt;/p>
+&lt;/div>
+&lt;div class="ulist">
+&lt;ul>
+&lt;li>
+&lt;p>General-purpose images allow building custom container images and
+deploying applications.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Language stack images allow developing and deploying applications
+in specific programming languages.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Application stack images feature popular containerized applications
+like Nginx, PostgreSQL, and MariaDB.&lt;/p>
+&lt;/li>
+&lt;/ul>
 &lt;/div>
 &lt;div class="sect1">
-&lt;h2 id="_language_stack_sle_bcis">Language stack SLE BCIs&lt;/h2>
+&lt;h2 id="_general_purpose">General-purpose&lt;/h2>
 &lt;div class="sectionbody">
 &lt;div class="paragraph">
-&lt;p>Language stack SLE BCI are built on top of BCI-Base. Below is an
-overview of the available language stack SLE BCIs.&lt;/p>
+&lt;p>The general-purpose container images come with a minimum set of packages
+to keep their size small. You can use it as a starting point for building
+other container images, or to deploy specific software using the free BCI
+repository.&lt;/p>
+&lt;/div></description></item><item><title>Language Stack Images</title><link>https://opensource.suse.com/bci-docs/documentation/language-stack-bci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://opensource.suse.com/bci-docs/documentation/language-stack-bci/</guid><description>&lt;div class="paragraph">
+&lt;p>The language stack container images include the most common tools for building
+and deploying applications in their specific language environment. This includes
+tools like a compiler or interpreter, as well as the language-specific package
+manager.&lt;/p>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>These images are built on top of SUSE Linux BCI Base and have the free BCI
+repository pre-configured.&lt;/p>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>A complete list of images is available
+&lt;a href="https://registry.suse.com/repositories?sort=featured&amp;amp;categories%5B%5D=bci-devel">here&lt;/a>.&lt;/p>
+&lt;/div>
+&lt;div class="sect1">
+&lt;h2 id="_cc">C/C++&lt;/h2>
+&lt;div class="sectionbody">
+&lt;div class="paragraph">
+&lt;p>Image repository: &lt;code>registry.suse.com/bci/gcc&lt;/code>&lt;/p>
+&lt;/div>
+&lt;div class="paragraph">
+&lt;p>The &lt;a href="https://registry.suse.com/repositories?languages%5B%5D=cpp">C/C++ image&lt;/a>
+includes the GNU Compiler Collection version specified in the tag, as well as
+cURL, Git, GNU make and Fortran.&lt;/p>
 &lt;/div></description></item><item><title>Launch Containers with Podman and Systemd</title><link>https://opensource.suse.com/bci-docs/guides/podman-generate-systemd/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://opensource.suse.com/bci-docs/guides/podman-generate-systemd/</guid><description>&lt;div class="sect1">
 &lt;h2 id="_local_container_orchestration">Local Container Orchestration&lt;/h2>
 &lt;div class="sectionbody">
@@ -251,15 +394,4 @@ the verification step into your Podman installation.&lt;/p>
 &lt;p>To verify a SLE BCI image, run Cosign in the container. The command below fetches the
 signing key from the SUSE server and uses it to verify the latest BCI-Base container
 image.&lt;/p>
-&lt;/div></description></item><item><title>Why SLE Base Container Images</title><link>https://opensource.suse.com/bci-docs/documentation/why-sle-bci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://opensource.suse.com/bci-docs/documentation/why-sle-bci/</guid><description>&lt;div class="paragraph">
-&lt;p>SLE BCIs offer a platform for creating SLE-based custom container images
-and containerized applications that can be distributed freely. SLE BCIs
-feature the same predictable enterprise lifecycle as SLES. The &lt;code>SLE_BCI&lt;/code>
-15 SP3 and SP4 repository (which is a subset of the SLE repository)
-gives SLE BCIs access to 4,000 packages available for the AMD64/Intel
-64, AArch64, ppc64le, and s390x architectures. The packages in the
-repository have undergone quality assurance and security audits by SUSE.
-The container images are FIPS-compliant when running on a host in FIPS
-mode. In addition to that, SUSE can provide official support for SLE
-BCIs through SUSE subscription plans.&lt;/p>
 &lt;/div></description></item></channel></rss>
