@@ -78,7 +78,7 @@ the Go programming language. A `Dockerfile` placed in the
 
 [source,dockerfile]
 ----
-FROM registry.suse.com/bci/golang:1.18
+FROM registry.suse.com/bci/golang:stable
 
 # Install tools needed by Visual Studio Code Remote Development Containers
 RUN zypper --non-interactive install -y tar git gzip
