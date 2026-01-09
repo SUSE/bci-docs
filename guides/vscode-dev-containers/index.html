@@ -64,7 +64,7 @@ point it at an image or you can point it at a <em>Dockerfile</em> to build the
 image from. Since VS Code needs some additional packages installed you
 can’t simply point it at a SLE BCI image.</p></div><div class=paragraph><p>To illustrate using the <code>Dockerfile</code> method we can look at a setup for
 the Go programming language. A <code>Dockerfile</code> placed in the
-<code>.devcontainer</code> directory would look like:</p></div><div class=listingblock><div class=content><pre class=highlight><code class=language-dockerfile data-lang=dockerfile>FROM registry.suse.com/bci/golang:1.18
+<code>.devcontainer</code> directory would look like:</p></div><div class=listingblock><div class=content><pre class=highlight><code class=language-dockerfile data-lang=dockerfile>FROM registry.suse.com/bci/golang:stable
 
 # Install tools needed by Visual Studio Code Remote Development Containers
 RUN zypper --non-interactive install -y tar git gzip</code></pre></div></div><div class=paragraph><p>VS Code needs git, gzip, and tar installed which are not present in the

@@ -40,7 +40,7 @@ involves a few additional steps.</p></div><div class=sect2><h3 id=_switch_to_usi
 manager and tailored for specific use cases. If you do not require a package
 manager in your final image and additionally:</p></div><div class="olist arabic"><ol class=arabic><li><p>you do not need <code>rpm</code></p></li><li><p>your application runs with POSIX <code>sh</code> and not just Bash</p></li></ol></div><div class=paragraph><p>Then consider using the SLE BCI BusyBox image instead. It is even smaller than SLE BCI
 Micro and ships the BusyBox implementation of <code>useradd</code>. Adding a new user in
-BusyBox is straightforward:</p></div><div class=listingblock><div class=content><pre class=highlight><code class=language-Dockerfile data-lang=Dockerfile>FROM registry.suse.com/bci/bci-busybox:15.4
+BusyBox is straightforward:</p></div><div class=listingblock><div class=content><pre class=highlight><code class=language-Dockerfile data-lang=Dockerfile>FROM registry.suse.com/bci/bci-busybox:15.7
 ARG user
 
 # add -H if /home/$user shall not be created
@@ -51,13 +51,13 @@ USER $user</code></pre></div></div><div class=paragraph><p>This container can be
 <label for=tabs-build_container_with_added_user-1 class=gdoc-tabs__label>Podman</label><div class="gdoc-markdown--nested gdoc-tabs__content"><div class=listingblock><div class=content><pre class=highlight><code class=language-Shell data-lang=Shell>buildah bud --layers --build-arg user=rancher .</code></pre></div></div></div><input type=radio class="gdoc-tabs__control hidden" name=tabs-build_container_with_added_user id=tabs-build_container_with_added_user-2>
 <label for=tabs-build_container_with_added_user-2 class=gdoc-tabs__label>nerdctl</label><div class="gdoc-markdown--nested gdoc-tabs__content"><div class=listingblock><div class=content><pre class=highlight><code class=language-Shell data-lang=Shell>nerdctl build --build-arg user=rancher .</code></pre></div></div></div></div></p></div></div><div class=sect2><h3 id=_using_the_base_container_to_create_the_user_account>Using the Base Container to create the User Account</h3><div class=paragraph><p>We can utilize a multistage build to create the user in a container that
 provides the <code>useradd</code> binary and then copy all necessary files into SLE BCI
-Micro or SLE BCI Minimal. This is achieved using the following <code>Dockerfile</code>:</p></div><div class=listingblock><div class=content><pre class=highlight><code class=language-Dockerfile data-lang=Dockerfile>FROM registry.suse.com/bci/bci-base:15.4 as useradder
+Micro or SLE BCI Minimal. This is achieved using the following <code>Dockerfile</code>:</p></div><div class=listingblock><div class=content><pre class=highlight><code class=language-Dockerfile data-lang=Dockerfile>FROM registry.suse.com/bci/bci-base:15.7 as useradder
 ARG user
 # omit -m if you don&#39;t want /home/$user to be created
 RUN useradd -m $user
 
 
-FROM registry.suse.com/bci/bci-micro:15.4
+FROM registry.suse.com/bci/bci-micro:15.7
 ARG user
 
 COPY --from=useradder /etc/passwd /etc/passwd
@@ -87,10 +87,10 @@ executing its <code>adduser</code>. This will <strong>not</strong> work in the M
 image, thereby making it slightly bigger than necessary. Consider squashing the
 layers to remove this overhead.</div></blockquote></div><div class=paragraph><p>We utilize the SLE BCI Base container once again to download the rpms of BusyBox and
 <code>libsepol1</code> (a dependency of BusyBox), copy both rpms into the Minimal image,
-add the user and remove both packages afterwards:</p></div><div class=listingblock><div class=content><pre class=highlight><code class=language-Dockerfile data-lang=Dockerfile>FROM registry.suse.com/bci/bci-base:15.4 as downloader
+add the user and remove both packages afterwards:</p></div><div class=listingblock><div class=content><pre class=highlight><code class=language-Dockerfile data-lang=Dockerfile>FROM registry.suse.com/bci/bci-base:15.7 as downloader
 RUN zypper download busybox libsepol1
 
-FROM registry.suse.com/bci/bci-minimal:15.4
+FROM registry.suse.com/bci/bci-minimal:15.7
 ARG user
 ARG arch=x86_64
 

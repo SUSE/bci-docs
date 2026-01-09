@@ -189,7 +189,7 @@ done</code></pre></div></div><div class=paragraph><p>This makes all necessary li
 
 3 directories, 31 files</code></pre></div></div><div class=paragraph><p>With the required information in place, you can create a <code>Dockerfile</code>. The
 following example uses the SLE BCI Base image as the base image, installs cargo
-and creates the directory tree shown above:</p></div><div class=listingblock><div class=content><pre class=highlight><code class=language-Dockerfile data-lang=Dockerfile>FROM registry.suse.com/bci/bci-base:15.4 as builder
+and creates the directory tree shown above:</p></div><div class=listingblock><div class=content><pre class=highlight><code class=language-Dockerfile data-lang=Dockerfile>FROM registry.suse.com/bci/bci-base:15.7 as builder
 
 RUN zypper -n in cargo
 
@@ -201,7 +201,7 @@ RUN for lib in $(ldd /usr/bin/cargo | grep &#34;^[[:space:]]*/&#34; | cut -d&#34
      done</code></pre></div></div><div class=paragraph><p>Next, copy <code>cargo</code> itself and the libraries under <code>/l/</code> into an empty image
 based on <code>SCRATCH</code>. As this image only contains <code>cargo</code>, set both <code>CMD</code> and
 <code>ENTRYPOINT</code> to cargo, to prevent the container behaving unexpectedly when it is
-launched without parameters. The complete <code>Dockerfile</code> looks as follows:</p></div><div class=listingblock><div class=content><pre class=highlight><code class=language-Dockerfile data-lang=Dockerfile>FROM registry.suse.com/bci/bci-base:15.4 as builder
+launched without parameters. The complete <code>Dockerfile</code> looks as follows:</p></div><div class=listingblock><div class=content><pre class=highlight><code class=language-Dockerfile data-lang=Dockerfile>FROM registry.suse.com/bci/bci-base:15.7 as builder
 
 RUN zypper -n in cargo
 
