@@ -224,7 +224,7 @@ and creates the directory tree shown above:
 
 [source,Dockerfile]
 ----
-FROM registry.suse.com/bci/bci-base:15.4 as builder
+FROM registry.suse.com/bci/bci-base:15.7 as builder
 
 RUN zypper -n in cargo
 
@@ -243,7 +243,7 @@ launched without parameters. The complete `Dockerfile` looks as follows:
 
 [source,Dockerfile]
 ----
-FROM registry.suse.com/bci/bci-base:15.4 as builder
+FROM registry.suse.com/bci/bci-base:15.7 as builder
 
 RUN zypper -n in cargo
 

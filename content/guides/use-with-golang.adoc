@@ -42,8 +42,8 @@ name.
 
 [source,docker]
 ----
-# Build the Go Binary using the SLE BCI Go 1.19 images
-FROM registry.suse.com/bci/golang:1.19 as build
+# Build the Go Binary using the SLE BCI Go images
+FROM registry.suse.com/bci/golang:stable as build
 
 WORKDIR /app
 
@@ -79,8 +79,8 @@ in this case:
 
 [source,docker]
 ----
-# Build the Go Binary using the SLE BCI Go 1.19 images
-FROM registry.suse.com/bci/golang:1.19 as build
+# Build the Go Binary using the SLE BCI Go images
+FROM registry.suse.com/bci/golang:stable as build
 
 WORKDIR /app
 
@@ -93,7 +93,7 @@ COPY *.go ./
 RUN go build -o /hello-world
 
 # Create image to bundle app
-FROM registry.suse.com/bci/bci-micro:15.4
+FROM registry.suse.com/bci/bci-micro:latest
 
 # Install dependencies (if required) here
 

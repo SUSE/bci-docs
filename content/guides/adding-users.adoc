@@ -32,7 +32,7 @@ BusyBox is straightforward:
 
 [source,Dockerfile]
 ----
-FROM registry.suse.com/bci/bci-busybox:15.4
+FROM registry.suse.com/bci/bci-busybox:15.7
 ARG user
 
 # add -H if /home/$user shall not be created
@@ -72,13 +72,13 @@ Micro or SLE BCI Minimal. This is achieved using the following `Dockerfile`:
 
 [source,Dockerfile]
 ----
-FROM registry.suse.com/bci/bci-base:15.4 as useradder
+FROM registry.suse.com/bci/bci-base:15.7 as useradder
 ARG user
 # omit -m if you don't want /home/$user to be created
 RUN useradd -m $user
 
 
-FROM registry.suse.com/bci/bci-micro:15.4
+FROM registry.suse.com/bci/bci-micro:15.7
 ARG user
 
 COPY --from=useradder /etc/passwd /etc/passwd
@@ -125,10 +125,10 @@ add the user and remove both packages afterwards:
 
 [source,Dockerfile]
 ----
-FROM registry.suse.com/bci/bci-base:15.4 as downloader
+FROM registry.suse.com/bci/bci-base:15.7 as downloader
 RUN zypper download busybox libsepol1
 
-FROM registry.suse.com/bci/bci-minimal:15.4
+FROM registry.suse.com/bci/bci-minimal:15.7
 ARG user
 ARG arch=x86_64
 
