@@ -2,4 +2,16 @@
 title: Documentation
 ---
 
+SUSE Linux Base Container Images (SUSE Linux BCI) provide a set of container images that are truly open, flexible, and secure. Built from the same trusted codebase as SUSE Linux Enterprise Server (SLES), these images include general-purpose containers, development tools, and ready-to-use applications available for immediate use by developers, integrators, and operators.
+
+SUSE created these images to provide a secure and flexible alternative that avoids vendor lock-in. They are completely free to use and redistribute under the https://www.suse.com/licensing/eula/#bci[SUSE Linux BCI EULA], making them ideal for community projects, development, CI/CD, and production environments without the need for a subscription.
+
+Users benefit from:
+
+* **Enterprise-Grade Security and Compliance:** Images feature enterprise-grade CVE mitigation, SLSA L3 grade builds, and signed images for supply chain integrity. SBOMs (SPDX and CycloneDX) and SLSA provenance files are available. They also inherit EAL 4+ certification and can be configured in FIPS mode.
+* **Stability and Support Transition:** Aligned with the SLES lifecycle, they provide a consistent ABI/API. You can start for free and transition to commercial support by subscribing, allowing you to stay on the same images without rebuilding your stack.
+* **Flexibility and Reach:** SUSE Linux BCI works on any OCI-compliant runtime and any Linux OS. It supports up to four architectures: amd64, arm64, ppc64le, and s390x.
+
+These images support diverse use cases, such as enabling SUSE Rancher to build with certified enterprise components, helping developers avoid vendor lock-in across different Linux hosts, and allowing Independent Software Vendors (ISVs) to leverage a secure supply chain for their applications.
+
 {{< toc-bundle >}}
