@@ -13,7 +13,7 @@ crash. While container orchestration tools like Kubernetes are designed for that
 exact purpose, they are intended to be used for highly distributed and scalable
 systems with hundreds of nodes, and not for a single machine. systemd and Podman
 are much better suited for the single-machine scenario, as they do not add
-another layer complexity to your existing setup.
+another layer of complexity to your existing setup.
 
 
 === Overview
@@ -74,8 +74,8 @@ WantedBy=default.target
 ----
 
 Podman outputs a unit file to the console that can be put either into the user
-unit systemd directories (`~/.config/systemd/user/` or `/etc/systemd/user/`) or
-into the system unit systemd directory (`/etc/systemd/systtem`) and control the
+systemd unit directories (`~/.config/systemd/user/` or `/etc/systemd/user/`) or
+into the system unit systemd directory (`/etc/systemd/system`) and control the
 container via systemd. The `--new` flag instructs Podman to recreate the
 container on a restart. This ensures that the systemd unit is self-contained,
 and it does not depend on external state. The `--name` flag allows you to assign

@@ -31,7 +31,7 @@ your application works in the environment.
 
 Second, when you have a team of people working on an application, all
 developers will have the same environment to work in. Whether they are
-on Windows, macOS, or Linux their will be the same.
+on Windows, macOS, or Linux their environment will be the same.
 
 == Docker Socket Required
 
