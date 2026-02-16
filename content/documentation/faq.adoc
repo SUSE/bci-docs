@@ -124,7 +124,7 @@ No, you can deploy SUSE Linux BCI to any OCI-compatible runtime or certified Kub
 
 Yes, BCI-based images can be freely distributed as long as you follow the https://www.suse.com/licensing/eula/#bci[SUSE Linux BCI EULA].
 
-All packages in the <<free-bci-repo, free BCI repository are>> freely redistributable. If you use only this repository, your container remains redistributable.
+All packages in the <<free-bci-repo, free BCI repository>> are freely redistributable. If you use only this repository, your container remains redistributable.
 
 If you add more content to your container, you may need to check for additional restrictions.
 

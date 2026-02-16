@@ -4,7 +4,7 @@ Title: How to build a distroless image using SLE BCI
 
 == What is a distroless image?
 
-Distroless images are stripped down container images, where the underlying Linux
+Distroless images are stripped-down container images, where the underlying Linux
 distribution is reduced to the bare minimum. A distroless image normally
 contains only certificates and specific core libraries, and it does not include
 a shell or utilities like `cat` or `ls`.
@@ -28,10 +28,10 @@ detect a vulnerable shared library.
 {{< /hint >}}
 
 
-=== How to build a distroless images from SLE BCI
+=== How to build a distroless image from SLE BCI
 
 {{< hint type="warning" >}}
-The approach described in this section is unsupported and can lead to broken
+The approach described in this section is unsupported and can lead to a broken
 image as only shared libraries will be copied and no other required files are
 copied.
 
@@ -51,7 +51,7 @@ are required for the program to function correctly. For example, a Python
 application will require that the Python interpreter is present in the final
 image.
 
-As minimum, compiled applications are usually dynamically linked to libc. It is
+At a minimum, compiled applications are usually dynamically linked to libc. It is
 possible to statically link against most libraries, but not against glibc (which
 is the libc implementation used by SLE). Therefore the compiled application
 requires at least the shared libc library. The required libraries can be
