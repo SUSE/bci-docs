@@ -4,49 +4,6 @@ description: The FAQ is designed to answer the questions our users most frequent
 slug: faq
 ---
 
-== General Information
-
-=== What are the SUSE Linux Base Container Images?
-
-SUSE Linux Base Container Images (SUSE Linux BCI) provides a set of container images that are truly open, flexible and secure. Available for immediate use by developers, integrators and operators are container images based on SUSE Linux Enterprise Server (SLES). SUSE Linux BCI includes general-purpose container images, development tools and applications.
-
-=== What are the benefits of SUSE Linux BCI?
-
-* Free to Use & Redistribute
-** SUSE Linux BCI containers are completely free and come with an https://www.suse.com/licensing/eula/#bci[EULA] that enables you to redistribute them freely.
-** No subscription required, ideal for development, CI/CD and production without subscription hurdles.
-* Enterprise-Grade Security
-** Built from the same code base as SUSE Linux Enterprise Server.
-** Maintained with enterprise-grade CVE mitigation and aligned with SLES's certified, proactive security.
-** https://slsa.dev/spec/v1.1/levels#build-l3[SLSA L3] grade builds.
-** Signed container images for supply chain integrity.
-** SBOM available in both SPDX and CycloneDX formats.
-** SLSA Provenance file available.
-* Stability
-** Enterprise lifecycle, aligned with the lifecycle of the corresponding SUSE Linux Enterprise Server version.
-** Consistent ABI/API.
-* Vendor Neutral
-** Works on any OCI-compliant runtime.
-** Works on any Linux OS.
-** No vendor lock-in.
-* Multi-architecture
-** Available for up to 4 architecturesfootnote:[Some containers may be available in a smaller number of architectures.]: amd64, arm64, ppc64le and s390x.
-* Compliance & Certification
-** Evaluation Assurance Level 4+ (Common Criteria) inherited from SUSE Linux Enterprise Server. SLES 15 is the only general-purpose OS with an active EAL 4+ certificate. See https://www.suse.com/support/security/certifications/[SUSE Certifications and Features] for more details.
-** Selected containers can be configured in FIPS mode.
-** FIPS certificationfootnote:[Containers out of the General Availability phase are available to customers with corresponding LTS SUSE Linux Enterprise Server subscriptions.] inherited from SUSE Linux Enterprise Server for selected containers.
-* Smooth transition to Enterprise Support
-** Start free and when you need commercial support, subscribe and stay on the same container images.
-** No need to rebuild your stack when moving from community to enterprise.
-
-=== Why did SUSE create SUSE Linux BCI?
-
-SUSE created SUSE Linux BCI to provide truly open, flexible and secure container images that developers and integrators can use without the vendor lock-in of alternative offerings.
-
-=== Is SUSE Linux BCI free to use?
-
-Yes. SUSE Linux BCI is free to use and redistribute in accordance with the https://www.suse.com/licensing/eula/#bci[SUSE Linux BCI EULA].
-
 == Availability and Requirements
 
 === Where can I find SUSE Linux BCI?
@@ -151,32 +108,6 @@ The SLES-based container images follow the same support lifecycle as their SLES 
 Application and Language images follow the lifecycle of their respective tools rather than the SLES release. For further details, check the https://www.suse.com/lifecycle[SUSE Product Support Lifecycle].
 
 Long Term Service Pack (LTSS) versions of SUSE Linux BCI are available to customers with an LTSS subscription.
-
-== Use Cases
-
-=== What are some use cases for SUSE Linux BCI?
-
-SUSE Linux BCI provides a stable, secure and open ecosystem for developing and deploying applications. SUSE Linux BCI leverages the experience, stability and security of SUSE Linux Enterprise Server.
-
-SUSE Linux BCI is suitable for different use cases:
-
-* SUSE Rancher
-** Enable Rancher to build using stable, reliable, secure and certified enterprise components.
-** Leverage SUSE's in-house OS knowledge while containerizing applications.
-** Easy migration path from OS-based applications to containerized applications.
-* Developers
-** Avoid vendor lock-in.
-** Deploy to any Linux host.
-** Freely redistributable.
-** Suitable for development, testing and production environments.
-* Independent Software Vendors (ISVs)
-** Containerize applications using a stable, reliable, secure and certified enterprise OS.
-** Leverage SUSE security and supply chain.
-** Run applications on various hosts.
-
-=== Can I use SUSE Linux BCI for community projects?
-
-Yes, as long as you follow the https://www.suse.com/licensing/eula/#bci[SUSE Linux BCI EULA].
 
 == Support and Feedback
 
