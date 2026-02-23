@@ -53,7 +53,7 @@ image.
 
 At a minimum, compiled applications are usually dynamically linked to libc. It is
 possible to statically link against most libraries, but not against glibc (which
-is the libc implementation used by SLE). Therefore the compiled application
+is the libc implementation used by SLE). Therefore, the compiled application
 requires at least the shared libc library. The required libraries can be
 identified using `ldd`. The following example deploys the Rust package manager
 `cargo` in an empty image.

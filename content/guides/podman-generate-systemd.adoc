@@ -73,7 +73,7 @@ NotifyAccess=all
 WantedBy=default.target
 ----
 
-Podman outputs a unit file to the console that can be put either into the user
+Podman outputs a unit file to the console. You can place this file into the user
 systemd unit directories (`~/.config/systemd/user/` or `/etc/systemd/user/`) or
 into the system unit systemd directory (`/etc/systemd/system`) and control the
 container via systemd. The `--new` flag instructs Podman to recreate the
