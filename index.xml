@@ -52,7 +52,7 @@ Domain Name System (DNS).&lt;/p>
 &lt;/div></description></item><item><title>Building and Deploying Go Applications</title><link>https://opensource.suse.com/bci-docs/guides/use-with-golang/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://opensource.suse.com/bci-docs/guides/use-with-golang/</guid><description>&lt;div class="paragraph">
 &lt;p>There is &lt;a href="https://registry.suse.com/static/bci/golang/index.html">a
 SLE BCI that can be used with the Go programming language&lt;/a>. There are a
-couple different recommended methods to work with the Go SLE BCI.&lt;/p>
+couple of different recommended methods to work with the Go SLE BCI.&lt;/p>
 &lt;/div>
 &lt;div class="sect1">
 &lt;h2 id="_dont_ship_the_compiler">Don’t Ship The Compiler&lt;/h2>
@@ -211,7 +211,7 @@ NAME=&amp;#34;SLES&amp;#34;&lt;/code>&lt;/pre>
 &lt;h2 id="_what_is_a_distroless_image">What is a distroless image?&lt;/h2>
 &lt;div class="sectionbody">
 &lt;div class="paragraph">
-&lt;p>Distroless images are stripped down container images, where the underlying Linux
+&lt;p>Distroless images are stripped-down container images, where the underlying Linux
 distribution is reduced to the bare minimum. A distroless image normally
 contains only certificates and specific core libraries, and it does not include
 a shell or utilities like &lt;code>cat&lt;/code> or &lt;code>ls&lt;/code>.&lt;/p>
@@ -369,7 +369,7 @@ crash. While container orchestration tools like Kubernetes are designed for that
 exact purpose, they are intended to be used for highly distributed and scalable
 systems with hundreds of nodes, and not for a single machine. systemd and Podman
 are much better suited for the single-machine scenario, as they do not add
-another layer complexity to your existing setup.&lt;/p>
+another layer of complexity to your existing setup.&lt;/p>
 &lt;/div></description></item><item><title>Package Management</title><link>https://opensource.suse.com/bci-docs/guides/package-management/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://opensource.suse.com/bci-docs/guides/package-management/</guid><description>&lt;div class="paragraph">
 &lt;p>&lt;a href="https://documentation.suse.com/smart/systems-management/html/concept-zypper/index.html">Zypper&lt;/a>
 is the default package manager in SUSE Linux Base Container Images. Like
