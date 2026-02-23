@@ -5,7 +5,7 @@ slug: use-with-golang
 
 There is https://registry.suse.com/static/bci/golang/index.html[a
 SLE BCI that can be used with the Go programming language]. There are a
-couple different recommended methods to work with the Go SLE BCI.
+couple of different recommended methods to work with the Go SLE BCI.
 
 == Don't Ship The Compiler
 

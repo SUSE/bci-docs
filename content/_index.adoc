@@ -5,7 +5,7 @@ description: SUSE Linux Base Container Images provide a set of container images 
 
 SUSE Linux Base Container Images (SUSE Linux BCI) provide a set of container
 images that are truly open, flexible and secure. They are designed to provide
-the foundation for your cloud native applications, eneabling you to build,
+the foundation for your cloud native applications, enabling you to build,
 deploy and share freely distributable SLES-based container images provided by
 SUSE.
 
