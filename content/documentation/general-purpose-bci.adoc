@@ -47,7 +47,19 @@ We recommend using Micro as the final stage in a
 https://docs.docker.com/build/building/multi-stage/[multi-stage build] when
 deploying a project.
 
-== BusyBox—When you need the smallest and GPLv3-free image
+== Nano—When you need a tiny image
+
+Image repository: `registry.suse.com/bci/bci-nano`
+
+The Nano image has only includes the timezone database and the CA root. There
+is no shell or glibc included. It is ideal for deploying standalone ("static") binaries
+that are compiled externally or in a previous build stage.
+
+We recommend using Nano as the final stage in a
+https://docs.docker.com/build/building/multi-stage/[multi-stage build] project
+that targets a static-distroless tiny deployment use case.
+
+== BusyBox—When you need a GPLv3-free image
 
 Image repository: `registry.suse.com/bci/bci-busybox`
 
@@ -82,3 +94,4 @@ Below are the approximate sizes of each image.
 * SUSE Linux BCI Micro ~25 MB
 * SUSE Linux BCI Micro FIPS ~35 MB
 * SUSE Linux BCI BusyBox ~15 MB
+* SUSE Linux BCI Nano ~6 MB
